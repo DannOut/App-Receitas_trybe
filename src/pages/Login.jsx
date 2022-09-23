@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import LoginContext from '../context/LoginContext';
 import { MIN_PASSWORD } from '../helpers/constants';
 import { saveLocalStorage } from '../helpers/localStorage';
 
-function Login({ history }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+function Login() {
+  const { loginInfo: { email, password }, setLoginInfo } = useContext(LoginContext);
+  const history = useHistory();
   const formValidation = () => {
     const regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
     return regex.test(email) && password.length > MIN_PASSWORD;
@@ -29,7 +31,11 @@ function Login({ history }) {
           data-testid="email-input"
           placeholder="Email"
           value={ email }
-          onChange={ ({ target: { value } }) => setEmail(value) }
+          onChange={ ({ target: { value } }) => setLoginInfo((prevState) => ({
+            ...prevState,
+            email: value,
+          })) }
+
         />
       </label>
       <label htmlFor="passwordInput">
@@ -40,7 +46,11 @@ function Login({ history }) {
           id="passwordInput"
           value={ password }
           data-testid="password-input"
-          onChange={ ({ target: { value } }) => setPassword(value) }
+          onChange={ ({ target: { value } }) => setLoginInfo((prevState) => ({
+            ...prevState,
+            password: value,
+          })) }
+
         />
       </label>
       <button
