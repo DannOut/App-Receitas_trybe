@@ -9,6 +9,7 @@ import { saveLocalStorage } from '../helpers/localStorage';
 function Login() {
   const { loginInfo: { email, password }, setLoginInfo } = useContext(LoginContext);
   const history = useHistory();
+
   const formValidation = () => {
     const regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
     return regex.test(email) && password.length > MIN_PASSWORD;
