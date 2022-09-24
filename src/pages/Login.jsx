@@ -5,8 +5,8 @@ import { useHistory } from 'react-router-dom';
 import LoginContext from '../context/LoginContext';
 import { MIN_PASSWORD } from '../helpers/constants';
 import { saveLocalStorage } from '../helpers/localStorage';
-import InputLogin from '../components/login-components/Input-Login-component';
-import ButtonLogin from '../components/login-components/Button-Login-component';
+import InputLogin from '../components/login-components/Input-Login.component';
+import ButtonLogin from '../components/login-components/Button-Login.component';
 
 function Login() {
   const { loginInfo: { email, password }, setLoginInfo } = useContext(LoginContext);
