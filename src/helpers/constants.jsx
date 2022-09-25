@@ -6,10 +6,11 @@ export const PASSWORD_TEST = 'ABC123##';
 export const EMAIL_TEST = 'teste@teste.com';
 
 // * LINKS INFORMATIONS
-export const MEALS_LINK = '/Meals';
-export const DRINKS_LINK = '/Drinks';
+export const MEALS_LINK = '/meals';
+export const DRINKS_LINK = '/drinks';
+export const MAIN_LOGIN_PAGE = '/';
 
-// * COMPONENT INFORMATIONS
+// * COMPONENTS INFORMATIONS
 export const EMAIL = 'email';
 export const PASSWORD = 'password';
 
