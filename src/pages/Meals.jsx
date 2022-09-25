@@ -1,6 +1,5 @@
 import React from 'react';
 import Footer from './Footer';
-// import { useHistory } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 function Meals() {
