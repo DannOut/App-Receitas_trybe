@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Meals from './Meals';
 import Drinks from './Drinks';
@@ -15,24 +15,21 @@ function Recipes() {
     recipes,
     getApiInfo,
   } = useContext(FetchContext);
-  const [loading, isLoading] = useState(true);
+  // const [loading, isLoading] = useState(true);
 
   useEffect(() => {
     if (pathname === MEALS_LINK) {
       getApiInfo(URL_MEALS_WITHOUT_ENDPOINT);
-      isLoading(false);
     }
     if (pathname === DRINKS_LINK) {
       getApiInfo(URL_DRINK_WITHOUT_ENDPOINT);
-      isLoading(false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  console.log(recipes);
-  if (recipes === [] && loading) {
-    return (<p> Loading... </p>);
-  }
+  // if (loading) {
+  //   return (<p> Loading... </p>);
+  // }
   return (
     <main>
       { (pathname === MEALS_LINK)

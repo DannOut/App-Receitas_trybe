@@ -11,11 +11,12 @@ function Drinks({ strDrink }) {
   );
 }
 
-// Drinks.defaultProps = {
-//   strDrink: '',
-// };
+Drinks.defaultProps = {
+  strDrink: '',
+};
+
 Drinks.propTypes = {
-  strDrink: PropTypes.string.isRequired,
+  strDrink: PropTypes.string,
 };
 
 export default Drinks;

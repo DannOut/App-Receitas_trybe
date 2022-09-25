@@ -11,8 +11,12 @@ function Meals({ strMeal }) {
   );
 }
 
+Meals.defaultProps = {
+  strMeal: '',
+};
+
 Meals.propTypes = {
-  strMeal: PropTypes.string.isRequired,
+  strMeal: PropTypes.string,
 };
 
 export default Meals;
