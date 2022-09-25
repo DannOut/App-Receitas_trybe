@@ -1,5 +1,6 @@
 // * * NUMBERS INFORMATION
 export const MIN_PASSWORD = 6;
+export const MAX_LIMIT_INFORMATION = 12;
 
 // * * TEST INFORMATIONS
 export const PASSWORD_TEST = 'ABC123##';
