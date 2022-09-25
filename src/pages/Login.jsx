@@ -3,7 +3,11 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import LoginContext from '../context/LoginContext';
-import { MIN_PASSWORD } from '../helpers/constants';
+import {
+  MIN_PASSWORD, MEALS_LINK, EMAIL, PASSWORD,
+  DATA_ID_EMAIL_INPUT,
+  DATA_ID_PASSWORD_INPUT,
+  DATA_ID_LOGIN_SUBMIT_BTN } from '../helpers/constants';
 import { saveLocalStorage } from '../helpers/localStorage';
 import InputLogin from '../components/login-components/Input-Login.component';
 import ButtonLogin from '../components/login-components/Button-Login.component';
@@ -28,25 +32,25 @@ function Login() {
     saveLocalStorage('user', { email });
     saveLocalStorage('mealsToken', 1);
     saveLocalStorage('drinksToken', 1);
-    history.push('/meals');
+    history.push(MEALS_LINK);
   };
 
   return (
     <main>
       <InputLogin
         id="emailInput"
-        name="email"
+        name={ EMAIL }
         type="text"
-        dataTestId="email-input"
+        dataTestId={ DATA_ID_EMAIL_INPUT }
         placeholder="Email"
         value={ email }
         onHandleChange={ onHandleChange }
       />
       <InputLogin
         id="passwordInput"
-        name="password"
-        type="password"
-        dataTestId="password-input"
+        name={ PASSWORD }
+        type={ PASSWORD }
+        dataTestId={ DATA_ID_PASSWORD_INPUT }
         placeholder="Password"
         value={ password }
         onHandleChange={ onHandleChange }
@@ -54,7 +58,7 @@ function Login() {
       <ButtonLogin
         id="buttonLogin"
         name="Enter"
-        dataTestId="login-submit-btn"
+        dataTestId={ DATA_ID_LOGIN_SUBMIT_BTN }
         isDisabled={ !formValidation() }
         onClick={ redirectBtn }
       />

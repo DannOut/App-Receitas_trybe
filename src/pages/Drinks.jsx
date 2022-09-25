@@ -1,17 +1,16 @@
 import React from 'react';
 import Footer from './Footer';
-// import { useHistory } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
-function Meals() {
+function Drinks() {
   return (
     <section>
-      <div>Estou na página meals</div>
+      <div>Estou na página Drinks</div>
       <Footer />
     </section>
   );
 }
 
-// Meals.propTypes = {};
+// Drinks.propTypes = {};
 
-export default Meals;
+export default Drinks;
