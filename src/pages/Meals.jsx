@@ -1,10 +1,14 @@
 import React from 'react';
+import Footer from './Footer';
 // import { useHistory } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 function Meals() {
   return (
-    <div>Estou na página meals</div>
+    <body>
+      <div>Estou na página meals</div>
+      <Footer />
+    </body>
   );
 }
 
