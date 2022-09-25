@@ -1,16 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Footer from './Footer';
-// import PropTypes from 'prop-types';
 
-function Drinks() {
+function Drinks({ strDrink }) {
   return (
     <section>
-      <div>Estou na página Drinks</div>
+      <div>{ strDrink }</div>
       <Footer />
     </section>
   );
 }
 
-// Drinks.propTypes = {};
+// Drinks.defaultProps = {
+//   strDrink: '',
+// };
+Drinks.propTypes = {
+  strDrink: PropTypes.string.isRequired,
+};
 
 export default Drinks;

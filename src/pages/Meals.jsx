@@ -1,16 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Footer from './Footer';
-// import PropTypes from 'prop-types';
 
-function Meals() {
+function Meals({ strMeal }) {
   return (
     <section>
-      <div>Estou na página Meals</div>
+      <div>{ strMeal }</div>
       <Footer />
     </section>
   );
 }
 
-// Meals.propTypes = {};
+Meals.propTypes = {
+  strMeal: PropTypes.string.isRequired,
+};
 
 export default Meals;

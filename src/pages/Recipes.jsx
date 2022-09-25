@@ -1,42 +1,58 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Meals from './Meals';
 import Drinks from './Drinks';
-import { MEALS_LINK } from '../helpers/constants';
-// import FetchContext from '../context/FetchContext';
+import { DRINKS_LINK, MEALS_LINK } from '../helpers/constants';
+import FetchContext from '../context/FetchContext';
+import {
+  URL_MEALS_WITHOUT_ENDPOINT,
+  URL_DRINK_WITHOUT_ENDPOINT } from '../services/URLs_constants';
 // import PropTypes from 'prop-types';
 
 function Recipes() {
   const { location: { pathname } } = useHistory();
-  // const {
-  //   fetchMeals,
-  //   fetchDrinks,
-  //   // setFetchMeals,
-  //   // setFetchDrinks,
-  // } = useContext(FetchContext);
+  const {
+    recipes,
+    getApiInfo,
+  } = useContext(FetchContext);
+  const [loading, isLoading] = useState(true);
 
+  useEffect(() => {
+    if (pathname === MEALS_LINK) {
+      getApiInfo(URL_MEALS_WITHOUT_ENDPOINT);
+      isLoading(false);
+    }
+    if (pathname === DRINKS_LINK) {
+      getApiInfo(URL_DRINK_WITHOUT_ENDPOINT);
+      isLoading(false);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
+  console.log(recipes);
+  if (recipes === [] && loading) {
+    return (<p> Loading... </p>);
+  }
   return (
     <main>
       { (pathname === MEALS_LINK)
         ? (
-          <Meals />
-          // fetchMeals.map(({ strMeal }, index) => (
-          //   <section key={ index }>
-          //     <Meals
-          //       value={ strMeal }
-          //     />
-          //   </section>
-          // ))
+          recipes.map(({ strMeal }, index) => (
+            <section key={ index }>
+              <Meals
+                strMeal={ strMeal }
+              />
+            </section>
+          ))
         )
         : (
-          <Drinks />
-          // fetchDrinks.map(({ strDrink }, index) => (
-          //   <section key={ index }>
-          //     <Drinks
-          //       value={ strDrink }
-          //     />
-          //   </section>
-          // ))
+          recipes.map(({ strDrink }, index) => (
+            <section key={ index }>
+              <Drinks
+                strDrink={ strDrink }
+              />
+            </section>
+          ))
         ) }
     </main>
   );
