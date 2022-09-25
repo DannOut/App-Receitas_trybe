@@ -15,13 +15,13 @@ function Footer() {
       <ImgFooter
         linkTo={ MEALS_LINK }
         srcImg={ mealLogo }
-        altImg="MealIcon"
+        altImg={ mealLogo }
         dataTestId={ TEST_ID_MEALS_BOTTOM_BTN }
       />
       <ImgFooter
         linkTo={ DRINKS_LINK }
         srcImg={ drinkLogo }
-        altImg="DrinkIcon"
+        altImg={ drinkLogo }
         dataTestId={ TEST_ID_DRINKS_BOTTOM_BTN }
       />
     </footer>
