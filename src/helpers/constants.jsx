@@ -20,6 +20,8 @@ export const TEST_ID_PASSWORD_INPUT = 'password-input';
 export const TEST_ID_LOGIN_SUBMIT = 'login-submit-btn';
 export const TEST_ID_FOOTER_DRINKS = 'drinks-bottom-btn';
 export const TEST_ID_FOOTER_MEALS = 'meals-bottom-btn';
+export const TEST_ID_MEALS_BOTTOM_BTN = 'meals-bottom-btn';
+export const TEST_ID_DRINKS_BOTTOM_BTN = 'drinks-bottom-btn';
 
 // * LOCAL STORAGE INFORMATIONS
 export const USER_KEY_LS = 'user';

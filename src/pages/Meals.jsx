@@ -6,7 +6,7 @@ import Footer from './Footer';
 function Meals() {
   return (
     <section>
-      <div>Estou na página meals</div>
+      <div>Estou na página Meals</div>
       <Footer />
     </section>
   );

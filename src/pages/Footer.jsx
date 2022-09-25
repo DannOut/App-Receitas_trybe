@@ -3,7 +3,10 @@ import ImgFooter from '../components/footer-components/Img-Footer.component';
 import mealLogo from '../images/mealIcon.svg';
 import drinkLogo from '../images/drinkIcon.svg';
 import '../styles/Footer.css';
-import { MEALS_LINK, DRINKS_LINK } from '../helpers/constants';
+import { MEALS_LINK, DRINKS_LINK,
+  TEST_ID_MEALS_BOTTOM_BTN,
+  TEST_ID_DRINKS_BOTTOM_BTN,
+} from '../helpers/constants';
 // import PropTypes from 'prop-types';
 
 function Footer() {
@@ -13,13 +16,13 @@ function Footer() {
         linkTo={ MEALS_LINK }
         srcImg={ mealLogo }
         altImg="MealIcon"
-        dataTestId="meals-bottom-btn"
+        dataTestId={ TEST_ID_MEALS_BOTTOM_BTN }
       />
       <ImgFooter
         linkTo={ DRINKS_LINK }
         srcImg={ drinkLogo }
         altImg="DrinkIcon"
-        dataTestId="drinks-bottom-btn"
+        dataTestId={ TEST_ID_DRINKS_BOTTOM_BTN }
       />
     </footer>
   );
