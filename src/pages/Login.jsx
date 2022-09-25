@@ -5,9 +5,9 @@ import { useHistory } from 'react-router-dom';
 import LoginContext from '../context/LoginContext';
 import {
   MIN_PASSWORD, MEALS_LINK, EMAIL, PASSWORD,
-  DATA_ID_EMAIL_INPUT,
-  DATA_ID_PASSWORD_INPUT,
-  DATA_ID_LOGIN_SUBMIT_BTN } from '../helpers/constants';
+  TEST_ID_EMAIL_INPUT,
+  TEST_ID_PASSWORD_INPUT,
+  TEST_ID_LOGIN_SUBMIT } from '../helpers/constants';
 import { saveLocalStorage } from '../helpers/localStorage';
 import InputLogin from '../components/login-components/Input-Login.component';
 import ButtonLogin from '../components/login-components/Button-Login.component';
@@ -41,7 +41,7 @@ function Login() {
         id="emailInput"
         name={ EMAIL }
         type="text"
-        dataTestId={ DATA_ID_EMAIL_INPUT }
+        dataTestId={ TEST_ID_EMAIL_INPUT }
         placeholder="Email"
         value={ email }
         onHandleChange={ onHandleChange }
@@ -50,7 +50,7 @@ function Login() {
         id="passwordInput"
         name={ PASSWORD }
         type={ PASSWORD }
-        dataTestId={ DATA_ID_PASSWORD_INPUT }
+        dataTestId={ TEST_ID_PASSWORD_INPUT }
         placeholder="Password"
         value={ password }
         onHandleChange={ onHandleChange }
@@ -58,7 +58,7 @@ function Login() {
       <ButtonLogin
         id="buttonLogin"
         name="Enter"
-        dataTestId={ DATA_ID_LOGIN_SUBMIT_BTN }
+        dataTestId={ TEST_ID_LOGIN_SUBMIT }
         isDisabled={ !formValidation() }
         onClick={ redirectBtn }
       />
