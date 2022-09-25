@@ -7,6 +7,7 @@ import FetchContext from '../context/FetchContext';
 import {
   URL_MEALS_WITHOUT_ENDPOINT,
   URL_DRINK_WITHOUT_ENDPOINT } from '../services/URLs_constants';
+import Footer from './Footer';
 // import PropTypes from 'prop-types';
 
 function Recipes() {
@@ -27,27 +28,34 @@ function Recipes() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  // if (loading) {
-  //   return (<p> Loading... </p>);
-  // }
   return (
     <main>
       { (pathname === MEALS_LINK)
         ? (
-          recipes.map(({ strMeal }, index) => (
+          recipes.map(({ strMeal, strMealThumb }, index) => (
             <section key={ index }>
               <Meals
                 strMeal={ strMeal }
+                strMealThumb={ strMealThumb }
+                dataTestIdCard={ `${index}-recipe-card` }
+                dataTestIdImg={ `${index}-card-img` }
+                dataTestIdName={ `${index}-card-name` }
               />
+              <Footer />
             </section>
           ))
         )
         : (
-          recipes.map(({ strDrink }, index) => (
+          recipes.map(({ strDrink, strDrinkThumb }, index) => (
             <section key={ index }>
               <Drinks
                 strDrink={ strDrink }
+                strDrinkThumb={ strDrinkThumb }
+                dataTestIdCard={ `${index}-recipe-card` }
+                dataTestIdImg={ `${index}-card-img` }
+                dataTestIdName={ `${index}-card-name` }
               />
+              <Footer />
             </section>
           ))
         ) }
