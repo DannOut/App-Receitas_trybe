@@ -6,10 +6,12 @@ export const MAX_LIMIT_INFORMATION = 12;
 // * MEALS URL
 export const MEALS_URL_BASE = 'https://www.themealdb.com/api/json/v1/1';
 export const MEALS_URL_DEFAULT_ENDPOINT = 'search.php?s=';
+export const MEALS_URL_FILTER_ENDPOINT = 'filter.php?c=';
 
 // * DRINKS URL
 export const DRINKS_URL_BASE = 'https://www.thecocktaildb.com/api/json/v1/1';
 export const DRINKS_URL_DEFAULT_ENDPOINT = 'search.php?s=';
+export const DRINKS_URL_FILTER_ENDPOINT = 'filter.php?c=';
 
 // * * TEST INFORMATIONS
 export const PASSWORD_TEST = 'ABC123##';
@@ -37,3 +39,8 @@ export const TEST_ID_FOOTER_MEALS = 'meals-bottom-btn';
 export const USER_KEY_LS = 'user';
 export const MEALS_TOKEN_KEY_LS = 'mealsToken';
 export const DRINKS_TOKEN_KEY_LS = 'drinksToken';
+
+// * CATEGORY INFORMATIONS
+export const MAX_LIMIT_CATEGORY = 5;
+export const MEALS_CATEGORY_LIST = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+export const DRINKS_CATEGORY_LIST = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
