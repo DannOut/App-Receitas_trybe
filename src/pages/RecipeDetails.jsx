@@ -8,7 +8,8 @@ function RecipeDetails() {
   const {
     recipeDetails,
   } = useContext(FetchContext);
-  const { food, strMeal, strMealThumb, idMeal } = recipeDetails;
+  const { food, strMeal, strMealThumb, idMeal,
+    strDrink, strDrinkThumb, idDrink } = recipeDetails;
   return (
     (food === 'meal')
       ? (
@@ -23,9 +24,9 @@ function RecipeDetails() {
       : (
         <section>
           <Drinks
-            strMeal={ strMeal }
-            strMealThumb={ strMealThumb }
-            idMeal={ idMeal }
+            strDrink={ strDrink }
+            strDrinkThumb={ strDrinkThumb }
+            idDrink={ idDrink }
           />
         </section>
       )
