@@ -18,16 +18,16 @@ function Recipes() {
   const { location: { pathname } } = useHistory();
   const {
     recipes,
-    getApiInfo,
+    getCardsRecipesInfo,
   } = useContext(FetchContext);
   // const [loading, isLoading] = useState(true);
 
   useEffect(() => {
     if (pathname === MEALS_LINK) {
-      getApiInfo(`${MEALS_URL_BASE}/${MEALS_URL_DEFAULT_ENDPOINT}`);
+      getCardsRecipesInfo(`${MEALS_URL_BASE}/${MEALS_URL_DEFAULT_ENDPOINT}`);
     }
     if (pathname === DRINKS_LINK) {
-      getApiInfo(`${DRINKS_URL_BASE}/${DRINKS_URL_DEFAULT_ENDPOINT}`);
+      getCardsRecipesInfo(`${DRINKS_URL_BASE}/${DRINKS_URL_DEFAULT_ENDPOINT}`);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);

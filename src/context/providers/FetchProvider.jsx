@@ -7,7 +7,7 @@ import { MAX_LIMIT_INFORMATION } from '../../helpers/constants';
 function FetchProvider({ children }) {
   const [recipes, setRecipes] = useState([]);
 
-  const getApiInfo = async (url) => {
+  const getCardsRecipesInfo = async (url) => {
     const response = await fetchAPI(url);
     const value = await Object.values(response)[0].slice(0, MAX_LIMIT_INFORMATION);
     setRecipes(value);
@@ -15,7 +15,7 @@ function FetchProvider({ children }) {
 
   const context = {
     recipes,
-    getApiInfo,
+    getCardsRecipesInfo,
   };
 
   return (
