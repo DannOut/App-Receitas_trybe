@@ -46,7 +46,6 @@ function Recipes() {
                   dataTestIdImg={ `${index}-card-img` }
                   dataTestIdName={ `${index}-card-name` }
                   idMeal={ idMeal }
-
                 />
               </section>
             ))}

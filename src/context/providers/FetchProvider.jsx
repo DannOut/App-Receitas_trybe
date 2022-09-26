@@ -18,11 +18,13 @@ function FetchProvider({ children }) {
 
   const getRecipeDetails = async (id) => {
     if (pathname === MEALS_LINK) {
-      const value = recipes.find((element) => element.idMeal === id);
+      const mealSelected = recipes.find((element) => element.idMeal === id);
+      const value = { ...mealSelected, food: 'meal' };
       setRecipeDetails(value);
     }
     if (pathname === DRINKS_LINK) {
-      const value = recipes.find((element) => element.idDrink === id);
+      const drinkSelected = recipes.find((element) => element.idMeal === id);
+      const value = { ...drinkSelected, food: 'drink' };
       setRecipeDetails(value);
     }
   };
