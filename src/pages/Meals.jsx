@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import FetchContext from '../context/FetchContext';
 
 function Meals({
   strMeal,
@@ -7,10 +9,26 @@ function Meals({
   dataTestIdCard,
   dataTestIdImg,
   dataTestIdName,
+  idMeal,
 
 }) {
+  const history = useHistory();
+  const {
+    getRecipeDetails,
+  } = useContext(FetchContext);
+
+  const detailsMealRedirectHandler = () => {
+    getRecipeDetails(idMeal);
+    history.push(`/meals/${idMeal}`);
+  };
+
   return (
-    <section data-testid={ dataTestIdCard }>
+    <section
+      data-testid={ dataTestIdCard }
+      role="presentation"
+      onClick={ detailsMealRedirectHandler }
+      id={ idMeal }
+    >
       <p data-testid={ dataTestIdName }>
         { strMeal }
       </p>
@@ -29,6 +47,7 @@ Meals.defaultProps = {
   dataTestIdCard: '',
   dataTestIdImg: '',
   dataTestIdName: '',
+  idMeal: '',
 };
 
 Meals.propTypes = {
@@ -37,7 +56,7 @@ Meals.propTypes = {
   dataTestIdCard: PropTypes.string,
   dataTestIdImg: PropTypes.string,
   dataTestIdName: PropTypes.string,
-
+  idMeal: PropTypes.string,
 };
 
 export default Meals;

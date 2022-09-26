@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import FetchContext from '../context/FetchContext';
 
 function Drinks({
   strDrink,
@@ -7,9 +9,25 @@ function Drinks({
   dataTestIdCard,
   dataTestIdImg,
   dataTestIdName,
+  idDrink,
 }) {
+  const history = useHistory();
+  const {
+    getRecipeDetails,
+  } = useContext(FetchContext);
+
+  const detailsDrinkRedirectHandler = () => {
+    getRecipeDetails(idDrink);
+    history.push(`/drinks/${idDrink}`);
+  };
+
   return (
-    <section data-testid={ dataTestIdCard }>
+    <section
+      data-testid={ dataTestIdCard }
+      role="presentation"
+      onClick={ detailsDrinkRedirectHandler }
+      id={ idDrink }
+    >
       <p data-testid={ dataTestIdName }>
         { strDrink }
       </p>
@@ -28,6 +46,7 @@ Drinks.defaultProps = {
   dataTestIdCard: '',
   dataTestIdImg: '',
   dataTestIdName: '',
+  idDrink: '',
 };
 
 Drinks.propTypes = {
@@ -36,6 +55,7 @@ Drinks.propTypes = {
   dataTestIdCard: PropTypes.string,
   dataTestIdImg: PropTypes.string,
   dataTestIdName: PropTypes.string,
+  idDrink: PropTypes.string,
 
 };
 

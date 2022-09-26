@@ -37,7 +37,7 @@ function Recipes() {
       { (pathname === MEALS_LINK)
         ? (
           <section>
-            { recipes.map(({ strMeal, strMealThumb }, index) => (
+            { recipes.map(({ strMeal, strMealThumb, idMeal }, index) => (
               <section key={ index }>
                 <Meals
                   strMeal={ strMeal }
@@ -45,6 +45,8 @@ function Recipes() {
                   dataTestIdCard={ `${index}-recipe-card` }
                   dataTestIdImg={ `${index}-card-img` }
                   dataTestIdName={ `${index}-card-name` }
+                  idMeal={ idMeal }
+
                 />
               </section>
             ))}
@@ -53,7 +55,7 @@ function Recipes() {
         )
         : (
           <section>
-            {recipes.map(({ strDrink, strDrinkThumb }, index) => (
+            {recipes.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
               <section key={ index }>
                 <Drinks
                   strDrink={ strDrink }
@@ -61,6 +63,7 @@ function Recipes() {
                   dataTestIdCard={ `${index}-recipe-card` }
                   dataTestIdImg={ `${index}-card-img` }
                   dataTestIdName={ `${index}-card-name` }
+                  idDrink={ idDrink }
                 />
               </section>
             ))}
