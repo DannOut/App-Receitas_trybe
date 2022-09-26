@@ -18,8 +18,8 @@ function Meals({
     getRecipeDetails,
   } = useContext(FetchContext);
 
-  const detailsMealRedirectHandler = () => {
-    getRecipeDetails(`${MEALS_URL_BASE}/${MEALS_URL_DETAILS_ENDPOINT}${idMeal}`);
+  const detailsMealRedirectHandler = async () => {
+    await getRecipeDetails(`${MEALS_URL_BASE}/${MEALS_URL_DETAILS_ENDPOINT}${idMeal}`);
     history.push(`/meals/${idMeal}`);
   };
 

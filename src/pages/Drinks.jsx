@@ -17,8 +17,13 @@ function Drinks({
     getRecipeDetails,
   } = useContext(FetchContext);
 
-  const detailsDrinkRedirectHandler = () => {
-    getRecipeDetails(`${DRINKS_URL_BASE}/${DRINKS_URL_DETAILS_ENDPOINT}${idDrink}`);
+  const detailsDrinkRedirectHandler = async () => {
+    console.log('antes da API');
+    await getRecipeDetails(`${DRINKS_URL_BASE}/${DRINKS_URL_DETAILS_ENDPOINT}${idDrink}`);
+    console.log(
+      'antes da API',
+      `${DRINKS_URL_BASE}/${DRINKS_URL_DETAILS_ENDPOINT}${idDrink}`,
+    );
     history.push(`/drinks/${idDrink}`);
   };
 
