@@ -6,8 +6,7 @@ import { fetchAPI } from '../../services';
 import {
   MAX_LIMIT_INFORMATION,
   MAX_LIMIT_CATEGORY,
-  MEALS_LINK,
-  DRINKS_LINK } from '../../helpers/constants';
+} from '../../helpers/constants';
 
 function FetchProvider({ children }) {
   const [recipes, setRecipes] = useState([]);
@@ -35,12 +34,12 @@ function FetchProvider({ children }) {
   };
 
   const getRecipeDetails = async (url) => {
-    if (pathname === MEALS_LINK) {
+    if (pathname.includes('meals')) {
       const { meals } = await fetchAPI(url);
       const value = { ...meals[0], food: 'meal' };
       setRecipeDetails(value);
     }
-    if (pathname === DRINKS_LINK) {
+    if (pathname.includes('drinks')) {
       const { drinks } = await fetchAPI(url);
       const value = { ...drinks[0], food: 'drink' };
       setRecipeDetails(value);
