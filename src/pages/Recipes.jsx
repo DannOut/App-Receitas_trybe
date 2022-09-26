@@ -2,11 +2,15 @@ import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Meals from './Meals';
 import Drinks from './Drinks';
-import { DRINKS_LINK, MEALS_LINK } from '../helpers/constants';
 import FetchContext from '../context/FetchContext';
 import {
-  URL_MEALS_WITHOUT_ENDPOINT,
-  URL_DRINK_WITHOUT_ENDPOINT } from '../services/URLs_constants';
+  MEALS_URL_BASE,
+  MEALS_URL_DEFAULT_ENDPOINT,
+  MEALS_LINK,
+  DRINKS_URL_BASE,
+  DRINKS_URL_DEFAULT_ENDPOINT,
+  DRINKS_LINK,
+} from '../helpers/constants';
 import Footer from './Footer';
 // import PropTypes from 'prop-types';
 
@@ -20,10 +24,10 @@ function Recipes() {
 
   useEffect(() => {
     if (pathname === MEALS_LINK) {
-      getApiInfo(URL_MEALS_WITHOUT_ENDPOINT);
+      getApiInfo(`${MEALS_URL_BASE}/${MEALS_URL_DEFAULT_ENDPOINT}`);
     }
     if (pathname === DRINKS_LINK) {
-      getApiInfo(URL_DRINK_WITHOUT_ENDPOINT);
+      getApiInfo(`${DRINKS_URL_BASE}/${DRINKS_URL_DEFAULT_ENDPOINT}`);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);

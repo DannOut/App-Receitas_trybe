@@ -2,6 +2,15 @@
 export const MIN_PASSWORD = 6;
 export const MAX_LIMIT_INFORMATION = 12;
 
+// * * URL CONSTANTS
+// * MEALS URL
+export const MEALS_URL_BASE = 'https://www.themealdb.com/api/json/v1/1';
+export const MEALS_URL_DEFAULT_ENDPOINT = 'search.php?s=';
+
+// * DRINKS URL
+export const DRINKS_URL_BASE = 'https://www.thecocktaildb.com/api/json/v1/1';
+export const DRINKS_URL_DEFAULT_ENDPOINT = 'search.php?s=';
+
 // * * TEST INFORMATIONS
 export const PASSWORD_TEST = 'ABC123##';
 export const EMAIL_TEST = 'teste@teste.com';
