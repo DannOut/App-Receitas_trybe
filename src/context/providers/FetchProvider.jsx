@@ -8,8 +8,8 @@ function FetchProvider({ children }) {
   const [recipes, setRecipes] = useState([]);
 
   const getCardsRecipesInfo = async (url) => {
-    const { meals } = await fetchAPI(url);
-    const value = await (meals).slice(0, MAX_LIMIT_INFORMATION);
+    const response = await fetchAPI(url);
+    const value = await Object.values(response)[0].slice(0, MAX_LIMIT_INFORMATION);
     setRecipes(value);
   };
 
