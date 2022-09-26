@@ -1,43 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Meals({
-  strMeal,
-  strMealThumb,
+function Drinks({
+  strDrink,
+  strDrinkThumb,
   dataTestIdCard,
   dataTestIdImg,
   dataTestIdName,
-
 }) {
   return (
     <section data-testid={ dataTestIdCard }>
       <p data-testid={ dataTestIdName }>
-        { strMeal }
+        { strDrink }
       </p>
       <img
-        src={ strMealThumb }
-        alt={ strMeal }
+        src={ strDrinkThumb }
+        alt={ strDrink }
         data-testid={ dataTestIdImg }
       />
     </section>
   );
 }
 
-Meals.defaultProps = {
-  strMeal: '',
-  strMealThumb: '',
+Drinks.defaultProps = {
+  strDrink: '',
+  strDrinkThumb: '',
   dataTestIdCard: '',
   dataTestIdImg: '',
   dataTestIdName: '',
 };
 
-Meals.propTypes = {
-  strMeal: PropTypes.string,
-  strMealThumb: PropTypes.string,
+Drinks.propTypes = {
+  strDrink: PropTypes.string,
+  strDrinkThumb: PropTypes.string,
   dataTestIdCard: PropTypes.string,
   dataTestIdImg: PropTypes.string,
   dataTestIdName: PropTypes.string,
 
 };
 
-export default Meals;
+export default Drinks;

@@ -3,7 +3,15 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import LoginContext from '../context/LoginContext';
-import { MIN_PASSWORD } from '../helpers/constants';
+import {
+  MIN_PASSWORD, MEALS_LINK, EMAIL, PASSWORD,
+  TEST_ID_EMAIL_INPUT,
+  TEST_ID_PASSWORD_INPUT,
+  TEST_ID_LOGIN_SUBMIT,
+  USER_KEY_LS,
+  MEALS_TOKEN_KEY_LS,
+  DRINKS_TOKEN_KEY_LS,
+} from '../helpers/constants';
 import { saveLocalStorage } from '../helpers/localStorage';
 import InputLogin from '../components/login-components/Input-Login.component';
 import ButtonLogin from '../components/login-components/Button-Login.component';
@@ -25,28 +33,28 @@ function Login() {
   };
 
   const redirectBtn = () => {
-    saveLocalStorage('user', { email });
-    saveLocalStorage('mealsToken', 1);
-    saveLocalStorage('drinksToken', 1);
-    history.push('/meals');
+    saveLocalStorage(USER_KEY_LS, { email });
+    saveLocalStorage(MEALS_TOKEN_KEY_LS, 1);
+    saveLocalStorage(DRINKS_TOKEN_KEY_LS, 1);
+    history.push(MEALS_LINK);
   };
 
   return (
     <main>
       <InputLogin
         id="emailInput"
-        name="email"
+        name={ EMAIL }
         type="text"
-        dataTestId="email-input"
+        dataTestId={ TEST_ID_EMAIL_INPUT }
         placeholder="Email"
         value={ email }
         onHandleChange={ onHandleChange }
       />
       <InputLogin
         id="passwordInput"
-        name="password"
-        type="password"
-        dataTestId="password-input"
+        name={ PASSWORD }
+        type={ PASSWORD }
+        dataTestId={ TEST_ID_PASSWORD_INPUT }
         placeholder="Password"
         value={ password }
         onHandleChange={ onHandleChange }
@@ -54,11 +62,10 @@ function Login() {
       <ButtonLogin
         id="buttonLogin"
         name="Enter"
-        dataTestId="login-submit-btn"
+        dataTestId={ TEST_ID_LOGIN_SUBMIT }
         isDisabled={ !formValidation() }
         onClick={ redirectBtn }
       />
-
     </main>
   );
 }

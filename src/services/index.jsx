@@ -1,16 +1,11 @@
-import {
-  URL_DRINK_WITHOUT_ENDPOINT,
-  URL_MEALS_WITHOUT_ENDPOINT,
-} from './URLs_constants';
-
-export const fetchMeals = async () => {
-  const response = await fetch(URL_MEALS_WITHOUT_ENDPOINT);
-  const data = await response.json();
-  return data;
+export const fetchAPI = async (URL) => {
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return error.message;
+  }
 };
 
-export const fetchDrinks = async () => {
-  const response = await fetch(URL_DRINK_WITHOUT_ENDPOINT);
-  const data = await response.json();
-  return data;
-};
+export const placeholder = 'placeholder';
