@@ -36,32 +36,36 @@ function Recipes() {
     <main>
       { (pathname === MEALS_LINK)
         ? (
-          recipes.map(({ strMeal, strMealThumb }, index) => (
-            <section key={ index }>
-              <Meals
-                strMeal={ strMeal }
-                strMealThumb={ strMealThumb }
-                dataTestIdCard={ `${index}-recipe-card` }
-                dataTestIdImg={ `${index}-card-img` }
-                dataTestIdName={ `${index}-card-name` }
-              />
-              <Footer />
-            </section>
-          ))
+          <section>
+            { recipes.map(({ strMeal, strMealThumb }, index) => (
+              <section key={ index }>
+                <Meals
+                  strMeal={ strMeal }
+                  strMealThumb={ strMealThumb }
+                  dataTestIdCard={ `${index}-recipe-card` }
+                  dataTestIdImg={ `${index}-card-img` }
+                  dataTestIdName={ `${index}-card-name` }
+                />
+              </section>
+            ))}
+            <Footer />
+          </section>
         )
         : (
-          recipes.map(({ strDrink, strDrinkThumb }, index) => (
-            <section key={ index }>
-              <Drinks
-                strDrink={ strDrink }
-                strDrinkThumb={ strDrinkThumb }
-                dataTestIdCard={ `${index}-recipe-card` }
-                dataTestIdImg={ `${index}-card-img` }
-                dataTestIdName={ `${index}-card-name` }
-              />
-              <Footer />
-            </section>
-          ))
+          <section>
+            {recipes.map(({ strDrink, strDrinkThumb }, index) => (
+              <section key={ index }>
+                <Drinks
+                  strDrink={ strDrink }
+                  strDrinkThumb={ strDrinkThumb }
+                  dataTestIdCard={ `${index}-recipe-card` }
+                  dataTestIdImg={ `${index}-card-img` }
+                  dataTestIdName={ `${index}-card-name` }
+                />
+              </section>
+            ))}
+            <Footer />
+          </section>
         ) }
     </main>
   );
