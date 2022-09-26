@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import FetchContext from '../context/FetchContext';
+import { DRINKS_URL_BASE, DRINKS_URL_DETAILS_ENDPOINT } from '../helpers/constants';
 
 function Drinks({
   strDrink,
@@ -17,7 +18,7 @@ function Drinks({
   } = useContext(FetchContext);
 
   const detailsDrinkRedirectHandler = () => {
-    getRecipeDetails(idDrink);
+    getRecipeDetails(`${DRINKS_URL_BASE}/${DRINKS_URL_DETAILS_ENDPOINT}${idDrink}`);
     history.push(`/drinks/${idDrink}`);
   };
 

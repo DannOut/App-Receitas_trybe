@@ -29,11 +29,7 @@ function App() {
             <Route exact path={ DRINKS_LINK } component={ Recipes } />
             <Route exact path={ PROFILE_LINK } component={ Profile } />
             <Route exact path={ RCP_DETAILS_MEALS_LINK } component={ RecipeDetails } />
-            <Route
-              exact
-              path={ RCP_DETAILS_DRINKS_LINK }
-              render={ (props) => <RecipeDetails { ...props } /> }
-            />
+            <Route exact path={ RCP_DETAILS_DRINKS_LINK } component={ RecipeDetails } />
           </Switch>
         </FetchProvider>
       </LoginProvider>

@@ -34,15 +34,15 @@ function FetchProvider({ children }) {
     setCategories(value);
   };
 
-  const getRecipeDetails = async (id) => {
+  const getRecipeDetails = async (url) => {
     if (pathname === MEALS_LINK) {
-      const mealSelected = recipes.find((element) => element.idMeal === id);
-      const value = { ...mealSelected, food: 'meal' };
+      const { meals } = await fetchAPI(url);
+      const value = { ...meals[0], food: 'meal' };
       setRecipeDetails(value);
     }
     if (pathname === DRINKS_LINK) {
-      const drinkSelected = recipes.find((element) => element.idMeal === id);
-      const value = { ...drinkSelected, food: 'drink' };
+      const { drinks } = await fetchAPI(url);
+      const value = { ...drinks[0], food: 'drink' };
       setRecipeDetails(value);
     }
   };
