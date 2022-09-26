@@ -19,6 +19,8 @@ export const EMAIL_TEST = 'teste@teste.com';
 export const MEALS_LINK = '/meals';
 export const DRINKS_LINK = '/drinks';
 export const PROFILE_LINK = '/profile';
+export const RCP_DETAILS_MEALS_LINK = '/meals/:id';
+export const RCP_DETAILS_DRINKS_LINK = '/drinks/:id';
 export const MAIN_LOGIN_PAGE = '/';
 
 // * * COMPONENTS INFORMATIONS
