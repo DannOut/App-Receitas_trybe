@@ -84,7 +84,8 @@ function CardDetails({
 
 CardDetails.defaultProps = {
   strCategory: '',
-  ingredientsAndRecipes: '',
+  ingredients: '',
+  measures: '',
   strInstructions: '',
   strMeal: '',
   strMealThumb: '',
@@ -96,7 +97,8 @@ CardDetails.defaultProps = {
 
 CardDetails.propTypes = {
   strCategory: PropTypes.string,
-  ingredientsAndRecipes: PropTypes.shape(),
+  ingredients: PropTypes.string,
+  measures: PropTypes.string,
   strInstructions: PropTypes.string,
   strMeal: PropTypes.string,
   strMealThumb: PropTypes.string,
@@ -104,6 +106,7 @@ CardDetails.propTypes = {
   strDrinkThumb: PropTypes.string,
   strYoutube: PropTypes.string,
   strAlcoholic: PropTypes.string,
+  ingredientsAndRecipes: PropTypes.shape().isRequired,
 };
 
 export default CardDetails;
