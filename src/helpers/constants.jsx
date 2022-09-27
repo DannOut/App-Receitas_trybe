@@ -30,6 +30,7 @@ export const FAVORITE_RECIPES = '/favorite-recipes';
 export const DONE_RECIPES = '/done-recipes';
 export const RCP_IN_PROGRESS_MEALS = '/meals/:id/in-progress';
 export const RCP_IN_PROGRESS_DRINKS = '/drinks/:id/in-progress';
+export const CHICKEN_CATEGORY_FILTER = 'Chicken-category-filter';
 
 // * * COMPONENTS INFORMATIONS
 export const EMAIL = 'email';
