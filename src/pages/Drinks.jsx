@@ -24,7 +24,7 @@ function Drinks({
       id={ idDrink }
     >
       <p data-testid={ dataTestIdName }>
-        { strDrink }
+        {strDrink}
       </p>
       <img
         src={ strDrinkThumb }

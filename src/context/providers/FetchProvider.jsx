@@ -18,6 +18,7 @@ function FetchProvider({ children }) {
   const getCardsRecipesInfo = async (url) => {
     const response = await fetchAPI(url);
     const value = await Object.values(response)[0].slice(0, MAX_LIMIT_INFORMATION);
+    console.log(value);
     setRecipes(value);
   };
 
