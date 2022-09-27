@@ -36,13 +36,11 @@ function FetchProvider({ children }) {
   const getRecipeDetails = async (url) => {
     if (pathname.includes('meals')) {
       const { meals } = await fetchAPI(url);
-      const value = { ...meals[0], food: 'meal' };
-      setRecipeDetails(value);
+      setRecipeDetails(meals[0]);
     }
     if (pathname.includes('drinks')) {
       const { drinks } = await fetchAPI(url);
-      const value = { ...drinks[0], food: 'drink' };
-      setRecipeDetails(value);
+      setRecipeDetails(drinks[0]);
     }
   };
 

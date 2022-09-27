@@ -15,7 +15,7 @@ function RecipeDetails() {
     recipeDetails,
     getRecipeDetails,
   } = useContext(FetchContext);
-  const { food, strMeal, strMealThumb, idMeal,
+  const { strMeal, strMealThumb, idMeal,
     strDrink, strDrinkThumb, idDrink } = recipeDetails;
   const { id } = useParams();
   const { location: { pathname } } = useHistory();
@@ -42,7 +42,7 @@ function RecipeDetails() {
   }, [id]);
 
   return (
-    (food === 'meal')
+    (pathname.includes('meals'))
       ? (
         <section>
           <Meals
