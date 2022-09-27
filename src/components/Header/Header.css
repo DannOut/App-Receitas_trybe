@@ -1,0 +1,25 @@
+.header-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-top {
+  align-items: center;
+  background-color: #f8de43;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.header-bottom {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+.purple-filter {
+  filter: invert(18%) sepia(48%) saturate(3276%) hue-rotate(254deg)
+    brightness(79%) contrast(118%);
+}

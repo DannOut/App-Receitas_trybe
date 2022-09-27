@@ -8,6 +8,9 @@ import Login from './pages/Login';
 import Recipes from './pages/Recipes';
 import Profile from './pages/Profile';
 import RecipeDetails from './pages/RecipeDetails';
+import DoneRecipes from './pages/DoneRecipes';
+import FavoriteRecipes from './pages/FavoriteRecipes';
+import RecipeInProgress from './pages/RecipeInProgress';
 import {
   MEALS_LINK,
   DRINKS_LINK,
@@ -15,6 +18,10 @@ import {
   PROFILE_LINK,
   RCP_DETAILS_MEALS_LINK,
   RCP_DETAILS_DRINKS_LINK,
+  FAVORITE_RECIPES,
+  DONE_RECIPES,
+  RCP_IN_PROGRESS_MEALS,
+  RCP_IN_PROGRESS_DRINKS,
 
 } from './helpers/constants';
 
@@ -30,6 +37,10 @@ function App() {
             <Route exact path={ PROFILE_LINK } component={ Profile } />
             <Route exact path={ RCP_DETAILS_MEALS_LINK } component={ RecipeDetails } />
             <Route exact path={ RCP_DETAILS_DRINKS_LINK } component={ RecipeDetails } />
+            <Route exact path={ RCP_IN_PROGRESS_MEALS } component={ RecipeInProgress } />
+            <Route exact path={ RCP_IN_PROGRESS_DRINKS } component={ RecipeInProgress } />
+            <Route exact path={ FAVORITE_RECIPES } component={ FavoriteRecipes } />
+            <Route exact path={ DONE_RECIPES } component={ DoneRecipes } />
           </Switch>
         </FetchProvider>
       </LoginProvider>
