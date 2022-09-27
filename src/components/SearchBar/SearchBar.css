@@ -1,0 +1,14 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selector {
+  display: flex;
+  padding: 5px;
+}

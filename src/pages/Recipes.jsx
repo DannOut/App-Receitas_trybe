@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Meals from './Meals';
 import Drinks from './Drinks';
 import FetchContext from '../context/FetchContext';
+import Header from '../components/Header/Header';
 import {
   MEALS_URL_BASE,
   MEALS_URL_DEFAULT_ENDPOINT,
@@ -48,6 +49,7 @@ function Recipes() {
       { (pathname === MEALS_LINK)
         ? (
           <section>
+            <Header />
             <div>
               <Filter />
             </div>
@@ -68,10 +70,11 @@ function Recipes() {
         )
         : (
           <section>
+            <Header />
             <div>
               <Filter />
             </div>
-            {recipes.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
+            { recipes.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
               <section key={ index }>
                 <Drinks
                   strDrink={ strDrink }

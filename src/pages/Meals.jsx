@@ -18,6 +18,7 @@ function Meals({
   };
 
   return (
+
     <section
       data-testid={ dataTestIdCard }
       role="presentation"
@@ -25,7 +26,7 @@ function Meals({
       id={ idMeal }
     >
       <p data-testid={ dataTestIdName }>
-        { strMeal }
+        {strMeal}
       </p>
       <img
         src={ strMealThumb }
@@ -33,6 +34,7 @@ function Meals({
         data-testid={ dataTestIdImg }
       />
     </section>
+
   );
 }
 

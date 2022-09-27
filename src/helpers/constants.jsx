@@ -20,12 +20,16 @@ export const PASSWORD_TEST = 'ABC123##';
 export const EMAIL_TEST = 'teste@teste.com';
 
 // * * LINKS INFORMATIONS
+export const MAIN_LOGIN_PAGE = '/';
 export const MEALS_LINK = '/meals';
 export const DRINKS_LINK = '/drinks';
-export const PROFILE_LINK = '/profile';
 export const RCP_DETAILS_MEALS_LINK = '/meals/:id';
 export const RCP_DETAILS_DRINKS_LINK = '/drinks/:id';
-export const MAIN_LOGIN_PAGE = '/';
+export const PROFILE_LINK = '/profile';
+export const FAVORITE_RECIPES = '/favorite-recipes';
+export const DONE_RECIPES = '/done-recipes';
+export const RCP_IN_PROGRESS_MEALS = '/meals/:id/in-progress';
+export const RCP_IN_PROGRESS_DRINKS = '/drinks/:id/in-progress';
 
 // * * COMPONENTS INFORMATIONS
 export const EMAIL = 'email';
