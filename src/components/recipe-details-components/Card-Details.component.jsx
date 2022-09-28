@@ -31,11 +31,13 @@ function CardDetails({
   const [isFavorited, setIsFavorited] = useState(false);
   const { ingredients, measures } = ingredientsAndRecipes;
   const isMeal = pathname.includes('meals');
-
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+
   useEffect(() => {
-    if (favoriteRecipes.some(({ id }) => id
-      .includes(idUrl))) return setIsFavorited(true);
+    const teste1 = getFromLocalStorage('favoriteRecipes') || [];
+    setFavoriteRecipes(teste1);
+    const teste2 = teste1.some(({ id }) => id === idUrl);
+    setIsFavorited(teste2);
   }, []);
 
   const renderMeasures = () => ingredients.map((val, index) => (
@@ -58,8 +60,19 @@ function CardDetails({
     return false;
   };
 
+  const removeFavorite = () => {
+    const teste1 = getFromLocalStorage('favoriteRecipes') || [];
+    const updatedFavoriteRecipes = teste1
+      .filter(({ id }) => id !== idUrl);
+    return updatedFavoriteRecipes;
+  };
+
+  const removeIconFavorite = () => {
+    saveLocalStorage('favoriteRecipes', removeFavorite());
+    setIsFavorited(false);
+  };
+
   const saveFavoriteHandler = () => {
-    setFavoriteRecipes(getFromLocalStorage('favoriteRecipes') || []);
     const addRecipe = {
       id: isMeal ? idMeal : idDrink,
       type: isMeal ? 'meal' : 'drink',
@@ -75,6 +88,10 @@ function CardDetails({
   const saveAndFavoriteRecipe = () => {
     saveLocalStorage('favoriteRecipes', saveFavoriteHandler());
     setIsFavorited(true);
+  };
+  const handleFavorite = () => {
+    if (isFavorited) return removeIconFavorite();
+    saveAndFavoriteRecipe();
   };
 
   const redirectPageFunc = () => {
@@ -117,7 +134,7 @@ function CardDetails({
       <input
         type="image"
         data-testid="favorite-btn"
-        onClick={ saveAndFavoriteRecipe }
+        onClick={ handleFavorite }
         src={ isFavorited ? blackHeart : whiteHeart }
         alt="SHARE"
       />
