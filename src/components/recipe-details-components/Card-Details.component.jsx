@@ -34,10 +34,10 @@ function CardDetails({
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   useEffect(() => {
-    const teste1 = getFromLocalStorage('favoriteRecipes') || [];
-    setFavoriteRecipes(teste1);
-    const teste2 = teste1.some(({ id }) => id === idUrl);
-    setIsFavorited(teste2);
+    const startLSFavorites = getFromLocalStorage('favoriteRecipes') || [];
+    setFavoriteRecipes(startLSFavorites);
+    const checkLSfavorites = startLSFavorites.some(({ id }) => id === idUrl);
+    setIsFavorited(checkLSfavorites);
   }, []);
 
   const renderMeasures = () => ingredients.map((val, index) => (
@@ -60,15 +60,15 @@ function CardDetails({
     return false;
   };
 
-  const removeFavorite = () => {
-    const teste1 = getFromLocalStorage('favoriteRecipes') || [];
-    const updatedFavoriteRecipes = teste1
+  const removeFavoriteSelected = () => {
+    const localStorageChecker = getFromLocalStorage('favoriteRecipes') || [];
+    const updatedFavoriteRecipes = localStorageChecker
       .filter(({ id }) => id !== idUrl);
     return updatedFavoriteRecipes;
   };
 
   const removeIconFavorite = () => {
-    saveLocalStorage('favoriteRecipes', removeFavorite());
+    saveLocalStorage('favoriteRecipes', removeFavoriteSelected());
     setIsFavorited(false);
   };
 
