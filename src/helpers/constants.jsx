@@ -8,7 +8,7 @@ export const MEALS_URL_BASE = 'https://www.themealdb.com/api/json/v1/1';
 export const MEALS_URL_DEFAULT_ENDPOINT = 'search.php?s=';
 export const MEALS_URL_FILTER_ENDPOINT = 'filter.php?c=';
 export const MEALS_URL_DETAILS_ENDPOINT = 'lookup.php?i=';
-export const MEALS_URL_INGREDIENT_ENDPOINT = 'filter.php?i=';
+export const MEALS_URL_ING_ENDPOINT = 'filter.php?i=';
 export const MEALS_URL_FL_ENDPOINT = 'search.php?f=';
 
 // * DRINKS URL
@@ -16,6 +16,8 @@ export const DRINKS_URL_BASE = 'https://www.thecocktaildb.com/api/json/v1/1';
 export const DRINKS_URL_DEFAULT_ENDPOINT = 'search.php?s=';
 export const DRINKS_URL_FILTER_ENDPOINT = 'filter.php?c=';
 export const DRINKS_URL_DETAILS_ENDPOINT = 'lookup.php?i=';
+export const DRINKS_URL_ING_ENDPOINT = 'filter.php?i=';
+export const DRINKS_URL_FL_ENDPOINT = 'search.php?f=';
 
 // * * TEST INFORMATIONS
 export const PASSWORD_TEST = 'ABC123##';
