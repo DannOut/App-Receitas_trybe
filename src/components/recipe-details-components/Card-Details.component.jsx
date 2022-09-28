@@ -1,29 +1,42 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
-import { getFromLocalStorage } from '../../helpers/localStorage';
+import { getFromLocalStorage, saveLocalStorage } from '../../helpers/localStorage';
 import ButtonDetails from './Button-Details.components';
 import { recipeIsDone } from '../../helpers';
 import shareIcon from '../../images/shareIcon.svg';
+import blackHeart from '../../images/blackHeartIcon.svg';
+import whiteHeart from '../../images/whiteHeartIcon.svg';
 
 const copy = require('clipboard-copy');
 
 function CardDetails({
   strCategory,
   ingredientsAndRecipes,
+  idMeal,
   strInstructions,
   strMeal,
   strMealThumb,
+  idDrink,
   strDrink,
   strDrinkThumb,
   strYoutube,
   strAlcoholic,
+  strArea,
 }) {
   const { location: { pathname } } = useHistory();
   const { id: idUrl } = useParams();
-  const [copied, isCopied] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false);
   const { ingredients, measures } = ingredientsAndRecipes;
+  const isMeal = pathname.includes('meals');
+
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  useEffect(() => {
+    if (favoriteRecipes.some(({ id }) => id
+      .includes(idUrl))) return setIsFavorited(true);
+  }, []);
 
   const renderMeasures = () => ingredients.map((val, index) => (
     <li
@@ -45,6 +58,25 @@ function CardDetails({
     return false;
   };
 
+  const saveFavoriteHandler = () => {
+    setFavoriteRecipes(getFromLocalStorage('favoriteRecipes') || []);
+    const addRecipe = {
+      id: isMeal ? idMeal : idDrink,
+      type: isMeal ? 'meal' : 'drink',
+      nationality: isMeal ? strArea : '',
+      category: strCategory,
+      alcoholicOrNot: isMeal ? '' : strAlcoholic,
+      name: isMeal ? strMeal : strDrink,
+      image: isMeal ? strMealThumb : strDrinkThumb,
+    };
+    return [...favoriteRecipes, addRecipe];
+  };
+
+  const saveAndFavoriteRecipe = () => {
+    saveLocalStorage('favoriteRecipes', saveFavoriteHandler());
+    setIsFavorited(true);
+  };
+
   const redirectPageFunc = () => {
     if (pathname.includes('meals')) return `/meals/${idUrl}/in-progress`;
     return `/drinks/${idUrl}/in-progress`;
@@ -52,13 +84,12 @@ function CardDetails({
 
   const copyToClipBoard = () => {
     copy(`http://localhost:3000${pathname}`);
-    isCopied(true);
+    setIsCopied(true);
   };
 
   const isDone = recipeIsDone('doneRecipes', idUrl);
   const inProgress = inProgressRecipe();
   const redirectPage = redirectPageFunc();
-  const isMeal = pathname.includes('meals');
 
   return (
     <section>
@@ -86,11 +117,11 @@ function CardDetails({
       <input
         type="image"
         data-testid="favorite-btn"
-        onClick={ console.log('teste') }
-        // src={ shareIcon }
+        onClick={ saveAndFavoriteRecipe }
+        src={ isFavorited ? blackHeart : whiteHeart }
         alt="SHARE"
       />
-      { copied ? <p> Link copied! </p> : null }
+      { isCopied ? <p> Link copied! </p> : null }
       <ul>
         { renderMeasures() }
       </ul>
@@ -125,9 +156,15 @@ CardDetails.defaultProps = {
   strDrinkThumb: '',
   strYoutube: '',
   strAlcoholic: '',
+  idMeal: '',
+  idDrink: '',
+  strArea: '',
 };
 
 CardDetails.propTypes = {
+  idMeal: PropTypes.string,
+  idDrink: PropTypes.string,
+  strArea: PropTypes.string,
   strCategory: PropTypes.string,
   ingredients: PropTypes.string,
   measures: PropTypes.string,
