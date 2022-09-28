@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { getFromLocalStorage } from '../../helpers/localStorage';
+import ButtonDetails from './Button-Details.components';
 
 function CardDetails({
   strCategory,
@@ -14,7 +17,19 @@ function CardDetails({
   strAlcoholic,
 }) {
   const { location: { pathname } } = useHistory();
+  const { id: idUrl } = useParams();
   const { ingredients, measures } = ingredientsAndRecipes;
+
+  // useEffect(() => {
+  //   saveLocalStorage('inProgressRecipes', ({
+  //     drinks: {
+  //       15997: ['Galliano', 'Ginger ale'],
+  //     },
+  //     meals: {
+  //       52977: ['Lentils', 'Onion'],
+  //     },
+  //   }));
+  // }, []);
 
   const renderMeasures = () => ingredients.map((val, index) => (
     <li
@@ -24,6 +39,32 @@ function CardDetails({
       {`${val} ${measures[index]}`}
     </li>
   ));
+
+  const recipeIsDone = () => {
+    const data = getFromLocalStorage('doneRecipes') || [];
+    const isDone = data.some(({ id }) => id === idUrl);
+    return isDone;
+  };
+
+  const inProgressRecipe = () => {
+    const data = getFromLocalStorage('inProgressRecipes') || {};
+    const typeOfFood = pathname.includes('meals') ? data.meals : data.drinks;
+    if (typeOfFood) {
+      const isInProgress = Object.keys(typeOfFood)
+        .some((inProgressId) => inProgressId === idUrl);
+      return isInProgress;
+    }
+    return false;
+  };
+
+  const redirectPageFunc = () => {
+    if (pathname.includes('meals')) return `/meals/${idUrl}/in-progress`;
+    return `/drinks/${idUrl}/in-progress`;
+  };
+
+  const isDone = recipeIsDone();
+  const inProgress = inProgressRecipe();
+  const redirectPage = redirectPageFunc();
 
   return (
     (pathname.includes('meals'))
@@ -55,13 +96,10 @@ function CardDetails({
               data-testid="video"
             />
           </div>
-          <button
-            data-testid="start-recipe-btn"
-            type="button"
-            className="recipe_details__startbtn"
-          >
-            Start Recipe
-          </button>
+          {!isDone && <ButtonDetails
+            inProgress={ inProgress }
+            redirectPage={ redirectPage }
+          /> }
         </section>
       )
       : (
@@ -84,13 +122,10 @@ function CardDetails({
           <ul>
             { renderMeasures() }
           </ul>
-          <button
-            data-testid="start-recipe-btn"
-            type="button"
-            className="recipe_details__startbtn"
-          >
-            Start Recipe
-          </button>
+          {!isDone && <ButtonDetails
+            inProgress={ inProgress }
+            redirectPage={ redirectPage }
+          /> }
         </section>
       )
   );

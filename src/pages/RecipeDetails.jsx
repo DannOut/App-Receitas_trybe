@@ -19,6 +19,7 @@ function RecipeDetails() {
   const { strMeal, strMealThumb,
     strDrink, strDrinkThumb, strAlcoholic,
     strCategory, strInstructions, strYoutube,
+    idMeal, idDrink,
   } = recipeDetails;
 
   const { id } = useParams();
@@ -69,12 +70,14 @@ function RecipeDetails() {
         // * BASE INFORMATION TO DETAILS
         strCategory={ strCategory }
         strInstructions={ strInstructions }
-        // * MEAL INFORMATION TO DETAILS
         ingredientsAndRecipes={ ingredientsAndRecipes }
+        // * MEAL INFORMATION TO DETAILS
+        idMeal={ idMeal }
         strMeal={ strMeal }
         strMealThumb={ strMealThumb }
         strYoutube={ strYoutube }
         // * DRINKS INFORMATION TO DETAILS
+        idDrink={ idDrink }
         strDrink={ strDrink }
         strDrinkThumb={ strDrinkThumb }
         strAlcoholic={ strAlcoholic }
