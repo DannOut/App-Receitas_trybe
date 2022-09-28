@@ -24,6 +24,7 @@ function SearchBar() {
     setSearchTerm,
     setSelectedFilter,
     searchResults,
+    setSearchresults,
     getSearchResults,
   } = useContext(SearchContext);
 
@@ -32,10 +33,12 @@ function SearchBar() {
       if (history.location.pathname === MEALS_LINK && searchResults.length === 1) {
         const { idMeal } = searchResults[0];
         history.push(`/meals/${idMeal}`);
+        setSearchresults([]);
       } else if (history.location.pathname === DRINKS_LINK
         && searchResults.length === 1) {
         const { idDrink } = searchResults[0];
         history.push(`/drinks/${idDrink}`);
+        setSearchresults([]);
       }
     };
     redirectHandler();
@@ -91,6 +94,7 @@ function SearchBar() {
         break;
       }
     }
+    if (searchResults === null) global.alert('xablau');
   };
 
   return (

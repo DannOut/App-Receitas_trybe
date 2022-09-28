@@ -10,9 +10,13 @@ function SearchProvider({ children }) {
   const [searchResults, setSearchresults] = useState([]);
 
   const getSearchResults = async (url) => {
-    const response = await fetchAPI(url);
-    const value = await Object.values(response)[0].slice(0, MAX_LIMIT_INFORMATION);
-    setSearchresults(value);
+    try {
+      const response = await fetchAPI(url);
+      const value = await Object.values(response)[0].slice(0, MAX_LIMIT_INFORMATION);
+      setSearchresults(value);
+    } catch (err) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
   };
 
   const context = {
