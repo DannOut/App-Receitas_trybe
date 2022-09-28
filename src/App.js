@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginProvider from './context/providers/LoginProvider';
 import FetchProvider from './context/providers/FetchProvider';
+import SearchProvider from './context/providers/SearchProvider';
 import Login from './pages/Login';
 import Recipes from './pages/Recipes';
 import Profile from './pages/Profile';
@@ -29,18 +30,20 @@ function App() {
   return (
     <LoginProvider>
       <FetchProvider>
-        <Switch>
-          <Route exact path={ MAIN_LOGIN_PAGE } component={ Login } />
-          <Route exact path={ MEALS_LINK } component={ Recipes } />
-          <Route exact path={ DRINKS_LINK } component={ Recipes } />
-          <Route exact path={ PROFILE_LINK } component={ Profile } />
-          <Route exact path={ RCP_DETAILS_MEALS_LINK } component={ RecipeDetails } />
-          <Route exact path={ RCP_DETAILS_DRINKS_LINK } component={ RecipeDetails } />
-          <Route exact path={ RCP_IN_PROGRESS_MEALS } component={ RecipeInProgress } />
-          <Route exact path={ RCP_IN_PROGRESS_DRINKS } component={ RecipeInProgress } />
-          <Route exact path={ FAVORITE_RECIPES } component={ FavoriteRecipes } />
-          <Route exact path={ DONE_RECIPES } component={ DoneRecipes } />
-        </Switch>
+        <SearchProvider>
+          <Switch>
+            <Route exact path={ MAIN_LOGIN_PAGE } component={ Login } />
+            <Route exact path={ MEALS_LINK } component={ Recipes } />
+            <Route exact path={ DRINKS_LINK } component={ Recipes } />
+            <Route exact path={ PROFILE_LINK } component={ Profile } />
+            <Route exact path={ RCP_DETAILS_MEALS_LINK } component={ RecipeDetails } />
+            <Route exact path={ RCP_DETAILS_DRINKS_LINK } component={ RecipeDetails } />
+            <Route exact path={ RCP_IN_PROGRESS_MEALS } component={ RecipeInProgress } />
+            <Route exact path={ RCP_IN_PROGRESS_DRINKS } component={ RecipeInProgress } />
+            <Route exact path={ FAVORITE_RECIPES } component={ FavoriteRecipes } />
+            <Route exact path={ DONE_RECIPES } component={ DoneRecipes } />
+          </Switch>
+        </SearchProvider>
       </FetchProvider>
     </LoginProvider>
   );
