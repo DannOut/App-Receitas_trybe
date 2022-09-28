@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React/* , { useEffect } */ from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
-import { getFromLocalStorage/* , saveLocalStorage */ } from '../../helpers/localStorage';
+import { getFromLocalStorage } from '../../helpers/localStorage';
 import ButtonDetails from './Button-Details.components';
 
 function CardDetails({
