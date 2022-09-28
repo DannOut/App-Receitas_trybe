@@ -1,10 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import { getFromLocalStorage } from '../../helpers/localStorage';
 import ButtonDetails from './Button-Details.components';
 import { recipeIsDone } from '../../helpers';
+import shareIcon from '../../images/shareIcon.svg';
+
+const copy = require('clipboard-copy');
 
 function CardDetails({
   strCategory,
@@ -19,6 +22,7 @@ function CardDetails({
 }) {
   const { location: { pathname } } = useHistory();
   const { id: idUrl } = useParams();
+  const [copied, isCopied] = useState(false);
   const { ingredients, measures } = ingredientsAndRecipes;
 
   const renderMeasures = () => ingredients.map((val, index) => (
@@ -46,31 +50,52 @@ function CardDetails({
     return `/drinks/${idUrl}/in-progress`;
   };
 
+  const copyToClipBoard = () => {
+    copy(`http://localhost:3000${pathname}`);
+    isCopied(true);
+  };
+
   const isDone = recipeIsDone('doneRecipes', idUrl);
   const inProgress = inProgressRecipe();
   const redirectPage = redirectPageFunc();
+  const isMeal = pathname.includes('meals');
 
   return (
-    (pathname.includes('meals'))
-      ? (
-        <section>
-          <h1 data-testid="recipe-title">
-            {strMeal}
-          </h1>
-          <h3 data-testid="recipe-category">
-            {strCategory}
-          </h3>
-          <img
-            src={ strMealThumb }
-            alt={ strMeal }
-            data-testid="recipe-photo"
-          />
-          <p data-testid="instructions">
-            { strInstructions }
-          </p>
-          <ul>
-            { renderMeasures() }
-          </ul>
+    <section>
+      <h1 data-testid="recipe-title">
+        {isMeal ? strMeal : strDrink }
+      </h1>
+      <h3 data-testid="recipe-category">
+        {isMeal ? strCategory : `${strCategory} ${strAlcoholic}` }
+      </h3>
+      <img
+        src={ isMeal ? strMealThumb : strDrinkThumb }
+        alt={ isMeal ? strMeal : strDrink }
+        data-testid="recipe-photo"
+      />
+      <p data-testid="instructions">
+        { strInstructions }
+      </p>
+      <input
+        type="image"
+        data-testid="share-btn"
+        onClick={ copyToClipBoard }
+        src={ shareIcon }
+        alt="share icon"
+      />
+      <input
+        type="image"
+        data-testid="favorite-btn"
+        onClick={ console.log('teste') }
+        // src={ shareIcon }
+        alt="SHARE"
+      />
+      { copied ? <p> Link copied! </p> : null }
+      <ul>
+        { renderMeasures() }
+      </ul>
+      { isMeal
+        ? (
           <div>
             <iframe
               title={ strMeal }
@@ -80,38 +105,12 @@ function CardDetails({
               data-testid="video"
             />
           </div>
-          {!isDone && <ButtonDetails
-            inProgress={ inProgress }
-            redirectPage={ redirectPage }
-          /> }
-        </section>
-      )
-      : (
-        <section>
-          <h1 data-testid="recipe-title">
-            {strDrink}
-          </h1>
-          <h3 data-testid="recipe-category">
-            {strCategory}
-            {strAlcoholic}
-          </h3>
-          <img
-            src={ strDrinkThumb }
-            alt={ strDrink }
-            data-testid="recipe-photo"
-          />
-          <p data-testid="instructions">
-            { strInstructions }
-          </p>
-          <ul>
-            { renderMeasures() }
-          </ul>
-          {!isDone && <ButtonDetails
-            inProgress={ inProgress }
-            redirectPage={ redirectPage }
-          /> }
-        </section>
-      )
+        ) : <p> Drink Placeholder </p>}
+      {!isDone && <ButtonDetails
+        inProgress={ inProgress }
+        redirectPage={ redirectPage }
+      /> }
+    </section>
   );
 }
 
