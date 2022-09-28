@@ -11,6 +11,8 @@ function Header() {
   const [showSearch, setShowSearch] = useState(false);
   const history = useHistory();
 
+  // TODO: verificar esse useEffect
+
   useEffect(() => {
     const { location: { pathname } } = history;
     setPageName(capitalizeWords(pathname));
