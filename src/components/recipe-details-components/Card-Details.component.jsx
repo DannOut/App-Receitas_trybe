@@ -1,10 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import { getFromLocalStorage } from '../../helpers/localStorage';
 import ButtonDetails from './Button-Details.components';
 import { recipeIsDone } from '../../helpers';
+import shareIcon from '../../images/shareIcon.svg';
+
+const copy = require('clipboard-copy');
 
 function CardDetails({
   strCategory,
@@ -19,6 +22,7 @@ function CardDetails({
 }) {
   const { location: { pathname } } = useHistory();
   const { id: idUrl } = useParams();
+  const [copied, isCopied] = useState(false);
   const { ingredients, measures } = ingredientsAndRecipes;
 
   const renderMeasures = () => ingredients.map((val, index) => (
@@ -46,6 +50,11 @@ function CardDetails({
     return `/drinks/${idUrl}/in-progress`;
   };
 
+  const copyToClipBoard = () => {
+    copy(`http://localhost:3000${pathname}`);
+    isCopied(true);
+  };
+
   const isDone = recipeIsDone('doneRecipes', idUrl);
   const inProgress = inProgressRecipe();
   const redirectPage = redirectPageFunc();
@@ -67,20 +76,21 @@ function CardDetails({
       <p data-testid="instructions">
         { strInstructions }
       </p>
-      <button
-        type="button"
+      <input
+        type="image"
         data-testid="share-btn"
-        onClick={ console.log('teste') }
-      >
-        Compartilhar
-      </button>
-      <button
-        type="button"
+        onClick={ copyToClipBoard }
+        src={ shareIcon }
+        alt="share icon"
+      />
+      <input
+        type="image"
         data-testid="favorite-btn"
         onClick={ console.log('teste') }
-      >
-        Favorite
-      </button>
+        // src={ shareIcon }
+        alt="SHARE"
+      />
+      { copied ? <p> Link copied! </p> : null }
       <ul>
         { renderMeasures() }
       </ul>
