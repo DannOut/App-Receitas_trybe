@@ -52,15 +52,19 @@ function CardDetails({
     if (typeOfFood) {
       const isInProgress = Object.keys(typeOfFood)
         .some((inProgressId) => inProgressId === idUrl);
-      console.log(isInProgress);
       return isInProgress;
     }
     return false;
   };
 
+  const redirectPageFunc = () => {
+    if (pathname.includes('meals')) return `/meals/${idUrl}/in-progress`;
+    return `/drinks/${idUrl}/in-progress`;
+  };
+
   const isDone = recipeIsDone();
   const inProgress = inProgressRecipe();
-  console.log(inProgress);
+  const redirectPage = redirectPageFunc();
 
   return (
     (pathname.includes('meals'))
@@ -92,7 +96,10 @@ function CardDetails({
               data-testid="video"
             />
           </div>
-          {!isDone && <ButtonDetails inProgress={ inProgress } /> }
+          {!isDone && <ButtonDetails
+            inProgress={ inProgress }
+            redirectPage={ redirectPage }
+          /> }
         </section>
       )
       : (
@@ -115,7 +122,10 @@ function CardDetails({
           <ul>
             { renderMeasures() }
           </ul>
-          {!isDone && <ButtonDetails inProgress={ inProgress } /> }
+          {!isDone && <ButtonDetails
+            inProgress={ inProgress }
+            redirectPage={ redirectPage }
+          /> }
         </section>
       )
   );
