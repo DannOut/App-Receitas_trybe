@@ -34,6 +34,7 @@ function FetchProvider({ children }) {
   };
 
   const getRecipeDetails = async (url) => {
+    console.log(url);
     if (pathname.includes('meals')) {
       const { meals } = await fetchAPI(url);
       setRecipeDetails(meals[0]);

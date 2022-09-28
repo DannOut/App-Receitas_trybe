@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import { getFromLocalStorage } from '../../helpers/localStorage';
 import ButtonDetails from './Button-Details.components';
+import { recipeIsDone } from '../../helpers';
 
 function CardDetails({
   strCategory,
@@ -20,17 +21,6 @@ function CardDetails({
   const { id: idUrl } = useParams();
   const { ingredients, measures } = ingredientsAndRecipes;
 
-  // useEffect(() => {
-  //   saveLocalStorage('inProgressRecipes', ({
-  //     drinks: {
-  //       15997: ['Galliano', 'Ginger ale'],
-  //     },
-  //     meals: {
-  //       52977: ['Lentils', 'Onion'],
-  //     },
-  //   }));
-  // }, []);
-
   const renderMeasures = () => ingredients.map((val, index) => (
     <li
       key={ index }
@@ -39,12 +29,6 @@ function CardDetails({
       {`${val} ${measures[index]}`}
     </li>
   ));
-
-  const recipeIsDone = () => {
-    const data = getFromLocalStorage('doneRecipes') || [];
-    const isDone = data.some(({ id }) => id === idUrl);
-    return isDone;
-  };
 
   const inProgressRecipe = () => {
     const data = getFromLocalStorage('inProgressRecipes') || {};
@@ -62,7 +46,7 @@ function CardDetails({
     return `/drinks/${idUrl}/in-progress`;
   };
 
-  const isDone = recipeIsDone();
+  const isDone = recipeIsDone('doneRecipes', idUrl);
   const inProgress = inProgressRecipe();
   const redirectPage = redirectPageFunc();
 
