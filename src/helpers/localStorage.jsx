@@ -1,5 +1,4 @@
-export const saveLocalStorage = (keyName, value) => {
-  localStorage.setItem(keyName, JSON.stringify(value));
-};
+export const saveLocalStorage = (keyName, value) => localStorage
+  .setItem(keyName, JSON.stringify(value));
 
-export const VALUE = 'VALUE';
+export const getFromLocalStorage = (keyName) => JSON.parse(localStorage.getItem(keyName));
