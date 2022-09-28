@@ -13,6 +13,7 @@ function Header() {
 
   // TODO: verificar esse useEffect
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const { location: { pathname } } = history;
     setPageName(capitalizeWords(pathname));
