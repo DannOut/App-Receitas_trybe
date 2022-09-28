@@ -49,28 +49,29 @@ function CardDetails({
   const isDone = recipeIsDone('doneRecipes', idUrl);
   const inProgress = inProgressRecipe();
   const redirectPage = redirectPageFunc();
+  const isMeal = pathname.includes('meals');
 
   return (
-    (pathname.includes('meals'))
-      ? (
-        <section>
-          <h1 data-testid="recipe-title">
-            {strMeal}
-          </h1>
-          <h3 data-testid="recipe-category">
-            {strCategory}
-          </h3>
-          <img
-            src={ strMealThumb }
-            alt={ strMeal }
-            data-testid="recipe-photo"
-          />
-          <p data-testid="instructions">
-            { strInstructions }
-          </p>
-          <ul>
-            { renderMeasures() }
-          </ul>
+    <section>
+      <h1 data-testid="recipe-title">
+        {isMeal ? strMeal : strDrink }
+      </h1>
+      <h3 data-testid="recipe-category">
+        {isMeal ? strCategory : `${strCategory} ${strAlcoholic}` }
+      </h3>
+      <img
+        src={ isMeal ? strMealThumb : strDrinkThumb }
+        alt={ isMeal ? strMeal : strDrink }
+        data-testid="recipe-photo"
+      />
+      <p data-testid="instructions">
+        { strInstructions }
+      </p>
+      <ul>
+        { renderMeasures() }
+      </ul>
+      { isMeal
+        ? (
           <div>
             <iframe
               title={ strMeal }
@@ -80,38 +81,12 @@ function CardDetails({
               data-testid="video"
             />
           </div>
-          {!isDone && <ButtonDetails
-            inProgress={ inProgress }
-            redirectPage={ redirectPage }
-          /> }
-        </section>
-      )
-      : (
-        <section>
-          <h1 data-testid="recipe-title">
-            {strDrink}
-          </h1>
-          <h3 data-testid="recipe-category">
-            {strCategory}
-            {strAlcoholic}
-          </h3>
-          <img
-            src={ strDrinkThumb }
-            alt={ strDrink }
-            data-testid="recipe-photo"
-          />
-          <p data-testid="instructions">
-            { strInstructions }
-          </p>
-          <ul>
-            { renderMeasures() }
-          </ul>
-          {!isDone && <ButtonDetails
-            inProgress={ inProgress }
-            redirectPage={ redirectPage }
-          /> }
-        </section>
-      )
+        ) : <p> Drink Placeholder </p>}
+      {!isDone && <ButtonDetails
+        inProgress={ inProgress }
+        redirectPage={ redirectPage }
+      /> }
+    </section>
   );
 }
 
