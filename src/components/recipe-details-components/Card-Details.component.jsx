@@ -67,6 +67,20 @@ function CardDetails({
       <p data-testid="instructions">
         { strInstructions }
       </p>
+      <button
+        type="button"
+        data-testid="share-btn"
+        onClick={ console.log('teste') }
+      >
+        Compartilhar
+      </button>
+      <button
+        type="button"
+        data-testid="favorite-btn"
+        onClick={ console.log('teste') }
+      >
+        Favorite
+      </button>
       <ul>
         { renderMeasures() }
       </ul>
