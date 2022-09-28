@@ -1,24 +1,35 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React/* , { useEffect } */ from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import { getFromLocalStorage, saveLocalStorage } from '../../helpers/localStorage';
+import { useHistory, useParams } from 'react-router-dom';
+import { getFromLocalStorage/* , saveLocalStorage */ } from '../../helpers/localStorage';
+import ButtonDetails from './Button-Details.components';
 
 function CardDetails({
   strCategory,
   ingredientsAndRecipes,
   strInstructions,
-  idMeal,
   strMeal,
   strMealThumb,
-  idDrink,
   strDrink,
   strDrinkThumb,
   strYoutube,
   strAlcoholic,
 }) {
   const { location: { pathname } } = useHistory();
-  const [recipesDoneLocalStorage, setRecipesDoneLocalStorage] = useState([]);
+  const { id: idUrl } = useParams();
   const { ingredients, measures } = ingredientsAndRecipes;
+
+  // useEffect(() => {
+  //   saveLocalStorage('inProgressRecipes', ({
+  //     drinks: {
+  //       15997: ['Galliano', 'Ginger ale'],
+  //     },
+  //     meals: {
+  //       52977: ['Lentils', 'Onion'],
+  //     },
+  //   }));
+  // }, []);
 
   const renderMeasures = () => ingredients.map((val, index) => (
     <li
@@ -29,36 +40,27 @@ function CardDetails({
     </li>
   ));
 
-  useEffect(() => {
-    // saveLocalStorage('doneRecipes', ([{
-    //   id: '15997',
-    //   type: 'drink',
-    //   nationality: '',
-    //   category: '',
-    //   alcoholicOrNot: 'Optional alcohol',
-    //   name: 'GG',
-    //   image: 'https://www.thecocktaildb.com/images/media/drink/vyxwut1468875960.jpg',
-    //   doneDate: '',
-    // },
-    // {
-    //   id: '52977',
-    //   type: 'meal',
-    //   nationality: '',
-    //   category: '',
-    //   alcoholicOrNot: '',
-    //   name: 'Corba',
-    //   image: 'https://www.thecocktaildb.com/images/media/drink/vyxwut1468875960.jpg',
-    //   doneDate: '',
-    // }]));
-    if (getFromLocalStorage('doneRecipes') !== null) {
-      const data = getFromLocalStorage('doneRecipes');
-      setRecipesDoneLocalStorage(data);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const recipeIsDone = () => {
+    const data = getFromLocalStorage('doneRecipes') || [];
+    const isDone = data.some(({ id }) => id === idUrl);
+    return isDone;
+  };
 
-  const checkDoneRecipes = () => recipesDoneLocalStorage
-    .some(({ id }) => id.includes(idDrink || idMeal));
+  const inProgressRecipe = () => {
+    const data = getFromLocalStorage('inProgressRecipes') || {};
+    const typeOfFood = pathname.includes('meals') ? data.meals : data.drinks;
+    if (typeOfFood) {
+      const isInProgress = Object.keys(typeOfFood)
+        .some((inProgressId) => inProgressId === idUrl);
+      console.log(isInProgress);
+      return isInProgress;
+    }
+    return false;
+  };
+
+  const isDone = recipeIsDone();
+  const inProgress = inProgressRecipe();
+  console.log(inProgress);
 
   return (
     (pathname.includes('meals'))
@@ -90,14 +92,7 @@ function CardDetails({
               data-testid="video"
             />
           </div>
-          <button
-            data-testid="start-recipe-btn"
-            type="button"
-            className="recipe_details__startbtn"
-            style={ { display: checkDoneRecipes() ? 'none' : 'block' } }
-          >
-            Start Recipe
-          </button>
+          {!isDone && <ButtonDetails inProgress={ inProgress } /> }
         </section>
       )
       : (
@@ -120,14 +115,7 @@ function CardDetails({
           <ul>
             { renderMeasures() }
           </ul>
-          <button
-            data-testid="start-recipe-btn"
-            type="button"
-            className="recipe_details__startbtn"
-            style={ { display: checkDoneRecipes() ? 'none' : 'block' } }
-          >
-            Start Recipe
-          </button>
+          {!isDone && <ButtonDetails inProgress={ inProgress } /> }
         </section>
       )
   );
@@ -144,8 +132,6 @@ CardDetails.defaultProps = {
   strDrinkThumb: '',
   strYoutube: '',
   strAlcoholic: '',
-  idDrink: '',
-  idMeal: '',
 };
 
 CardDetails.propTypes = {
@@ -154,9 +140,7 @@ CardDetails.propTypes = {
   measures: PropTypes.string,
   strInstructions: PropTypes.string,
   strMeal: PropTypes.string,
-  idMeal: PropTypes.string,
   strMealThumb: PropTypes.string,
-  idDrink: PropTypes.string,
   strDrink: PropTypes.string,
   strDrinkThumb: PropTypes.string,
   strYoutube: PropTypes.string,
