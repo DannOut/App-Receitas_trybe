@@ -7,7 +7,7 @@ import { MAX_LIMIT_INFORMATION } from '../../helpers/constants';
 function SearchProvider({ children }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('');
-  const [searchResults, setSearchresults] = useState([{}]);
+  const [searchResults, setSearchresults] = useState([]);
 
   const getSearchResults = async (url) => {
     const response = await fetchAPI(url);

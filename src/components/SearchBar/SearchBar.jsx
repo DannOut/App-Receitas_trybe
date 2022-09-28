@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+/* eslint-disable react-func/max-lines-per-function */
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import SearchContext from '../../context/SearchContext';
 import './SearchBar.css';
@@ -16,24 +17,43 @@ import {
 } from '../../helpers/constants';
 
 function SearchBar() {
-  const { location: { pathname } } = useHistory();
+  const history = useHistory();
   const {
     searchTerm,
     selectedFilter,
     setSearchTerm,
     setSelectedFilter,
+    searchResults,
     getSearchResults,
   } = useContext(SearchContext);
 
-  const searchHandler = async () => {
-    if (pathname === MEALS_LINK) {
+  useEffect(() => {
+    const redirectHandler = () => {
+      if (history.location.pathname === MEALS_LINK && searchResults.length === 1) {
+        const { idMeal } = searchResults[0];
+        history.push(`/meals/${idMeal}`);
+      } else if (history.location.pathname === DRINKS_LINK
+        && searchResults.length === 1) {
+        const { idDrink } = searchResults[0];
+        history.push(`/drinks/${idDrink}`);
+      }
+    };
+    redirectHandler();
+  }, [searchResults]);
+
+  const searchHandler = () => {
+    if (history.location.pathname === MEALS_LINK) {
       switch (selectedFilter) {
       case 'ingredient': {
-        getSearchResults(`${MEALS_URL_BASE}/${MEALS_URL_ING_ENDPOINT}${searchTerm}`);
+        getSearchResults(
+          `${MEALS_URL_BASE}/${MEALS_URL_ING_ENDPOINT}${searchTerm}`,
+        );
         break;
       }
       case 'name': {
-        getSearchResults(`${MEALS_URL_BASE}/${MEALS_URL_DEFAULT_ENDPOINT}${searchTerm}`);
+        getSearchResults(
+          `${MEALS_URL_BASE}/${MEALS_URL_DEFAULT_ENDPOINT}${searchTerm}`,
+        );
         break;
       }
       case 'first-letter': {
@@ -47,8 +67,7 @@ function SearchBar() {
       default:
         break;
       }
-    }
-    if (pathname === DRINKS_LINK) {
+    } else {
       switch (selectedFilter) {
       case 'ingredient': {
         getSearchResults(`${DRINKS_URL_BASE}/${DRINKS_URL_ING_ENDPOINT}${searchTerm}`);
