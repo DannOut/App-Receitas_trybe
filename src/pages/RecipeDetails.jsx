@@ -6,6 +6,7 @@ import CardDetails from '../components/recipe-details-components/Card-Details.co
 import { MEALS_URL_BASE,
   MEALS_URL_DETAILS_ENDPOINT,
   DRINKS_URL_BASE, DRINKS_URL_DETAILS_ENDPOINT } from '../helpers/constants';
+import '../styles/RecipeDetails.css';
 
 // import PropTypes from 'prop-types';
 

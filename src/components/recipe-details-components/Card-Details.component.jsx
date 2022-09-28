@@ -55,6 +55,13 @@ function CardDetails({
               data-testid="video"
             />
           </div>
+          <button
+            data-testid="start-recipe-btn"
+            type="button"
+            className="recipe_details__startbtn"
+          >
+            Start Recipe
+          </button>
         </section>
       )
       : (
@@ -77,6 +84,13 @@ function CardDetails({
           <ul>
             { renderMeasures() }
           </ul>
+          <button
+            data-testid="start-recipe-btn"
+            type="button"
+            className="recipe_details__startbtn"
+          >
+            Start Recipe
+          </button>
         </section>
       )
   );
