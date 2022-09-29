@@ -30,6 +30,7 @@ function CardInProgress({
   const { ingredients, measures } = ingredientsAndRecipes;
   const isMeal = pathname.includes('meals');
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [checked, setChecked] = useState([]);
 
   useEffect(() => {
     const startLSFavorites = getFromLocalStorage('favoriteRecipes') || [];
@@ -38,13 +39,30 @@ function CardInProgress({
     setIsFavorited(checkLSfavorites);
   }, []);
 
+  const handleCheckbox = ({ target }) => {
+    const { id } = target;
+    setChecked((prevState) => ({
+      ...prevState,
+      [id]: !checked[id],
+    }));
+  };
+
   const renderMeasures = () => ingredients.map((val, index) => (
-    <li
+    <label
       key={ index }
-      data-testid={ `${index}-ingredient-name-and-measure` }
+      htmlFor={ index }
+      data-testid={ `${index}-ingredient-step` }
     >
-      {`${val} ${measures[index]}`}
-    </li>
+      <input
+        type="checkbox"
+        id={ index }
+        onClick={ handleCheckbox }
+      />
+      {
+        checked[index]
+          ? <s>{`${val} ${measures[index]}`}</s> : `${val} ${measures[index]}`
+      }
+    </label>
   ));
 
   const saveFavoriteHandler = () => {
