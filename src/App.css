@@ -66,3 +66,20 @@
     transform: rotate(-10deg);
   }
 }
+
+.container {
+  display: flex;
+  overflow-x: scroll;
+  white-space:nowrap;
+  width: 340px;
+}
+
+.container-item {
+  width: 160px;
+  margin-left: 40px;
+}
+
+.container-item img {
+  width: 160px;
+}
+
