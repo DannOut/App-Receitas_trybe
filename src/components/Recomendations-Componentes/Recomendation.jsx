@@ -1,11 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import FetchContext from '../../context/FetchContext';
 
 function Recomendation() {
-  const [index1, setIndex] = useState(0);
-
   const { location: { pathname } } = useHistory();
   const { recomendations } = useContext(FetchContext);
   // const history = useHistory();
