@@ -17,8 +17,8 @@ export const DRINKS_URL_BASE = 'https://www.thecocktaildb.com/api/json/v1/1';
 export const DRINKS_URL_DEFAULT_ENDPOINT = 'search.php?s=';
 export const DRINKS_URL_FILTER_ENDPOINT = 'filter.php?c=';
 export const DRINKS_URL_DETAILS_ENDPOINT = 'lookup.php?i=';
-export const DRINKS_URL_ING_ENDPOINT = 'filter.php?i=';
 export const DRINKS_URL_FL_ENDPOINT = 'search.php?f=';
+export const DRINKS_URL_ING_ENDPOINT = 'filter.php?i=';
 
 // * * TEST INFORMATIONS
 export const PASSWORD_TEST = 'ABC123##';
@@ -55,7 +55,7 @@ export const TEST_ID_LOGIN_SUBMIT = 'login-submit-btn';
 export const TEST_ID_FOOTER_DRINKS = 'drinks-bottom-btn';
 export const TEST_ID_FOOTER_MEALS = 'meals-bottom-btn';
 // * HEADER
-export const TEST_ID_HEADER_SEARCH = 'search-top-btn';
+export const TEST_ID_TOP_HEADER_SEARCH = 'search-top-btn';
 export const TEST_ID_HEADER_PROFILE = 'profile-top-btn';
 // * SEARCHBAR
 export const TEST_ID_SEARCHBAR_INPUT = 'search-input';
@@ -63,6 +63,9 @@ export const TEST_ID_SEARCHBAR_BTN = 'exec-search-btn';
 export const TEST_ID_SEARCHBAR_FL_FILTER = 'first-letter-search-radio';
 export const TEST_ID_SEARCHBAR_NAME_FILTER = 'name-search-radio';
 export const TEST_ID_SEARCHBAR_ING_FILTER = 'ingredient-search-radio';
+export const TEST_ID_SEARCH_TOP_BTN = 'search-top-btn';
+export const TEST_ID_HEADER_BOTTON = 'header-bottom';
+export const TEST_CARD_RECIPE_CARD_ZERO = '0-recipe-card';
 
 // * LOCAL STORAGE INFORMATIONS
 export const USER_KEY_LS = 'user';

@@ -30,6 +30,7 @@ function SearchBar() {
 
   useEffect(() => {
     const redirectHandler = () => {
+      // * QUANDO SÒ VOLTA 1 RESULTADO SOU ENCAMINHADO DIRETO PARA PAGINA
       if (history.location.pathname === MEALS_LINK && searchResults.length === 1) {
         const { idMeal } = searchResults[0];
         history.push(`/meals/${idMeal}`);
@@ -59,15 +60,12 @@ function SearchBar() {
         );
         break;
       }
-      case 'first-letter': {
+      default:
         if (searchTerm.length > 1) {
           global.alert('Your search must have only 1 (one) character');
         } else {
           getSearchResults(`${MEALS_URL_BASE}/${MEALS_URL_FL_ENDPOINT}${searchTerm}`);
         }
-        break;
-      }
-      default:
         break;
       }
     } else {
@@ -82,7 +80,7 @@ function SearchBar() {
         );
         break;
       }
-      case 'first-letter': {
+      default:
         if (searchTerm.length > 1) {
           global.alert('Your search must have only 1 (one) character');
         } else {
@@ -90,11 +88,7 @@ function SearchBar() {
         }
         break;
       }
-      default:
-        break;
-      }
     }
-    if (searchResults === null) global.alert('xablau');
   };
 
   return (
