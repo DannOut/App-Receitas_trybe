@@ -25,6 +25,7 @@ export const MEALS_LINK = '/meals';
 export const DRINKS_LINK = '/drinks';
 export const RCP_DETAILS_MEALS_LINK = '/meals/:id';
 export const RCP_DETAILS_DRINKS_LINK = '/drinks/:id';
+export const DETAILED_DRINK_PATH = '/drinks/178319';
 export const PROFILE_LINK = '/profile';
 export const FAVORITE_RECIPES = '/favorite-recipes';
 export const DONE_RECIPES = '/done-recipes';

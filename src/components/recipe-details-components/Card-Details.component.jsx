@@ -74,7 +74,7 @@ function CardDetails({
   };
 
   const removeFavoriteSelected = () => {
-    const localStorageChecker = getFromLocalStorage('favoriteRecipes') || [];
+    const localStorageChecker = getFromLocalStorage('favoriteRecipes');
     const updatedFavoriteRecipes = localStorageChecker
       .filter(({ id }) => id !== idUrl);
     return updatedFavoriteRecipes;

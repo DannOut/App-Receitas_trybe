@@ -28,7 +28,6 @@ function Recipes() {
     setRecipes,
   } = useContext(FetchContext);
 
-  // const [loading, isLoading] = useState(true);
   useEffect(() => {
     if (filter.length > 0) {
       return setRecipes(filter);
@@ -92,7 +91,5 @@ function Recipes() {
     </main>
   );
 }
-
-// Drinks.propTypes = {};
 
 export default Recipes;
