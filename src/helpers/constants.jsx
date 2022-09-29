@@ -24,6 +24,10 @@ export const DRINKS_URL_FL_ENDPOINT = 'search.php?f=';
 export const PASSWORD_TEST = 'ABC123##';
 export const EMAIL_TEST = 'teste@teste.com';
 
+// * * IMGS
+export const WHITE_HEART = 'http://localhost/whiteHeartIcon.svg';
+export const BLACK_HEART = 'http://localhost/blackHeartIcon.svg';
+
 // * * LINKS INFORMATIONS
 export const MAIN_LOGIN_PAGE = '/';
 export const MEALS_LINK = '/meals';
