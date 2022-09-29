@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header';
 import { saveLocalStorage, getFromLocalStorage } from '../helpers/localStorage';
+<<<<<<< HEAD
 import shareIcon from '../images/shareIcon.svg';
+=======
+import CardDetails from '../components/recipe-details-components/Card-Details.component';
+>>>>>>> 62932d9 (Tests Done)
 
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [filter, setFilter] = useState('all');
+<<<<<<< HEAD
 
   useEffect(() => {
     // saveLocalStorage('doneRecipes', [{
@@ -19,6 +24,22 @@ function DoneRecipes() {
     //   doneDate: '23/9/2020',
     //   tags: ['naruto', 'kakashi'],
     // }]);
+=======
+  const { location: { pathname } } = useHistory();
+
+  useEffect(() => {
+    saveLocalStorage('doneRecipes', [{
+      id: '52771',
+      type: 'meal',
+      nationality: 'Italian',
+      category: 'Vegetarian',
+      alcoholicOrNot: '',
+      name: 'Spicy Arrabiata Penne',
+      image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+      doneDate: '23/9/2020',
+      tags: ['naruto', 'kakashi'],
+    }]);
+>>>>>>> 62932d9 (Tests Done)
     const doneRecipesFromLocalStorage = getFromLocalStorage('doneRecipes') || [];
     setDoneRecipes(doneRecipesFromLocalStorage);
   }, []);
@@ -56,6 +77,7 @@ function DoneRecipes() {
           Drinks
         </button>
       </div>
+<<<<<<< HEAD
       {doneRecipes.map((
         {
           image,
@@ -104,6 +126,8 @@ function DoneRecipes() {
         </div>
       ))}
 
+=======
+>>>>>>> 62932d9 (Tests Done)
     </div>
   );
 }
