@@ -6,12 +6,14 @@ import { fetchAPI } from '../../services';
 import {
   MAX_LIMIT_INFORMATION,
   MAX_LIMIT_CATEGORY,
+  MIN_PASSWORD,
 } from '../../helpers/constants';
 
 function FetchProvider({ children }) {
   const [recipes, setRecipes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState([]);
+  const [recomendations, setRecomendation] = useState([]);
   const [recipeDetails, setRecipeDetails] = useState({});
   const { location: { pathname } } = useHistory();
   const isMeal = pathname.includes('meals');
@@ -43,6 +45,12 @@ function FetchProvider({ children }) {
     return setRecipeDetails(drinks[0]);
   };
 
+  const getRecomendations = async (url) => {
+    const response = await fetchAPI(url);
+    const value = await Object.values(response)[0].slice(0, MIN_PASSWORD);
+    setRecomendation(value);
+  };
+
   const context = {
     recipes,
     getCardsRecipesInfo,
@@ -51,8 +59,11 @@ function FetchProvider({ children }) {
     categories,
     getCategoriesInfo,
     filter,
+    setFilter,
     getCardsRecipesInfoByCategory,
     setRecipes,
+    recomendations,
+    getRecomendations,
   };
 
   return (

@@ -3,17 +3,20 @@ import React, { useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import FetchContext from '../context/FetchContext';
 import CardDetails from '../components/recipe-details-components/Card-Details.component';
+import Recomendation from '../components/Recomendations-Componentes/Recomendation';
 import { MEALS_URL_BASE,
   MEALS_URL_DETAILS_ENDPOINT,
-  DRINKS_URL_BASE, DRINKS_URL_DETAILS_ENDPOINT } from '../helpers/constants';
+  DRINKS_URL_BASE,
+  DRINKS_URL_DETAILS_ENDPOINT, MEALS_URL_DEFAULT_ENDPOINT,
+  DRINKS_URL_DEFAULT_ENDPOINT } from '../helpers/constants';
 import '../styles/RecipeDetails.css';
 
 // import PropTypes from 'prop-types';
-
 function RecipeDetails() {
   const {
     recipeDetails,
     getRecipeDetails,
+    getRecomendations,
   } = useContext(FetchContext);
 
   const { strMeal, strMealThumb,
@@ -33,12 +36,14 @@ function RecipeDetails() {
       await getRecipeDetails(
         `${MEALS_URL_BASE}/${MEALS_URL_DETAILS_ENDPOINT}${id}`,
       );
+      getRecomendations(`${DRINKS_URL_BASE}/${DRINKS_URL_DEFAULT_ENDPOINT}`);
     }
 
     if (pathname.includes('drinks')) {
       await getRecipeDetails(
         `${DRINKS_URL_BASE}/${DRINKS_URL_DETAILS_ENDPOINT}${id}`,
       );
+      getRecomendations(`${MEALS_URL_BASE}/${MEALS_URL_DEFAULT_ENDPOINT}`);
     }
     return 0;
   };
@@ -83,6 +88,7 @@ function RecipeDetails() {
         strDrinkThumb={ strDrinkThumb }
         strAlcoholic={ strAlcoholic }
       />
+      <Recomendation />
     </section>
   );
 }
