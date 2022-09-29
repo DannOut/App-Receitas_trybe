@@ -145,6 +145,4 @@ function Recipes() {
   );
 }
 
-// Drinks.propTypes = {};
-
 export default Recipes;

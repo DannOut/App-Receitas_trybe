@@ -55,7 +55,7 @@ function Header() {
           )}
 
       </div>
-      <div className="header-bottom">
+      <div className="header-bottom" data-testid="header-bottom">
         <h1 data-testid="page-title">{ pageName }</h1>
         { showSearch
           && <SearchBar />}
