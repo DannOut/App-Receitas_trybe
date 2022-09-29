@@ -70,13 +70,13 @@
 .container {
   display: flex;
   overflow-x: scroll;
-  white-space:nowrap;
+  white-space: nowrap;
   width: 340px;
 }
 
 .container-item {
-  width: 160px;
   margin-left: 40px;
+  width: 160px;
 }
 
 .container-item img {
