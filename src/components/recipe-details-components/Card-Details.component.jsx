@@ -41,17 +41,17 @@ function CardDetails({
   }, []);
 
   const renderMeasures = () => ingredients.map((val, index) => (
-    <li
+    <l
       key={ index }
       data-testid={ `${index}-ingredient-name-and-measure` }
     >
       {`${val} ${measures[index]}`}
-    </li>
+    </l>
   ));
 
   const inProgressRecipe = () => {
     const data = getFromLocalStorage('inProgressRecipes') || {};
-    const typeOfFood = pathname.includes('meals') ? data.meals : data.drinks;
+    const typeOfFood = isMeal ? data.meals : data.drinks;
     if (typeOfFood) {
       const isInProgress = Object.keys(typeOfFood)
         .some((inProgressId) => inProgressId === idUrl);
