@@ -41,12 +41,12 @@ function CardDetails({
   }, []);
 
   const renderMeasures = () => ingredients.map((val, index) => (
-    <l
+    <li
       key={ index }
       data-testid={ `${index}-ingredient-name-and-measure` }
     >
       {`${val} ${measures[index]}`}
-    </l>
+    </li>
   ));
 
   const inProgressRecipe = () => {
