@@ -11,6 +11,9 @@ function Header() {
   const [showSearch, setShowSearch] = useState(false);
   const history = useHistory();
 
+  // TODO: verificar esse useEffect
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const { location: { pathname } } = history;
     setPageName(capitalizeWords(pathname));
@@ -52,7 +55,7 @@ function Header() {
           )}
 
       </div>
-      <div className="header-bottom">
+      <div className="header-bottom" data-testid="header-bottom">
         <h1 data-testid="page-title">{ pageName }</h1>
         { showSearch
           && <SearchBar />}

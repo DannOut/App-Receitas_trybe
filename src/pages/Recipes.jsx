@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Meals from './Meals';
 import Drinks from './Drinks';
 import FetchContext from '../context/FetchContext';
+import SearchContext from '../context/SearchContext';
 import Header from '../components/Header/Header';
 import {
   MEALS_URL_BASE,
@@ -28,6 +29,8 @@ function Recipes() {
     setRecipes,
   } = useContext(FetchContext);
 
+  const { searchResults } = useContext(SearchContext);
+
   // const [loading, isLoading] = useState(true);
   useEffect(() => {
     if (filter.length > 0) {
@@ -44,6 +47,55 @@ function Recipes() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, filter]);
 
+  if (searchResults.length > 0) {
+    return (
+      <main>
+        { (pathname === MEALS_LINK)
+          ? (
+            <section>
+              <Header />
+              <div>
+                <Filter />
+              </div>
+              { searchResults.map(({ strMeal, strMealThumb, idMeal }, index) => (
+                <section key={ index }>
+                  <Meals
+                    strMeal={ strMeal }
+                    strMealThumb={ strMealThumb }
+                    dataTestIdCard={ `${index}-recipe-card` }
+                    dataTestIdImg={ `${index}-card-img` }
+                    dataTestIdName={ `${index}-card-name` }
+                    idMeal={ idMeal }
+                  />
+                </section>
+              ))}
+              <Footer />
+            </section>
+          )
+          : (
+            <section>
+              <Header />
+              <div>
+                <Filter />
+              </div>
+              { searchResults.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
+                <section key={ index }>
+                  <Drinks
+                    strDrink={ strDrink }
+                    strDrinkThumb={ strDrinkThumb }
+                    dataTestIdCard={ `${index}-recipe-card` }
+                    dataTestIdImg={ `${index}-card-img` }
+                    dataTestIdName={ `${index}-card-name` }
+                    idDrink={ idDrink }
+                  />
+                </section>
+              ))}
+              <Footer />
+            </section>
+          ) }
+      </main>
+    );
+  }
   return (
     <main>
       { (pathname === MEALS_LINK)
@@ -92,7 +144,5 @@ function Recipes() {
     </main>
   );
 }
-
-// Drinks.propTypes = {};
 
 export default Recipes;

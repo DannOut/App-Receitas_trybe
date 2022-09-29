@@ -16,6 +16,7 @@ function FetchProvider({ children }) {
   const [recomendations, setRecomendation] = useState([]);
   const [recipeDetails, setRecipeDetails] = useState({});
   const { location: { pathname } } = useHistory();
+  const isMeal = pathname.includes('meals');
 
   const getCardsRecipesInfo = async (url) => {
     const response = await fetchAPI(url);
@@ -36,14 +37,12 @@ function FetchProvider({ children }) {
   };
 
   const getRecipeDetails = async (url) => {
-    if (pathname.includes('meals')) {
+    if (isMeal) {
       const { meals } = await fetchAPI(url);
-      setRecipeDetails(meals[0]);
+      return setRecipeDetails(meals[0]);
     }
-    if (pathname.includes('drinks')) {
-      const { drinks } = await fetchAPI(url);
-      setRecipeDetails(drinks[0]);
-    }
+    const { drinks } = await fetchAPI(url);
+    return setRecipeDetails(drinks[0]);
   };
 
   const getRecomendations = async (url) => {

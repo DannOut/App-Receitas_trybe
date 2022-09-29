@@ -6,11 +6,12 @@ import CardDetails from '../components/recipe-details-components/Card-Details.co
 import Recomendation from '../components/Recomendations-Componentes/Recomendation';
 import { MEALS_URL_BASE,
   MEALS_URL_DETAILS_ENDPOINT,
-  DRINKS_URL_BASE, DRINKS_URL_DETAILS_ENDPOINT, MEALS_URL_DEFAULT_ENDPOINT,
+  DRINKS_URL_BASE,
+  DRINKS_URL_DETAILS_ENDPOINT, MEALS_URL_DEFAULT_ENDPOINT,
   DRINKS_URL_DEFAULT_ENDPOINT } from '../helpers/constants';
+import '../styles/RecipeDetails.css';
 
 // import PropTypes from 'prop-types';
-
 function RecipeDetails() {
   const {
     recipeDetails,
@@ -21,6 +22,7 @@ function RecipeDetails() {
   const { strMeal, strMealThumb,
     strDrink, strDrinkThumb, strAlcoholic,
     strCategory, strInstructions, strYoutube,
+    idMeal, idDrink, strArea,
   } = recipeDetails;
 
   const { id } = useParams();
@@ -73,12 +75,15 @@ function RecipeDetails() {
         // * BASE INFORMATION TO DETAILS
         strCategory={ strCategory }
         strInstructions={ strInstructions }
-        // * MEAL INFORMATION TO DETAILS
         ingredientsAndRecipes={ ingredientsAndRecipes }
+        strArea={ strArea }
+        // * MEAL INFORMATION TO DETAILS
+        idMeal={ idMeal }
         strMeal={ strMeal }
         strMealThumb={ strMealThumb }
         strYoutube={ strYoutube }
         // * DRINKS INFORMATION TO DETAILS
+        idDrink={ idDrink }
         strDrink={ strDrink }
         strDrinkThumb={ strDrinkThumb }
         strAlcoholic={ strAlcoholic }

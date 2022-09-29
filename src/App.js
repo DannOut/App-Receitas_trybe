@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginProvider from './context/providers/LoginProvider';
 import FetchProvider from './context/providers/FetchProvider';
+import SearchProvider from './context/providers/SearchProvider';
 import Login from './pages/Login';
 import Recipes from './pages/Recipes';
 import Profile from './pages/Profile';
@@ -27,9 +28,9 @@ import {
 
 function App() {
   return (
-    <BrowserRouter>
-      <LoginProvider>
-        <FetchProvider>
+    <LoginProvider>
+      <FetchProvider>
+        <SearchProvider>
           <Switch>
             <Route exact path={ MAIN_LOGIN_PAGE } component={ Login } />
             <Route exact path={ MEALS_LINK } component={ Recipes } />
@@ -42,9 +43,9 @@ function App() {
             <Route exact path={ FAVORITE_RECIPES } component={ FavoriteRecipes } />
             <Route exact path={ DONE_RECIPES } component={ DoneRecipes } />
           </Switch>
-        </FetchProvider>
-      </LoginProvider>
-    </BrowserRouter>
+        </SearchProvider>
+      </FetchProvider>
+    </LoginProvider>
   );
 }
 

@@ -16,7 +16,6 @@ function Meals({
   const detailsMealRedirectHandler = async () => {
     history.push(`/meals/${idMeal}`);
   };
-
   return (
 
     <section

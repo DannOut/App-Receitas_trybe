@@ -3,15 +3,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import { getFromLocalStorage, saveLocalStorage } from '../../helpers/localStorage';
-import ButtonDetails from './Button-Details.components';
-import { recipeIsDone } from '../../helpers';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
 
 const copy = require('clipboard-copy');
 
-function CardDetails({
+function CardInProgress({
   strCategory,
   ingredientsAndRecipes,
   idMeal,
@@ -49,17 +47,6 @@ function CardDetails({
     </li>
   ));
 
-  const inProgressRecipe = () => {
-    const data = getFromLocalStorage('inProgressRecipes') || {};
-    const typeOfFood = isMeal ? data.meals : data.drinks;
-    if (typeOfFood) {
-      const isInProgress = Object.keys(typeOfFood)
-        .some((inProgressId) => inProgressId === idUrl);
-      return isInProgress;
-    }
-    return false;
-  };
-
   const saveFavoriteHandler = () => {
     const addRecipe = {
       id: isMeal ? idMeal : idDrink,
@@ -74,7 +61,7 @@ function CardDetails({
   };
 
   const removeFavoriteSelected = () => {
-    const localStorageChecker = getFromLocalStorage('favoriteRecipes');
+    const localStorageChecker = getFromLocalStorage('favoriteRecipes') || [];
     const updatedFavoriteRecipes = localStorageChecker
       .filter(({ id }) => id !== idUrl);
     return updatedFavoriteRecipes;
@@ -94,27 +81,19 @@ function CardDetails({
     saveAndFavoriteRecipe();
   };
 
-  const redirectPageFunc = () => {
-    if (isMeal) return `/meals/${idUrl}/in-progress`;
-    return `/drinks/${idUrl}/in-progress`;
-  };
-
   const copyToClipBoard = () => {
     copy(`http://localhost:3000${pathname}`);
     setIsCopied(true);
   };
 
-  const isDone = recipeIsDone('doneRecipes', idUrl);
-  const inProgress = inProgressRecipe();
-  const redirectPage = redirectPageFunc();
-
   return (
     <section>
+      <h1>Recipe in Progress</h1>
       <h1 data-testid="recipe-title">
-        {isMeal ? strMeal : strDrink }
+        {isMeal ? strMeal : strDrink}
       </h1>
       <h3 data-testid="recipe-category">
-        {isMeal ? strCategory : `${strCategory} ${strAlcoholic}` }
+        {isMeal ? strCategory : `${strCategory} ${strAlcoholic}`}
       </h3>
       <img
         src={ isMeal ? strMealThumb : strDrinkThumb }
@@ -122,7 +101,7 @@ function CardDetails({
         data-testid="recipe-photo"
       />
       <p data-testid="instructions">
-        { strInstructions }
+        {strInstructions}
       </p>
       <input
         type="image"
@@ -138,11 +117,11 @@ function CardDetails({
         src={ isFavorited ? blackHeart : whiteHeart }
         alt="SHARE"
       />
-      { isCopied ? <p> Link copied! </p> : null }
+      {isCopied ? <p> Link copied! </p> : null}
       <ul>
-        { renderMeasures() }
+        {renderMeasures()}
       </ul>
-      { isMeal
+      {isMeal
         ? (
           <div>
             <iframe
@@ -154,15 +133,14 @@ function CardDetails({
             />
           </div>
         ) : <p> Drink Placeholder </p>}
-      {!isDone && <ButtonDetails
-        inProgress={ inProgress }
-        redirectPage={ redirectPage }
-      /> }
+      <button type="button" data-testid="finish-recipe-btn">
+        Finish Recipe
+      </button>
     </section>
   );
 }
 
-CardDetails.defaultProps = {
+CardInProgress.defaultProps = {
   strCategory: '',
   ingredients: '',
   measures: '',
@@ -178,7 +156,7 @@ CardDetails.defaultProps = {
   strArea: '',
 };
 
-CardDetails.propTypes = {
+CardInProgress.propTypes = {
   idMeal: PropTypes.string,
   idDrink: PropTypes.string,
   strArea: PropTypes.string,
@@ -195,4 +173,4 @@ CardDetails.propTypes = {
   ingredientsAndRecipes: PropTypes.shape().isRequired,
 };
 
-export default CardDetails;
+export default CardInProgress;
