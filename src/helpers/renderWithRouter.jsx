@@ -14,15 +14,6 @@ const renderWithRouter = (component, route = '/') => {
     ),
     history,
   };
-
-  // const history = createBrowserHistory();
-  // history.push(route);
-  // const { ...resources } = render(
-  //   <Router history={ history }>
-  //     {component}
-  //   </Router>,
-  // );
-  // return { ...resources, history };
 };
 
 export default renderWithRouter;
