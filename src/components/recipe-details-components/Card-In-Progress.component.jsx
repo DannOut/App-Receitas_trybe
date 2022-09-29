@@ -39,12 +39,14 @@ function CardInProgress({
   }, []);
 
   const renderMeasures = () => ingredients.map((val, index) => (
-    <li
+    <label
       key={ index }
-      data-testid={ `${index}-ingredient-name-and-measure` }
+      htmlFor="ingredient"
+      data-testid={ `${index}-ingredient-step` }
     >
+      <input type="checkbox" id="ingredient" />
       {`${val} ${measures[index]}`}
-    </li>
+    </label>
   ));
 
   const saveFavoriteHandler = () => {
