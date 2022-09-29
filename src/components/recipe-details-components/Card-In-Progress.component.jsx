@@ -43,8 +43,6 @@ function CardInProgress({
       if (teste) {
         setChecked(teste);
       }
-      console.log(teste);
-      console.log(checked);
     };
     getChecksInLocalStorage();
   }, []);
@@ -115,7 +113,9 @@ function CardInProgress({
   };
 
   const copyToClipBoard = () => {
-    copy(`http://localhost:3000${pathname}`);
+    const path = pathname;
+    const recipePath = path.replace('/in-progress', '');
+    copy(`http://localhost:3000${recipePath}`);
     setIsCopied(true);
   };
 
