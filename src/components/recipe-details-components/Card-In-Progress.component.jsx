@@ -37,7 +37,21 @@ function CardInProgress({
     setFavoriteRecipes(startLSFavorites);
     const checkLSfavorites = startLSFavorites.some(({ id }) => id === idUrl);
     setIsFavorited(checkLSfavorites);
+    const getChecksInLocalStorage = () => {
+      const localS = localStorage.getItem('inProgressRecipes');
+      const teste = JSON.parse(localS);
+      if (teste) {
+        setChecked(teste);
+      }
+      console.log(teste);
+      console.log(checked);
+    };
+    getChecksInLocalStorage();
   }, []);
+
+  useEffect(() => {
+    saveLocalStorage('inProgressRecipes', checked);
+  }, [checked]);
 
   const handleCheckbox = ({ target }) => {
     const { id } = target;
@@ -56,6 +70,7 @@ function CardInProgress({
       <input
         type="checkbox"
         id={ index }
+        checked={ checked[index] }
         onClick={ handleCheckbox }
       />
       {
