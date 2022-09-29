@@ -60,18 +60,6 @@ function CardDetails({
     return false;
   };
 
-  const removeFavoriteSelected = () => {
-    const localStorageChecker = getFromLocalStorage('favoriteRecipes') || [];
-    const updatedFavoriteRecipes = localStorageChecker
-      .filter(({ id }) => id !== idUrl);
-    return updatedFavoriteRecipes;
-  };
-
-  const removeIconFavorite = () => {
-    saveLocalStorage('favoriteRecipes', removeFavoriteSelected());
-    setIsFavorited(false);
-  };
-
   const saveFavoriteHandler = () => {
     const addRecipe = {
       id: isMeal ? idMeal : idDrink,
@@ -85,6 +73,18 @@ function CardDetails({
     return [...favoriteRecipes, addRecipe];
   };
 
+  const removeFavoriteSelected = () => {
+    const localStorageChecker = getFromLocalStorage('favoriteRecipes') || [];
+    const updatedFavoriteRecipes = localStorageChecker
+      .filter(({ id }) => id !== idUrl);
+    return updatedFavoriteRecipes;
+  };
+
+  const removeIconFavorite = () => {
+    saveLocalStorage('favoriteRecipes', removeFavoriteSelected());
+    setIsFavorited(false);
+  };
+
   const saveAndFavoriteRecipe = () => {
     saveLocalStorage('favoriteRecipes', saveFavoriteHandler());
     setIsFavorited(true);
@@ -95,7 +95,7 @@ function CardDetails({
   };
 
   const redirectPageFunc = () => {
-    if (pathname.includes('meals')) return `/meals/${idUrl}/in-progress`;
+    if (isMeal) return `/meals/${idUrl}/in-progress`;
     return `/drinks/${idUrl}/in-progress`;
   };
 
