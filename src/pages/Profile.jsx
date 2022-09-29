@@ -12,7 +12,7 @@ function Profile() {
   const history = useHistory();
 
   useEffect(() => {
-    const { email } = getFromLocalStorage(USER_KEY_LS);
+    const { email } = getFromLocalStorage(USER_KEY_LS) || {};
     setUserEmail(email);
   }, []);
 
