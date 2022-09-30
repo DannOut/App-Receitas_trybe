@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import { getFromLocalStorage } from '../helpers/localStorage';
 import shareIcon from '../images/shareIcon.svg';
@@ -9,6 +10,7 @@ function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [filter, setFilter] = useState('all');
   const [isCopied, setIsCopied] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     // saveLocalStorage('doneRecipes', [{
@@ -29,6 +31,7 @@ function DoneRecipes() {
   const filterdoneRecipes = doneRecipes
     .filter(({ type }) => filter === 'all' || type === filter);
   console.log(filterdoneRecipes);
+
   const copyToClipBoard = ({ target: { dataset: { url } } }) => {
     copy(`http://localhost:3000/${url}`);
     setIsCopied(true);
@@ -63,7 +66,7 @@ function DoneRecipes() {
           Drinks
         </button>
       </div>
-      {doneRecipes.map((
+      {filterdoneRecipes.map((
         {
           image,
           category,
@@ -78,17 +81,19 @@ function DoneRecipes() {
         index,
       ) => (
         <div key={ `${index}` } className="done-recipe-card">
-          <h1
+          <section
+            role="presentation"
             data-testid={ `${index}-horizontal-name` }
+            onClick={ () => history.push(`/${type}s/${id}`) }
           >
             { name }
-          </h1>
+          </section>
           <input
             type="image"
             src={ image }
             alt={ name }
             className="done-recipe-image"
-            onClick={ () => console.log('teste') }
+            onClick={ () => history.push(`/${type}s/${id}`) }
             data-testid={ `${index}-horizontal-image` }
           />
           <div
