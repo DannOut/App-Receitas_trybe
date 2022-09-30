@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header';
-import { /* saveLocalStorage,  */getFromLocalStorage } from '../helpers/localStorage';
+import { getFromLocalStorage } from '../helpers/localStorage';
 import shareIcon from '../images/shareIcon.svg';
+
+const copy = require('clipboard-copy');
 
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [filter, setFilter] = useState('all');
+  const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     // saveLocalStorage('doneRecipes', [{
@@ -26,6 +29,10 @@ function DoneRecipes() {
   const filterdoneRecipes = doneRecipes
     .filter(({ type }) => filter === 'all' || type === filter);
   console.log(filterdoneRecipes);
+  const copyToClipBoard = ({ target: { dataset: { url } } }) => {
+    copy(`http://localhost:3000/${url}`);
+    setIsCopied(true);
+  };
 
   return (
     <div>
@@ -66,6 +73,7 @@ function DoneRecipes() {
           alcoholicOrNot,
           tags,
           type,
+          id,
         },
         index,
       ) => (
@@ -80,7 +88,7 @@ function DoneRecipes() {
             src={ image }
             alt={ name }
             className="done-recipe-image"
-            onClick={ console.log('teste') }
+            onClick={ () => console.log('teste') }
             data-testid={ `${index}-horizontal-image` }
           />
           <div
@@ -93,9 +101,11 @@ function DoneRecipes() {
             type="image"
             src={ shareIcon }
             alt="share"
-            onClick={ () => console.log('teste') }
+            data-url={ `${type}/${id}` }
+            onClick={ copyToClipBoard }
             data-testid={ `${index}-horizontal-share-btn` }
           />
+          { isCopied ? <p> Link copied! </p> : null }
           { tags.map((val, ind) => (
             <h2 key={ ind } data-testid={ `${index}-${val}-horizontal-tag` }>
               { val }
