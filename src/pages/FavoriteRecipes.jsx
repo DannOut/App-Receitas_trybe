@@ -11,7 +11,6 @@ function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [filter, setFilter] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
-  const [isFavorited, setIsFavorited] = useState(true);
   // const { location: { pathname } } = useHistory();
 
   useEffect(() => {
@@ -25,7 +24,6 @@ function FavoriteRecipes() {
 
   const onClickHandler = ({ target }) => {
     const filtering = target.value;
-    console.log(filter);
     const filterFavoriteRecipes = filter
       .filter(({ type }) => filtering === 'all' || type === filtering);
     setFavoriteRecipes(filterFavoriteRecipes);
@@ -37,27 +35,21 @@ function FavoriteRecipes() {
     } else {
       copy(`http://localhost:3000/drinks/${target.id}`);
     }
-    setIsCopied(true);
-  };
-
-  const removeFavoriteSelected = (target) => {
-    const localStorageChecker = getFromLocalStorage('favoriteRecipes');
-    const updatedFavoriteRecipes = localStorageChecker
-      .filter(({ id }) => id !== target.id);
-    return updatedFavoriteRecipes;
-  };
-
-  const removeIconFavorite = (target) => {
-    saveLocalStorage('favoriteRecipes', removeFavoriteSelected(target));
-    setIsFavorited(false);
+    setIsCopied(target.id);
   };
 
   // const saveAndFavoriteRecipe = (target) => {
   //   saveLocalStorage('favoriteRecipes', saveFavoriteHandler(target));
   //   setIsFavorited(true);
   // };
+
   const handleFavorite = (target) => {
-    if (isFavorited) return removeIconFavorite(target);
+    console.log(target.name);
+    const localStorageChecker = getFromLocalStorage('favoriteRecipes');
+    const updatedFavoriteRecipes = localStorageChecker
+      .filter(({ id }) => id !== target.id);
+    saveLocalStorage('favoriteRecipes', updatedFavoriteRecipes);
+    setFavoriteRecipes(updatedFavoriteRecipes);
   };
 
   return (
@@ -123,8 +115,10 @@ function FavoriteRecipes() {
           <input
             type="image"
             alt="favorite"
+            name={ type }
+            id={ id }
             data-testid={ `${index}-horizontal-favorite-btn` }
-            onClick={ handleFavorite }
+            onClick={ ({ target }) => handleFavorite(target) }
             src={ blackHeartIcon }
           />
           <input
@@ -136,7 +130,7 @@ function FavoriteRecipes() {
             onClick={ ({ target }) => copyToClipBoard(target) }
             data-testid={ `${index}-horizontal-share-btn` }
           />
-          { isCopied ? <p> Link copied! </p> : null }
+          { isCopied === id ? <p> Link copied! </p> : null }
         </div>
       ))}
 
