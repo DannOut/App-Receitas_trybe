@@ -83,3 +83,13 @@
   width: 160px;
 }
 
+.done__image {
+  height: 100px;
+  width: 100px;
+}
+
+.done__card {
+  display: flex;
+  overflow-x: auto;
+  width: 300px;
+}

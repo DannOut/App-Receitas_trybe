@@ -80,19 +80,20 @@ function DoneRecipes() {
         },
         index,
       ) => (
-        <div key={ `${index}` } className="done-recipe-card">
+        <div key={ `${index}` } className="done__card">
           <section
             role="presentation"
             data-testid={ `${index}-horizontal-name` }
             onClick={ () => history.push(`/${type}s/${id}`) }
           >
             { name }
+            {console.log('link', `/${type}s/${id}`)}
           </section>
           <input
             type="image"
             src={ image }
             alt={ name }
-            className="done-recipe-image"
+            className="done__image"
             onClick={ () => history.push(`/${type}s/${id}`) }
             data-testid={ `${index}-horizontal-image` }
           />
