@@ -9,8 +9,7 @@ function FavoriteRecipes() {
   const [filter, setFilter] = useState([]);
 
   useEffect(() => {
-    const favoriteRecipesFromLocalStorage = getFromLocalStorage('favoriteRecipes')
-     || [];
+    const favoriteRecipesFromLocalStorage = getFromLocalStorage('favoriteRecipes') || [];
     setFavoriteRecipes(favoriteRecipesFromLocalStorage);
   }, []);
 

@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/Header/Header';
-import { /* saveLocalStorage,  */getFromLocalStorage } from '../helpers/localStorage';
+import { getFromLocalStorage } from '../helpers/localStorage';
 import shareIcon from '../images/shareIcon.svg';
+
+const copy = require('clipboard-copy');
 
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [filter, setFilter] = useState('all');
+  const [isCopied, setIsCopied] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     // saveLocalStorage('doneRecipes', [{
@@ -26,6 +31,11 @@ function DoneRecipes() {
   const filterdoneRecipes = doneRecipes
     .filter(({ type }) => filter === 'all' || type === filter);
   console.log(filterdoneRecipes);
+
+  const copyToClipBoard = ({ target: { dataset: { url } } }) => {
+    copy(`http://localhost:3000/${url}`);
+    setIsCopied(true);
+  };
 
   return (
     <div>
@@ -56,7 +66,7 @@ function DoneRecipes() {
           Drinks
         </button>
       </div>
-      {doneRecipes.map((
+      {filterdoneRecipes.map((
         {
           image,
           category,
@@ -66,21 +76,25 @@ function DoneRecipes() {
           alcoholicOrNot,
           tags,
           type,
+          id,
         },
         index,
       ) => (
-        <div key={ `${index}` } className="done-recipe-card">
-          <h1
+        <div key={ `${index}` } className="done__card">
+          <section
+            role="presentation"
             data-testid={ `${index}-horizontal-name` }
+            onClick={ () => history.push(`/${type}s/${id}`) }
           >
             { name }
-          </h1>
+            {console.log('link', `/${type}s/${id}`)}
+          </section>
           <input
             type="image"
             src={ image }
             alt={ name }
-            className="done-recipe-image"
-            onClick={ console.log('teste') }
+            className="done__image"
+            onClick={ () => history.push(`/${type}s/${id}`) }
             data-testid={ `${index}-horizontal-image` }
           />
           <div
@@ -93,9 +107,11 @@ function DoneRecipes() {
             type="image"
             src={ shareIcon }
             alt="share"
-            onClick={ () => console.log('teste') }
+            data-url={ `${type}s/${id}` }
+            onClick={ copyToClipBoard }
             data-testid={ `${index}-horizontal-share-btn` }
           />
+          { isCopied ? <p> Link copied! </p> : null }
           { tags.map((val, ind) => (
             <h2 key={ ind } data-testid={ `${index}-${val}-horizontal-tag` }>
               { val }
