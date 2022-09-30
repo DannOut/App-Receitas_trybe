@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
+// import { useHistory } from 'react-router-dom';
 import Header from '../components/Header/Header';
-import { /* saveLocalStorage,  */getFromLocalStorage } from '../helpers/localStorage';
+import { saveLocalStorage, getFromLocalStorage } from '../helpers/localStorage';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+
+const copy = require('clipboard-copy');
 
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [filter, setFilter] = useState([]);
+  const [isCopied, setIsCopied] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(true);
+  // const { location: { pathname } } = useHistory();
 
   useEffect(() => {
     const favoriteRecipesFromLocalStorage = getFromLocalStorage('favoriteRecipes')
@@ -24,6 +30,35 @@ function FavoriteRecipes() {
     const filterFavoriteRecipes = filter
       .filter(({ type }) => filtering === 'all' || type === filtering);
     setFavoriteRecipes(filterFavoriteRecipes);
+  };
+
+  const copyToClipBoard = (target) => {
+    if (target.name === 'meal') {
+      copy(`http://localhost:3000/meals/${target.id}`);
+    } else {
+      copy(`http://localhost:3000/drinks/${target.id}`);
+    }
+    setIsCopied(true);
+  };
+
+  const removeFavoriteSelected = (target) => {
+    const localStorageChecker = getFromLocalStorage('favoriteRecipes');
+    const updatedFavoriteRecipes = localStorageChecker
+      .filter(({ id }) => id !== target.id);
+    return updatedFavoriteRecipes;
+  };
+
+  const removeIconFavorite = (target) => {
+    saveLocalStorage('favoriteRecipes', removeFavoriteSelected(target));
+    setIsFavorited(false);
+  };
+
+  // const saveAndFavoriteRecipe = (target) => {
+  //   saveLocalStorage('favoriteRecipes', saveFavoriteHandler(target));
+  //   setIsFavorited(true);
+  // };
+  const handleFavorite = (target) => {
+    if (isFavorited) return removeIconFavorite(target);
   };
 
   return (
@@ -63,6 +98,7 @@ function FavoriteRecipes() {
           nationality,
           alcoholicOrNot,
           type,
+          id,
         },
         index,
       ) => (
@@ -89,16 +125,19 @@ function FavoriteRecipes() {
             type="image"
             alt="favorite"
             data-testid={ `${index}-horizontal-favorite-btn` }
-            // onClick={ () => console.log('teste') }
+            onClick={ handleFavorite }
             src={ blackHeartIcon }
           />
           <input
             type="image"
             src={ shareIcon }
+            name={ type }
+            id={ id }
             alt="share"
-            // onClick={ () => console.log('teste') }
+            onClick={ ({ target }) => copyToClipBoard(target) }
             data-testid={ `${index}-horizontal-share-btn` }
           />
+          { isCopied ? <p> Link copied! </p> : null }
         </div>
       ))}
 
