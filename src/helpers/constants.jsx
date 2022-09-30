@@ -76,3 +76,7 @@ export const DRINKS_TOKEN_KEY_LS = 'drinksToken';
 export const MAX_LIMIT_CATEGORY = 5;
 export const MEALS_CATEGORY_LIST = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
 export const DRINKS_CATEGORY_LIST = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+
+// * Favorite
+export const HORIZONTAL_NAME_1 = '1-horizontal-name';
+export const HORIZONTAL_NAME_0 = '0-horizontal-name';
