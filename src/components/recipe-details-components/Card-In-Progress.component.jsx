@@ -30,7 +30,10 @@ function CardInProgress({
   const { ingredients, measures } = ingredientsAndRecipes;
   const isMeal = pathname.includes('meals');
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-  const [checked, setChecked] = useState([]);
+  const [checked, setChecked] = useState({
+    [idUrl]: {},
+  });
+  const [finish, setFinish] = useState(true);
 
   useEffect(() => {
     const startLSFavorites = getFromLocalStorage('favoriteRecipes') || [];
@@ -39,15 +42,28 @@ function CardInProgress({
     setIsFavorited(checkLSfavorites);
     const getChecksInLocalStorage = () => {
       const localS = localStorage.getItem('inProgressRecipes');
-      const teste = JSON.parse(localS);
-      if (teste) {
-        setChecked(teste);
-      }
+      const json = JSON.parse(localS);
+      setChecked((prevState) => ({
+        ...prevState,
+        ...json,
+      }));
     };
     getChecksInLocalStorage();
   }, []);
 
   useEffect(() => {
+    const finishButton = () => {
+      const checkboxes = Object.values(checked[idUrl]).every((i) => i);
+      const checksLength = Object.keys(checked[idUrl]).length === ingredients.length;
+      console.log(checksLength);
+      console.log(checkboxes);
+      if (checkboxes && checksLength) {
+        setFinish(false);
+      } else {
+        setFinish(true);
+      }
+    };
+    finishButton();
     saveLocalStorage('inProgressRecipes', checked);
   }, [checked]);
 
@@ -55,27 +71,31 @@ function CardInProgress({
     const { id } = target;
     setChecked((prevState) => ({
       ...prevState,
-      [id]: !checked[id],
+      [idUrl]: {
+        ...prevState[idUrl],
+        [id]: !checked[idUrl][id],
+      },
     }));
   };
 
   const renderMeasures = () => ingredients.map((val, index) => (
-    <label
-      key={ index }
-      htmlFor={ index }
-      data-testid={ `${index}-ingredient-step` }
-    >
-      <input
-        type="checkbox"
-        id={ index }
-        checked={ checked[index] }
-        onClick={ handleCheckbox }
-      />
-      {
-        checked[index]
-          ? <s>{`${val} ${measures[index]}`}</s> : `${val} ${measures[index]}`
-      }
-    </label>
+    <li key={ index }>
+      <label
+        htmlFor={ index }
+        data-testid={ `${index}-ingredient-step` }
+      >
+        <input
+          type="checkbox"
+          id={ index }
+          checked={ checked[idUrl][index] }
+          onClick={ handleCheckbox }
+        />
+        {
+          checked[idUrl][index]
+            ? <s>{` ${val} ${measures[index]}`}</s> : ` ${val} ${measures[index]}`
+        }
+      </label>
+    </li>
   ));
 
   const saveFavoriteHandler = () => {
@@ -166,7 +186,12 @@ function CardInProgress({
             />
           </div>
         ) : <p> Drink Placeholder </p>}
-      <button type="button" data-testid="finish-recipe-btn">
+      <button
+        type="button"
+        disabled={ finish }
+        className="recipe_details__startbtn"
+        data-testid="finish-recipe-btn"
+      >
         Finish Recipe
       </button>
     </section>
