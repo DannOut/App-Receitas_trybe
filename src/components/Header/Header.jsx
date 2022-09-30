@@ -27,11 +27,14 @@ function Header() {
         { pageName === 'Profile'
           || pageName === 'Favorite Recipes'
           || pageName === 'Done Recipes' ? (
-            <img
+            <input
+              type="image"
               src={ profileIcon }
               data-testid="profile-top-btn"
               alt="Profile Icon"
               className="purple-filter"
+              onClick={ () => history.push('/profile') }
+
             />
           ) : (
             <>
