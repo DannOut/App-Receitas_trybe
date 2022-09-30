@@ -35,6 +35,7 @@ export const DRINKS_LINK = '/drinks';
 export const RCP_DETAILS_MEALS_LINK = '/meals/:id';
 export const RCP_DETAILS_DRINKS_LINK = '/drinks/:id';
 export const DETAILED_DRINK_PATH = '/drinks/178319';
+export const DETAILED_MEAL_PATH = '/meals/52771';
 export const PROFILE_LINK = '/profile';
 export const FAVORITE_RECIPES = '/favorite-recipes';
 export const DONE_RECIPES = '/done-recipes';
@@ -66,6 +67,9 @@ export const TEST_ID_SEARCHBAR_ING_FILTER = 'ingredient-search-radio';
 export const TEST_ID_SEARCH_TOP_BTN = 'search-top-btn';
 export const TEST_ID_HEADER_BOTTON = 'header-bottom';
 export const TEST_CARD_RECIPE_CARD_ZERO = '0-recipe-card';
+export const TEST_FILTER_MEAL = 'filter-by-meal-btn';
+export const TEST_FILTER_DRINK = 'filter-by-drink-btn';
+export const TEXT_0_HORIZONTAL_SHARE = '0-horizontal-share-btn';
 
 // * LOCAL STORAGE INFORMATIONS
 export const USER_KEY_LS = 'user';
