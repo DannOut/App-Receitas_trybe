@@ -84,3 +84,9 @@ export const DRINKS_CATEGORY_LIST = 'https://www.thecocktaildb.com/api/json/v1/1
 // * Favorite
 export const HORIZONTAL_NAME_1 = '1-horizontal-name';
 export const HORIZONTAL_NAME_0 = '0-horizontal-name';
+export const LINK_COPIED = 'Link copied!';
+export const HORIZONTAL_SHARE_1 = '1-horizontal-share-btn';
+export const FILTER_ALL = 'filter-by-all-btn';
+export const FILTER_MEAL = 'filter-by-meal-btn';
+export const FILTER_DRINK = 'filter-by-drink-btn';
+export const FAVORITE_LINK = '/favorite-recipes';
