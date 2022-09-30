@@ -101,7 +101,7 @@ function DoneRecipes() {
             type="image"
             src={ shareIcon }
             alt="share"
-            data-url={ `${type}/${id}` }
+            data-url={ `${type}s/${id}` }
             onClick={ copyToClipBoard }
             data-testid={ `${index}-horizontal-share-btn` }
           />
