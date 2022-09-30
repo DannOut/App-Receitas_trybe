@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import FetchContext from '../FetchContext';
 import { fetchAPI } from '../../services';
 import {
@@ -15,8 +15,7 @@ function FetchProvider({ children }) {
   const [filter, setFilter] = useState([]);
   const [recomendations, setRecomendation] = useState([]);
   const [recipeDetails, setRecipeDetails] = useState({});
-  const { location: { pathname } } = useHistory();
-  const isMeal = pathname.includes('meals');
+  const { pathname } = useLocation();
 
   const getCardsRecipesInfo = async (url) => {
     const response = await fetchAPI(url);
@@ -37,12 +36,9 @@ function FetchProvider({ children }) {
   };
 
   const getRecipeDetails = async (url) => {
-    if (isMeal) {
-      const { meals } = await fetchAPI(url);
-      return setRecipeDetails(meals[0]);
-    }
-    const { drinks } = await fetchAPI(url);
-    return setRecipeDetails(drinks[0]);
+    const value = pathname.match(/meals|drinks/);
+    const { [value]: toFetch } = await fetchAPI(url);
+    return setRecipeDetails(toFetch[0]);
   };
 
   const getRecomendations = async (url) => {
