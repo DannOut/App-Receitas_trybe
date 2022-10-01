@@ -10,18 +10,8 @@ import whiteHeart from '../../images/whiteHeartIcon.svg';
 const copy = require('clipboard-copy');
 
 function CardInProgress({
-  strCategory,
-  ingredientsAndRecipes,
-  idMeal,
-  strInstructions,
-  strMeal,
-  strMealThumb,
-  idDrink,
-  strDrink,
-  strDrinkThumb,
-  strYoutube,
-  strAlcoholic,
-  strArea,
+  strCategory, ingredientsAndRecipes, idMeal, strInstructions, strMeal, strMealThumb,
+  idDrink, strDrink, strDrinkThumb, strYoutube, strAlcoholic, strArea, strTags,
 }) {
   const { location: { pathname } } = useHistory();
   const { id: idUrl } = useParams();
@@ -87,6 +77,7 @@ function CardInProgress({
           id={ index }
           checked={ checked[idUrl][index] }
           onClick={ handleCheckbox }
+          onChange={ (e) => e }
         />
         {
           checked[idUrl][index]
@@ -135,6 +126,23 @@ function CardInProgress({
     const recipePath = path.replace('/in-progress', '');
     copy(`http://localhost:3000${recipePath}`);
     setIsCopied(true);
+  };
+
+  const saveDoneHandler = () => {
+    const doneRecipes = getFromLocalStorage('doneRecipes') || [];
+    const addRecipe = {
+      id: isMeal ? idMeal : idDrink,
+      type: isMeal ? 'meal' : 'drink',
+      nationality: isMeal ? strArea : '',
+      category: strCategory,
+      alcoholicOrNot: isMeal ? '' : strAlcoholic,
+      name: isMeal ? strMeal : strDrink,
+      image: isMeal ? strMealThumb : strDrinkThumb,
+      doneDate: new Date().toLocaleDateString(),
+      tags: strTags?.split(','),
+    };
+
+    return [...doneRecipes, addRecipe];
   };
 
   return (
@@ -190,6 +198,7 @@ function CardInProgress({
           disabled={ finish }
           className="recipe_details__startbtn"
           data-testid="finish-recipe-btn"
+          onClick={ () => { saveLocalStorage('doneRecipes', saveDoneHandler()); } }
         >
           Finish Recipe
         </button>
@@ -212,6 +221,7 @@ CardInProgress.defaultProps = {
   idMeal: '',
   idDrink: '',
   strArea: '',
+  strTags: '',
 };
 
 CardInProgress.propTypes = {
@@ -228,6 +238,7 @@ CardInProgress.propTypes = {
   strDrinkThumb: PropTypes.string,
   strYoutube: PropTypes.string,
   strAlcoholic: PropTypes.string,
+  strTags: PropTypes.string,
   ingredientsAndRecipes: PropTypes.shape().isRequired,
 };
 

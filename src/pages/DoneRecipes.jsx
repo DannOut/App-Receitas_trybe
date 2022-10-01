@@ -87,7 +87,7 @@ function DoneRecipes() {
             onClick={ () => history.push(`/${type}s/${id}`) }
           >
             { name }
-            {console.log('link', `/${type}s/${id}`)}
+            {/* {console.log('link', `/${type}s/${id}`)} */}
           </section>
           <input
             type="image"
@@ -112,11 +112,11 @@ function DoneRecipes() {
             data-testid={ `${index}-horizontal-share-btn` }
           />
           { isCopied ? <p> Link copied! </p> : null }
-          { tags.map((val, ind) => (
+          { tags?.filter((_, ind) => ind < 2).map((val, ind) => (
             <h2 key={ ind } data-testid={ `${index}-${val}-horizontal-tag` }>
               { val }
             </h2>
-          )) }
+          ))}
         </div>
       ))}
 

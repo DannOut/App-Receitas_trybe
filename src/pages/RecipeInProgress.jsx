@@ -19,7 +19,7 @@ function RecipeInProgress() {
   const { strMeal, strMealThumb,
     strDrink, strDrinkThumb, strAlcoholic,
     strCategory, strInstructions, strYoutube,
-    idMeal, idDrink, strArea,
+    idMeal, idDrink, strArea, strTags,
   } = recipeDetails;
 
   const { id } = useParams();
@@ -73,6 +73,7 @@ function RecipeInProgress() {
         strInstructions={ strInstructions }
         ingredientsAndRecipes={ ingredientsAndRecipes }
         strArea={ strArea }
+        strTags={ strTags }
         // * MEAL INFORMATION TO DETAILS
         idMeal={ idMeal }
         strMeal={ strMeal }
