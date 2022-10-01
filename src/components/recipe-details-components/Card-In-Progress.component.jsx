@@ -52,18 +52,16 @@ function CardInProgress({
   }, []);
 
   useEffect(() => {
-    const finishButton = () => {
+    const handleFinishButton = () => {
       const checkboxes = Object.values(checked[idUrl]).every((i) => i);
       const checksLength = Object.keys(checked[idUrl]).length === ingredients.length;
-      console.log(checksLength);
-      console.log(checkboxes);
       if (checkboxes && checksLength) {
         setFinish(false);
       } else {
         setFinish(true);
       }
     };
-    finishButton();
+    handleFinishButton();
     saveLocalStorage('inProgressRecipes', checked);
   }, [checked]);
 
