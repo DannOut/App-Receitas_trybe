@@ -94,7 +94,7 @@
   width: 300px;
 }
 
-img {
-  width: 100px;
-  right: 100px;
+.done-recipe-image {
+  width: 300px;
+  right: 300px;
 }
