@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import LoginContext from '../context/LoginContext';
+import '../styles/Login.css';
 import {
   MIN_PASSWORD, MEALS_LINK, EMAIL, PASSWORD,
   TEST_ID_EMAIL_INPUT,
@@ -41,31 +42,36 @@ function Login() {
 
   return (
     <main>
-      <InputLogin
-        id="emailInput"
-        name={ EMAIL }
-        type="text"
-        dataTestId={ TEST_ID_EMAIL_INPUT }
-        placeholder="Email"
-        value={ email }
-        onHandleChange={ onHandleChange }
-      />
-      <InputLogin
-        id="passwordInput"
-        name={ PASSWORD }
-        type={ PASSWORD }
-        dataTestId={ TEST_ID_PASSWORD_INPUT }
-        placeholder="Password"
-        value={ password }
-        onHandleChange={ onHandleChange }
-      />
-      <ButtonLogin
-        id="buttonLogin"
-        name="Enter"
-        dataTestId={ TEST_ID_LOGIN_SUBMIT }
-        isDisabled={ !formValidation() }
-        onClick={ redirectBtn }
-      />
+      <div className="login-container">
+        <div className="input-container">
+          <h3>LOGIN</h3>
+          <InputLogin
+            id="emailInput"
+            name={ EMAIL }
+            type="text"
+            dataTestId={ TEST_ID_EMAIL_INPUT }
+            placeholder="Email"
+            value={ email }
+            onHandleChange={ onHandleChange }
+          />
+          <InputLogin
+            id="passwordInput"
+            name={ PASSWORD }
+            type={ PASSWORD }
+            dataTestId={ TEST_ID_PASSWORD_INPUT }
+            placeholder="Password"
+            value={ password }
+            onHandleChange={ onHandleChange }
+          />
+          <ButtonLogin
+            id="buttonLogin"
+            name="ENTER"
+            dataTestId={ TEST_ID_LOGIN_SUBMIT }
+            isDisabled={ !formValidation() }
+            onClick={ redirectBtn }
+          />
+        </div>
+      </div>
     </main>
   );
 }

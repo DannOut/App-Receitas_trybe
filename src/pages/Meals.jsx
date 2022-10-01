@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import '../styles/Recipes.css';
 
 function Meals({
   strMeal,
@@ -17,22 +18,27 @@ function Meals({
     history.push(`/meals/${idMeal}`);
   };
   return (
-
-    <section
+    <div
+      className="card"
       data-testid={ dataTestIdCard }
       role="presentation"
       onClick={ detailsMealRedirectHandler }
       id={ idMeal }
     >
-      <p data-testid={ dataTestIdName }>
-        {strMeal}
-      </p>
-      <img
-        src={ strMealThumb }
-        alt={ strMeal }
-        data-testid={ dataTestIdImg }
-      />
-    </section>
+      <div className="card-title">
+        <p data-testid={ dataTestIdName }>
+          {strMeal}
+        </p>
+      </div>
+      <div className="card-image">
+        <img
+          src={ strMealThumb }
+          alt={ strMeal }
+          data-testid={ dataTestIdImg }
+        />
+
+      </div>
+    </div>
 
   );
 }

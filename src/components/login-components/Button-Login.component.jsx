@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './loginComponents.css';
 
 function ButtonLogin({
   id,
@@ -15,6 +16,7 @@ function ButtonLogin({
         name={ name }
         type="button"
         data-testid={ dataTestId }
+        className="button-input"
         disabled={ isDisabled }
         onClick={ onClick }
       >

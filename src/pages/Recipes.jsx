@@ -57,18 +57,21 @@ function Recipes() {
               <div>
                 <Filter />
               </div>
-              { searchResults.map(({ strMeal, strMealThumb, idMeal }, index) => (
-                <section key={ index }>
-                  <Meals
-                    strMeal={ strMeal }
-                    strMealThumb={ strMealThumb }
-                    dataTestIdCard={ `${index}-recipe-card` }
-                    dataTestIdImg={ `${index}-card-img` }
-                    dataTestIdName={ `${index}-card-name` }
-                    idMeal={ idMeal }
-                  />
-                </section>
-              ))}
+              <div className="cards-container">
+                { searchResults.map(({ strMeal, strMealThumb, idMeal }, index) => (
+                  <section key={ index }>
+                    <Meals
+                      strMeal={ strMeal }
+                      strMealThumb={ strMealThumb }
+                      dataTestIdCard={ `${index}-recipe-card` }
+                      dataTestIdImg={ `${index}-card-img` }
+                      dataTestIdName={ `${index}-card-name` }
+                      idMeal={ idMeal }
+                    />
+                  </section>
+                ))}
+
+              </div>
               <Footer />
             </section>
           )

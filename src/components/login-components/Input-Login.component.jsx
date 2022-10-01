@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './loginComponents.css';
 
 function InputLogin({
   name,
@@ -18,6 +19,7 @@ function InputLogin({
           name={ name }
           type={ type }
           data-testid={ dataTestId }
+          className="email-input"
           placeholder={ placeholder }
           value={ value }
           onChange={ onHandleChange }
