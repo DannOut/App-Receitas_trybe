@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 // import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import { saveLocalStorage, getFromLocalStorage } from '../helpers/localStorage';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import '../App.css';
 
 const copy = require('clipboard-copy');
 
@@ -94,23 +96,26 @@ function FavoriteRecipes() {
         index,
       ) => (
         <div key={ `${index}` } className="done-recipe-card">
-          <h1
-            data-testid={ `${index}-horizontal-name` }
-          >
-            { name }
-          </h1>
-          <input
-            type="image"
-            src={ image }
-            alt={ name }
-            className="done-recipe-image"
-            // onClick={ () => console.log('teste') }
-            data-testid={ `${index}-horizontal-image` }
-          />
+          <Link to={ `/${type}s/${id}` }>
+            <h1
+              data-testid={ `${index}-horizontal-name` }
+            >
+              {name}
+            </h1>
+          </Link>
+          <Link to={ `/${type}s/${id}` }>
+            <img
+              src={ image }
+              alt={ name }
+              className="done-recipe-image"
+              // onClick={ () => console.log('teste') }
+              data-testid={ `${index}-horizontal-image` }
+            />
+          </Link>
           <div
             data-testid={ `${index}-horizontal-top-text` }
           >
-            { type === 'meal' ? `${nationality} - ${category}` : alcoholicOrNot }
+            {type === 'meal' ? `${nationality} - ${category}` : alcoholicOrNot}
           </div>
           <input
             type="image"
@@ -130,7 +135,7 @@ function FavoriteRecipes() {
             onClick={ ({ target }) => copyToClipBoard(target) }
             data-testid={ `${index}-horizontal-share-btn` }
           />
-          { isCopied === id ? <p> Link copied! </p> : null }
+          {isCopied === id ? <p> Link copied! </p> : null}
         </div>
       ))}
 

@@ -93,3 +93,8 @@
   overflow-x: auto;
   width: 300px;
 }
+
+img {
+  width: 100px;
+  right: 100px;
+}
