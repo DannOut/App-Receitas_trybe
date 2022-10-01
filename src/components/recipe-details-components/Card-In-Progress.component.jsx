@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import { getFromLocalStorage, saveLocalStorage } from '../../helpers/localStorage';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
@@ -186,14 +186,16 @@ function CardInProgress({
             />
           </div>
         ) : <p> Drink Placeholder </p>}
-      <button
-        type="button"
-        disabled={ finish }
-        className="recipe_details__startbtn"
-        data-testid="finish-recipe-btn"
-      >
-        Finish Recipe
-      </button>
+      <Link to="/done-recipes">
+        <button
+          type="button"
+          disabled={ finish }
+          className="recipe_details__startbtn"
+          data-testid="finish-recipe-btn"
+        >
+          Finish Recipe
+        </button>
+      </Link>
     </section>
   );
 }
