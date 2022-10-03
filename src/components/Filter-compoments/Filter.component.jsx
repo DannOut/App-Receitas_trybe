@@ -71,7 +71,7 @@ function Filter() {
               name={ ele.strCategory }
               onClick={ onclick }
             >
-              { ele.strCategory }
+              <small>{ ele.strCategory }</small>
             </Button>
           )) }
         </ButtonGroup>

@@ -1,9 +1,12 @@
 .filter {
+  display: flex;
+  flex-wrap: wrap;
   margin: 15px 0;
 }
 
 .filter button {
   border: none;
   color: rgb(83, 78, 78);
-  font-weight: 700;
+  font-weight: 800;
+
 }

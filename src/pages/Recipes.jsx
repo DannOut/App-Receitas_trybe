@@ -71,7 +71,6 @@ function Recipes() {
                     />
                   </section>
                 ))}
-
               </div>
               <Footer />
             </section>
@@ -82,18 +81,20 @@ function Recipes() {
               {/* <div>
                 <Filter />
               </div> */}
-              { searchResults.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
-                <section key={ index }>
-                  <Drinks
-                    strDrink={ strDrink }
-                    strDrinkThumb={ strDrinkThumb }
-                    dataTestIdCard={ `${index}-recipe-card` }
-                    dataTestIdImg={ `${index}-card-img` }
-                    dataTestIdName={ `${index}-card-name` }
-                    idDrink={ idDrink }
-                  />
-                </section>
-              ))}
+              <div className="cards-container">
+                { searchResults.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
+                  <section key={ index }>
+                    <Drinks
+                      strDrink={ strDrink }
+                      strDrinkThumb={ strDrinkThumb }
+                      dataTestIdCard={ `${index}-recipe-card` }
+                      dataTestIdImg={ `${index}-card-img` }
+                      dataTestIdName={ `${index}-card-name` }
+                      idDrink={ idDrink }
+                    />
+                  </section>
+                ))}
+              </div>
               <Footer />
             </section>
           ) }
@@ -133,18 +134,20 @@ function Recipes() {
             {/* <div>
               <Filter />
             </div> */}
-            { recipes.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
-              <section key={ index }>
-                <Drinks
-                  strDrink={ strDrink }
-                  strDrinkThumb={ strDrinkThumb }
-                  dataTestIdCard={ `${index}-recipe-card` }
-                  dataTestIdImg={ `${index}-card-img` }
-                  dataTestIdName={ `${index}-card-name` }
-                  idDrink={ idDrink }
-                />
-              </section>
-            ))}
+            <div className="cards-container">
+              { recipes.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
+                <section key={ index }>
+                  <Drinks
+                    strDrink={ strDrink }
+                    strDrinkThumb={ strDrinkThumb }
+                    dataTestIdCard={ `${index}-recipe-card` }
+                    dataTestIdImg={ `${index}-card-img` }
+                    dataTestIdName={ `${index}-card-name` }
+                    idDrink={ idDrink }
+                  />
+                </section>
+              ))}
+            </div>
             <Footer />
           </section>
         ) }
