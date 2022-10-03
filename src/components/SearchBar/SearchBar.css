@@ -1,11 +1,12 @@
 .search-container {
   display: flex;
   flex-direction: column;
+  margin: 20px 0;
 }
 
 .radio-container {
   display: flex;
-  justify-content: space-between;
+  margin: 10px 0;
   padding: 10px;
 }
 

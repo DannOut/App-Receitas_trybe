@@ -1,7 +1,5 @@
 .filter {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 5px 0;
+  margin: 15px 0;
 }
 
 .filter button {

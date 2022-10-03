@@ -15,7 +15,7 @@ import { MEALS_LINK, DRINKS_LINK,
 function Footer() {
   // const { setFilter } = useContext(FetchContext);
   return (
-    <footer className="footer_page" data-testid="footer">
+    <footer className="footer_page fixed-bottom" data-testid="footer">
       <ImgFooter
         linkTo={ MEALS_LINK }
         srcImg={ mealLogo }

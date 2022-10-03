@@ -1,6 +1,7 @@
 /* eslint-disable react-func/max-lines-per-function */
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import SearchContext from '../../context/SearchContext';
 import './SearchBar.css';
 import {
@@ -95,6 +96,7 @@ function SearchBar() {
     <div className="search-container">
       <input
         type="text"
+        className="form-control"
         id="search-input"
         data-testid="search-input"
         name="searchInput"
@@ -103,12 +105,12 @@ function SearchBar() {
         onChange={ (e) => (setSearchTerm(e.target.value)) }
       />
       <div className="radio-container">
-        <div className="selector">
-          <label htmlFor="ingredient">
+        <div className="form-check form-check-inline">
+          <label htmlFor="ingredient" className="form-check-label">
             <input
               type="radio"
               id="ingredient"
-              data-testid="ingredient-search-radio"
+              className="form-check-input"
               name="filter-select"
               value="ingredient"
               onChange={ (e) => (setSelectedFilter(e.target.value)) }
@@ -116,11 +118,12 @@ function SearchBar() {
             Ingredient
           </label>
         </div>
-        <div className="selector">
-          <label htmlFor="name">
+        <div className="form-check form-check-inline">
+          <label htmlFor="name" className="form-check-label">
             <input
               type="radio"
               id="name"
+              className="form-check-input"
               data-testid="name-search-radio"
               name="filter-select"
               value="name"
@@ -129,11 +132,12 @@ function SearchBar() {
             Name
           </label>
         </div>
-        <div className="selector">
-          <label htmlFor="first-letter">
+        <div className="form-check form-check-inline">
+          <label htmlFor="first-letter" className="form-check-label">
             <input
               type="radio"
               id="first-letter"
+              className="form-check-input"
               data-testid="first-letter-search-radio"
               name="filter-select"
               value="first-letter"
@@ -143,13 +147,20 @@ function SearchBar() {
           </label>
         </div>
       </div>
-      <button
+      {/* <button
         type="button"
         data-testid="exec-search-btn"
         onClick={ searchHandler }
       >
         SEARCH
-      </button>
+      </button> */}
+      <Button
+        variant="primary"
+        data-testid="exec-search-btn"
+        onClick={ searchHandler }
+      >
+        SEARCH
+      </Button>
     </div>
   );
 }

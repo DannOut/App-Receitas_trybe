@@ -1,4 +1,6 @@
 .footer_page {
-  bottom: 0%;
-  position: fixed;
+  background-color: #ff564d;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 }

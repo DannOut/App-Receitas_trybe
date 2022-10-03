@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Header.css';
 import searchIcon from '../../images/searchIcon.png';
-import plateIcon from '../../images/plate.png';
+// import plateIcon from '../../images/plate.png';
 import profileIcon from '../../images/profileIcon.png';
 import capitalizeWords from '../../helpers/capitalizeWords';
 import SearchBar from '../SearchBar/SearchBar';
@@ -71,15 +71,15 @@ function Header() {
         <div className="filter-container">
           <Filter />
         </div>
-        <div className="title-container">
-          <img
-            src={ plateIcon }
-            alt="Plate Icon"
-          />
-          <h3 data-testid="page-title">{ pageName }</h3>
-        </div>
         { showSearch
             && <SearchBar />}
+        <div className="title-container">
+          {/* <img
+            src={ plateIcon }
+            alt="Plate Icon"
+          /> */}
+          <h3 data-testid="page-title" className="text-muted">{ pageName }</h3>
+        </div>
       </div>
     </div>
   );
