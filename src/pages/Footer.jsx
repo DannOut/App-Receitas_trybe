@@ -1,8 +1,8 @@
 // import React, { useContext } from 'react';
 import React from 'react';
 import ImgFooter from '../components/footer-components/Img-Footer.component';
-import mealLogo from '../images/mealIcon.svg';
-import drinkLogo from '../images/drinkIcon.svg';
+import mealLogo from '../images/mealIcon.png';
+import drinkLogo from '../images/drinkIcon.png';
 import '../styles/Footer.css';
 import { MEALS_LINK, DRINKS_LINK,
   TEST_ID_FOOTER_DRINKS,

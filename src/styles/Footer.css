@@ -1,6 +1,11 @@
 .footer_page {
   background-color: #ff564d;
   display: flex;
-  justify-content: space-between;
-  padding: 10px;
+  gap: 80px;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.footer_page img {
+  width: 45px;
 }
