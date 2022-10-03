@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import FetchContext from '../../context/FetchContext';
+import './Filter-component.css';
 import {
   MEALS_URL_BASE,
   MEALS_URL_FILTER_ENDPOINT,
@@ -42,25 +44,35 @@ function Filter() {
 
   if (categories.length > 0) {
     return (
-      <div>
-        <button
+      <div className="filter-container">
+        <Button
+          variant="outline-secondary rounded-pill"
+          size="sm"
+          name="All"
+          data-testid="All-category-filter"
+          onClick={ onclick }
+        >
+          All
+        </Button>
+        {/* <button
           type="button"
           name="All"
           data-testid="All-category-filter"
           onClick={ onclick }
         >
           All
-        </button>
+        </button> */}
         { categories.map((ele, index) => (
-          <button
+          <Button
+            variant="outline-secondary rounded-pill"
+            size="sm"
             key={ index }
             data-testid={ `${ele.strCategory}-category-filter` }
             name={ ele.strCategory }
-            type="button"
             onClick={ onclick }
           >
             { ele.strCategory }
-          </button>
+          </Button>
         )) }
       </div>
     );

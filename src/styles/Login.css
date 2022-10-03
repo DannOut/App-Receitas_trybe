@@ -4,17 +4,23 @@
   background-image: url('../images/pattern.png');
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.5) inset;
   display: flex;
+  flex-direction: column;
   height: 100%;
   justify-content: center;
   position: absolute;
   width: 100%;
 }
 
+.logo {
+  margin: 30px;
+  width: 150px;
+}
+
 .input-container {
   align-items: center;
   -webkit-backdrop-filter: blur(13px);
   backdrop-filter: blur(5px);
-  background: rgba(236, 236, 236, 0.514);
+  background: rgba(236, 236, 236, 0.63);
   border: 1px solid rgba(3, 3, 3, 0.178);
   border-radius: 10px;
   box-shadow: 0 8px 32px 0 rgba(54, 54, 54, 0.37);

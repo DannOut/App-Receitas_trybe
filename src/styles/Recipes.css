@@ -1,8 +1,13 @@
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .card {
-  margin: 1rem;
+  color: white;
+  margin: 10px;
+}
+
+.image-overlay {
+  background: linear-gradient(180deg, #0008 10%, #fff4 100%);
 }

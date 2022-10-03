@@ -5,6 +5,7 @@ import Drinks from './Drinks';
 import FetchContext from '../context/FetchContext';
 import SearchContext from '../context/SearchContext';
 import Header from '../components/Header/Header';
+import '../styles/Recipes.css';
 import {
   MEALS_URL_BASE,
   MEALS_URL_DEFAULT_ENDPOINT,
@@ -54,7 +55,7 @@ function Recipes() {
           ? (
             <section>
               <Header />
-              <div>
+              <div className="filter-container">
                 <Filter />
               </div>
               <div className="cards-container">
@@ -108,18 +109,21 @@ function Recipes() {
             <div>
               <Filter />
             </div>
-            { recipes.map(({ strMeal, strMealThumb, idMeal }, index) => (
-              <section key={ index }>
-                <Meals
-                  strMeal={ strMeal }
-                  strMealThumb={ strMealThumb }
-                  dataTestIdCard={ `${index}-recipe-card` }
-                  dataTestIdImg={ `${index}-card-img` }
-                  dataTestIdName={ `${index}-card-name` }
-                  idMeal={ idMeal }
-                />
-              </section>
-            ))}
+            <div className="cards-container">
+              { recipes.map(({ strMeal, strMealThumb, idMeal }, index) => (
+                <section key={ index }>
+                  <Meals
+                    strMeal={ strMeal }
+                    strMealThumb={ strMealThumb }
+                    dataTestIdCard={ `${index}-recipe-card` }
+                    dataTestIdImg={ `${index}-card-img` }
+                    dataTestIdName={ `${index}-card-name` }
+                    idMeal={ idMeal }
+                  />
+                </section>
+              ))}
+
+            </div>
             <Footer />
           </section>
         )

@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import LoginContext from '../context/LoginContext';
+import Logo from '../images/logo-main.png';
 import '../styles/Login.css';
 import {
   MIN_PASSWORD, MEALS_LINK, EMAIL, PASSWORD,
@@ -44,7 +45,14 @@ function Login() {
     <main>
       <div className="login-container">
         <div className="input-container">
-          <h3>LOGIN</h3>
+          <div className="logo-container">
+            <img
+              src={ Logo }
+              alt="logo"
+              className="logo"
+            />
+          </div>
+          <h6>LOGIN</h6>
           <InputLogin
             id="emailInput"
             name={ EMAIL }

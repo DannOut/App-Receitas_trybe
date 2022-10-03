@@ -5,10 +5,17 @@
 
 .header-top {
   align-items: center;
-  background-color: #f8de43;
+
+  /* background-color: #f8de43; */
+  background-color: #ff564d;
   display: flex;
   justify-content: space-around;
-  padding: 10px;
+
+}
+
+.header-logo {
+  padding: 15px;
+  width: 250px;
 }
 
 .header-bottom {
@@ -20,6 +27,7 @@
 }
 
 .purple-filter {
-  filter: invert(18%) sepia(48%) saturate(3276%) hue-rotate(254deg)
-    brightness(79%) contrast(118%);
+  filter: invert(100%)
+    sepia(100%) saturate(29%) hue-rotate(126deg) brightness(107%) contrast(111%);
+  width: 35px;
 }

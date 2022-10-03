@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Header.css';
-import searchIcon from '../../images/searchIcon.svg';
-import profileIcon from '../../images/profileIcon.svg';
+import searchIcon from '../../images/searchIcon.png';
+import profileIcon from '../../images/profileIcon.png';
 import capitalizeWords from '../../helpers/capitalizeWords';
 import SearchBar from '../SearchBar/SearchBar';
+import headerLogo from '../../images/header-logo.png';
 
 function Header() {
   const [pageName, setPageName] = useState('');
@@ -23,7 +24,13 @@ function Header() {
   return (
     <div className="header-container">
       <div className="header-top">
-        <h1> Recipes app</h1>
+        <div className="logo-container">
+          <img
+            src={ headerLogo }
+            alt="logo"
+            className="header-logo"
+          />
+        </div>
         { pageName === 'Profile'
           || pageName === 'Favorite Recipes'
           || pageName === 'Done Recipes' ? (

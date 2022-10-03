@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 import '../styles/Recipes.css';
 
 function Meals({
@@ -19,13 +20,18 @@ function Meals({
   };
   return (
     <div
-      className="card"
       data-testid={ dataTestIdCard }
       role="presentation"
       onClick={ detailsMealRedirectHandler }
       id={ idMeal }
     >
-      <div className="card-title">
+      <Card className="card">
+        <Card.Img data-testid={ dataTestIdImg } variant="top" src={ strMealThumb } />
+        <Card.ImgOverlay className="image-overlay">
+          <Card.Title data-testid={ dataTestIdName }>{strMeal}</Card.Title>
+        </Card.ImgOverlay>
+      </Card>
+      {/* <div className="card-title">
         <p data-testid={ dataTestIdName }>
           {strMeal}
         </p>
@@ -37,7 +43,7 @@ function Meals({
           data-testid={ dataTestIdImg }
         />
 
-      </div>
+      </div> */}
     </div>
 
   );
