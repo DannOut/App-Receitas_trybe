@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Header.css';
 import searchIcon from '../../images/searchIcon.png';
+import plateIcon from '../../images/plate.png';
 import profileIcon from '../../images/profileIcon.png';
 import capitalizeWords from '../../helpers/capitalizeWords';
 import SearchBar from '../SearchBar/SearchBar';
 import headerLogo from '../../images/header-logo.png';
+import Filter from '../Filter-compoments/Filter.component';
 
 function Header() {
   const [pageName, setPageName] = useState('');
@@ -66,15 +68,18 @@ function Header() {
 
       </div>
       <div className="header-bottom" data-testid="header-bottom">
-        <h1 data-testid="page-title">{ pageName }</h1>
+        <div className="filter-container">
+          <Filter />
+        </div>
+        <div className="title-container">
+          <img
+            src={ plateIcon }
+            alt="Plate Icon"
+          />
+          <h3 data-testid="page-title">{ pageName }</h3>
+        </div>
         { showSearch
-          && <SearchBar />}
-        {/* <iframe
-          title="Test"
-          width="420"
-          height="315"
-          src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1"
-        /> */}
+            && <SearchBar />}
       </div>
     </div>
   );

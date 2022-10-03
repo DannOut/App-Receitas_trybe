@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FetchContext from '../../context/FetchContext';
 import './Filter-component.css';
 import {
@@ -44,17 +45,17 @@ function Filter() {
 
   if (categories.length > 0) {
     return (
-      <div className="filter-container">
-        <Button
-          variant="outline-secondary rounded-pill"
-          size="sm"
-          name="All"
-          data-testid="All-category-filter"
-          onClick={ onclick }
-        >
-          All
-        </Button>
-        {/* <button
+      <div className="filter">
+        <ButtonGroup size="sm">
+          <Button
+            variant="outline-secondary"
+            name="All"
+            data-testid="All-category-filter"
+            onClick={ onclick }
+          >
+            All
+          </Button>
+          {/* <button
           type="button"
           name="All"
           data-testid="All-category-filter"
@@ -62,18 +63,18 @@ function Filter() {
         >
           All
         </button> */}
-        { categories.map((ele, index) => (
-          <Button
-            variant="outline-secondary rounded-pill"
-            size="sm"
-            key={ index }
-            data-testid={ `${ele.strCategory}-category-filter` }
-            name={ ele.strCategory }
-            onClick={ onclick }
-          >
-            { ele.strCategory }
-          </Button>
-        )) }
+          { categories.map((ele, index) => (
+            <Button
+              variant="outline-secondary"
+              key={ index }
+              data-testid={ `${ele.strCategory}-category-filter` }
+              name={ ele.strCategory }
+              onClick={ onclick }
+            >
+              { ele.strCategory }
+            </Button>
+          )) }
+        </ButtonGroup>
       </div>
     );
   }

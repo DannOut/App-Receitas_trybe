@@ -1,5 +1,11 @@
-.filter-container {
+.filter {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  margin: 5px 0;
+}
+
+.filter button {
+  border: none;
+  color: rgb(83, 78, 78);
+  font-weight: 700;
 }

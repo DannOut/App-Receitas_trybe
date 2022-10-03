@@ -17,7 +17,7 @@ import {
   MEALS_CATEGORY_LIST,
 } from '../helpers/constants';
 import Footer from './Footer';
-import Filter from '../components/Filter-compoments/Filter.component';
+// import Filter from '../components/Filter-compoments/Filter.component';
 // import PropTypes from 'prop-types';
 
 function Recipes() {
@@ -55,9 +55,9 @@ function Recipes() {
           ? (
             <section>
               <Header />
-              <div className="filter-container">
+              {/* <div className="filter-container">
                 <Filter />
-              </div>
+              </div> */}
               <div className="cards-container">
                 { searchResults.map(({ strMeal, strMealThumb, idMeal }, index) => (
                   <section key={ index }>
@@ -79,9 +79,9 @@ function Recipes() {
           : (
             <section>
               <Header />
-              <div>
+              {/* <div>
                 <Filter />
-              </div>
+              </div> */}
               { searchResults.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
                 <section key={ index }>
                   <Drinks
@@ -106,9 +106,9 @@ function Recipes() {
         ? (
           <section>
             <Header />
-            <div>
+            {/* <div>
               <Filter />
-            </div>
+            </div> */}
             <div className="cards-container">
               { recipes.map(({ strMeal, strMealThumb, idMeal }, index) => (
                 <section key={ index }>
@@ -130,9 +130,9 @@ function Recipes() {
         : (
           <section>
             <Header />
-            <div>
+            {/* <div>
               <Filter />
-            </div>
+            </div> */}
             { recipes.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
               <section key={ index }>
                 <Drinks
