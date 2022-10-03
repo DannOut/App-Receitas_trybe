@@ -1,10 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
+import Alert from 'react-bootstrap/Alert';
 import { useHistory, useParams } from 'react-router-dom';
 import { getFromLocalStorage, saveLocalStorage } from '../../helpers/localStorage';
 import ButtonDetails from './Button-Details.components';
 import { recipeIsDone } from '../../helpers';
+import './recipe-details.css';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
@@ -110,20 +114,63 @@ function CardDetails({
 
   return (
     <section>
-      <h1 data-testid="recipe-title">
-        {isMeal ? strMeal : strDrink }
-      </h1>
-      <h3 data-testid="recipe-category">
-        {isMeal ? strCategory : `${strCategory} ${strAlcoholic}` }
-      </h3>
-      <img
-        src={ isMeal ? strMealThumb : strDrinkThumb }
-        alt={ isMeal ? strMeal : strDrink }
-        data-testid="recipe-photo"
-      />
-      <p data-testid="instructions">
+      <Card className="card-banner">
+        <Card.Img
+          className="rounded-0"
+          data-testid="recipe-photo"
+          src={ isMeal ? strMealThumb : strDrinkThumb }
+        />
+        <Card.ImgOverlay className="image-overlay details-banner rounded-0">
+          <Card.Body>
+            <Card.Title
+              data-testid="recipe-title"
+            >
+              {isMeal ? strMeal : strDrink }
+            </Card.Title>
+            <Badge
+              bg="primary"
+            >
+              {isMeal ? strCategory : `${strCategory} ${strAlcoholic}` }
+            </Badge>
+          </Card.Body>
+        </Card.ImgOverlay>
+      </Card>
+      {/*
+        <h1 data-testid="recipe-title">
+          {isMeal ? strMeal : strDrink }
+        </h1> */}
+      {/*
+        <h3 data-testid="recipe-category">
+          {isMeal ? strCategory : `${strCategory} ${strAlcoholic}` }
+        </h3> */}
+
+      {/* <img
+          src={ isMeal ? strMealThumb : strDrinkThumb }
+          alt={ isMeal ? strMeal : strDrink }
+          data-testid="recipe-photo"
+        /> */}
+      <Card>
+        <Card.Body>
+          <Card.Title className="mb-2 text-muted">Ingredients</Card.Title>
+          <Card.Text data-testid="instructions" className="mb-2 text-muted">
+            <ul>
+              { renderMeasures() }
+            </ul>
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      <Card>
+        <Card.Body>
+          <Card.Title className="mb-2 text-muted">Instructions</Card.Title>
+          <Card.Text data-testid="instructions" className="mb-2 text-muted">
+            { strInstructions }
+          </Card.Text>
+        </Card.Body>
+      </Card>
+
+      {/* <p data-testid="instructions">
         { strInstructions }
-      </p>
+      </p> */}
       <input
         type="image"
         data-testid="share-btn"
@@ -138,10 +185,15 @@ function CardDetails({
         src={ isFavorited ? blackHeart : whiteHeart }
         alt="SHARE"
       />
-      { isCopied ? <p> Link copied! </p> : null }
-      <ul>
+      {/* { isCopied ? <p> Link copied! </p> : null } */}
+      {
+        isCopied
+          ? <Alert variant="success">Link copied!</Alert>
+          : null
+      }
+      {/* <ul>
         { renderMeasures() }
-      </ul>
+      </ul> */}
       { isMeal
         ? (
           <div>

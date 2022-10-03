@@ -1,0 +1,15 @@
+.card-banner {
+  border: none;
+  margin: 0;
+}
+
+.details-banner {
+  align-items: flex-end;
+  display: flex;
+}
+
+.card-banner img {
+  height: 15rem;
+  object-fit: cover;
+  width: 100%;
+}
