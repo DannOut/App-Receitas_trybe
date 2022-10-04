@@ -6,6 +6,8 @@ import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 import Header from '../components/Header/Header';
 import { saveLocalStorage, getFromLocalStorage } from '../helpers/localStorage';
 import shareIcon from '../images/shareIcon.png';
@@ -18,6 +20,8 @@ function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [filter, setFilter] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [LikeToast, setShowLikeToast] = useState(false);
   // const { location: { pathname } } = useHistory();
 
   useEffect(() => {
@@ -42,7 +46,7 @@ function FavoriteRecipes() {
     } else {
       copy(`http://localhost:3000/drinks/${target.id}`);
     }
-    setIsCopied(target.id);
+    setShowToast(true);
   };
 
   // const saveAndFavoriteRecipe = (target) => {
@@ -57,6 +61,7 @@ function FavoriteRecipes() {
       .filter(({ id }) => id !== target.id);
     saveLocalStorage('favoriteRecipes', updatedFavoriteRecipes);
     setFavoriteRecipes(updatedFavoriteRecipes);
+    setShowLikeToast(true);
   };
 
   return (
@@ -90,6 +95,43 @@ function FavoriteRecipes() {
           </Button>
         </ButtonGroup>
       </div>
+      <ToastContainer className="p-3" position="top-end">
+        <Toast
+          onClose={ () => setShowToast(false) }
+          show={ showToast }
+          delay={ 3000 }
+          autohide
+        >
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+            />
+            <strong className="me-auto"> </strong>
+            <small>Just now</small>
+          </Toast.Header>
+          <Toast.Body>Link copied to your clipboard!</Toast.Body>
+        </Toast>
+
+        <Toast
+          onClose={ () => setShowLikeToast(false) }
+          show={ LikeToast }
+          delay={ 3000 }
+          autohide
+        >
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+            />
+            <strong className="me-auto"> </strong>
+            <small>Just now</small>
+          </Toast.Header>
+          <Toast.Body>Recipe removed from the list!</Toast.Body>
+        </Toast>
+      </ToastContainer>
       <div className="favorite-cards-container">
         {favoriteRecipes.map((
           {
