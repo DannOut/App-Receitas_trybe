@@ -189,7 +189,7 @@ function CardInProgress({
           autohide
         >
           <Toast.Header>
-            <strong className="me-auto">Bootstrap</strong>
+            <strong className="me-auto"> </strong>
             <small>Just now</small>
           </Toast.Header>
           <Toast.Body>Link copied to your clipboard!</Toast.Body>
