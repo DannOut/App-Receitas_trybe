@@ -3,6 +3,11 @@
   margin: 0;
 }
 
+.video-card {
+  border: none;
+  padding: 0;
+}
+
 .details-banner {
   align-items: flex-end;
   display: flex;
@@ -12,4 +17,19 @@
   height: 15rem;
   object-fit: cover;
   width: 100%;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+.card-footer input {
+  width: 40px;
+}
+
+.image-overlay-details {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.575)
+  10%, rgba(78, 77, 77, 0.336) 100%);
 }

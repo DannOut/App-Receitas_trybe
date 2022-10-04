@@ -3,15 +3,17 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
-import Alert from 'react-bootstrap/Alert';
+// import Alert from 'react-bootstrap/Alert';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 import { useHistory, useParams } from 'react-router-dom';
 import { getFromLocalStorage, saveLocalStorage } from '../../helpers/localStorage';
 import ButtonDetails from './Button-Details.components';
 import { recipeIsDone } from '../../helpers';
 import './recipe-details.css';
-import shareIcon from '../../images/shareIcon.svg';
-import blackHeart from '../../images/blackHeartIcon.svg';
-import whiteHeart from '../../images/whiteHeartIcon.svg';
+import shareIcon from '../../images/shareIcon.png';
+import blackHeart from '../../images/blackHeart.png';
+import whiteHeart from '../../images/whiteHeart.png';
 
 const copy = require('clipboard-copy');
 
@@ -31,19 +33,18 @@ function CardDetails({
 }) {
   const { location: { pathname } } = useHistory();
   const { id: idUrl } = useParams();
-  const [isCopied, setIsCopied] = useState(false);
+  // const [isCopied, setIsCopied] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   const { ingredients, measures } = ingredientsAndRecipes;
   const isMeal = pathname.includes('meals');
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-
+  const [showToast, setShowToast] = useState(false);
   useEffect(() => {
     const startLSFavorites = getFromLocalStorage('favoriteRecipes') || [];
     setFavoriteRecipes(startLSFavorites);
     const checkLSfavorites = startLSFavorites.some(({ id }) => id === idUrl);
     setIsFavorited(checkLSfavorites);
   }, []);
-
   const renderMeasures = () => ingredients.map((val, index) => (
     <li
       key={ index }
@@ -52,7 +53,6 @@ function CardDetails({
       {`${val} ${measures[index]}`}
     </li>
   ));
-
   const inProgressRecipe = () => {
     const data = getFromLocalStorage('inProgressRecipes') || {};
     const typeOfFood = isMeal ? data.meals : data.drinks;
@@ -63,7 +63,6 @@ function CardDetails({
     }
     return false;
   };
-
   const saveFavoriteHandler = () => {
     const addRecipe = {
       id: isMeal ? idMeal : idDrink,
@@ -76,19 +75,16 @@ function CardDetails({
     };
     return [...favoriteRecipes, addRecipe];
   };
-
   const removeFavoriteSelected = () => {
     const localStorageChecker = getFromLocalStorage('favoriteRecipes');
     const updatedFavoriteRecipes = localStorageChecker
       .filter(({ id }) => id !== idUrl);
     return updatedFavoriteRecipes;
   };
-
   const removeIconFavorite = () => {
     saveLocalStorage('favoriteRecipes', removeFavoriteSelected());
     setIsFavorited(false);
   };
-
   const saveAndFavoriteRecipe = () => {
     saveLocalStorage('favoriteRecipes', saveFavoriteHandler());
     setIsFavorited(true);
@@ -97,21 +93,18 @@ function CardDetails({
     if (isFavorited) return removeIconFavorite();
     saveAndFavoriteRecipe();
   };
-
   const redirectPageFunc = () => {
     if (isMeal) return `/meals/${idUrl}/in-progress`;
     return `/drinks/${idUrl}/in-progress`;
   };
-
   const copyToClipBoard = () => {
     copy(`http://localhost:3000${pathname}`);
-    setIsCopied(true);
+    // setIsCopied(true);
+    setShowToast(true);
   };
-
   const isDone = recipeIsDone('doneRecipes', idUrl);
   const inProgress = inProgressRecipe();
   const redirectPage = redirectPageFunc();
-
   return (
     <section>
       <Card className="card-banner">
@@ -120,9 +113,10 @@ function CardDetails({
           data-testid="recipe-photo"
           src={ isMeal ? strMealThumb : strDrinkThumb }
         />
-        <Card.ImgOverlay className="image-overlay details-banner rounded-0">
+        <Card.ImgOverlay className="image-overlay-details details-banner rounded-0">
           <Card.Body>
             <Card.Title
+              className="display-4"
               data-testid="recipe-title"
             >
               {isMeal ? strMeal : strDrink }
@@ -135,20 +129,43 @@ function CardDetails({
           </Card.Body>
         </Card.ImgOverlay>
       </Card>
-      {/*
-        <h1 data-testid="recipe-title">
-          {isMeal ? strMeal : strDrink }
-        </h1> */}
-      {/*
-        <h3 data-testid="recipe-category">
-          {isMeal ? strCategory : `${strCategory} ${strAlcoholic}` }
-        </h3> */}
 
-      {/* <img
-          src={ isMeal ? strMealThumb : strDrinkThumb }
-          alt={ isMeal ? strMeal : strDrink }
-          data-testid="recipe-photo"
-        /> */}
+      <div className="text-muted card-footer">
+        <input
+          type="image"
+          data-testid="share-btn"
+          onClick={ copyToClipBoard }
+          src={ shareIcon }
+          alt="share icon"
+        />
+        <input
+          type="image"
+          data-testid="favorite-btn"
+          onClick={ handleFavorite }
+          src={ isFavorited ? blackHeart : whiteHeart }
+          alt="SHARE"
+        />
+      </div>
+      <ToastContainer className="p-3" position="top-end">
+        <Toast
+          onClose={ () => setShowToast(false) }
+          show={ showToast }
+          delay={ 3000 }
+          autohide
+        >
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+            />
+            <strong className="me-auto">Bootstrap</strong>
+            <small>Just now</small>
+          </Toast.Header>
+          <Toast.Body>Link copied to your clipboard!</Toast.Body>
+        </Toast>
+      </ToastContainer>
+
       <Card>
         <Card.Body>
           <Card.Title className="mb-2 text-muted">Ingredients</Card.Title>
@@ -167,44 +184,22 @@ function CardDetails({
           </Card.Text>
         </Card.Body>
       </Card>
-
-      {/* <p data-testid="instructions">
-        { strInstructions }
-      </p> */}
-      <input
-        type="image"
-        data-testid="share-btn"
-        onClick={ copyToClipBoard }
-        src={ shareIcon }
-        alt="share icon"
-      />
-      <input
-        type="image"
-        data-testid="favorite-btn"
-        onClick={ handleFavorite }
-        src={ isFavorited ? blackHeart : whiteHeart }
-        alt="SHARE"
-      />
-      {/* { isCopied ? <p> Link copied! </p> : null } */}
-      {
-        isCopied
-          ? <Alert variant="success">Link copied!</Alert>
-          : null
-      }
-      {/* <ul>
-        { renderMeasures() }
-      </ul> */}
       { isMeal
         ? (
-          <div>
-            <iframe
-              title={ strMeal }
-              width="420"
-              height="315"
-              src={ strYoutube?.replace('watch?v=', 'embed/') }
-              data-testid="video"
-            />
-          </div>
+          <Card className="border-0">
+            <Card.Body className="video-card">
+              <div>
+                <iframe
+                  title={ strMeal }
+                  src={ strYoutube?.replace('watch?v=', 'embed/') }
+                  width="100%"
+                  height="250px"
+                  data-testid="video"
+                  className="embed-responsive-item"
+                />
+              </div>
+            </Card.Body>
+          </Card>
         ) : <p> Drink Placeholder </p>}
       {!isDone && <ButtonDetails
         inProgress={ inProgress }
@@ -213,7 +208,6 @@ function CardDetails({
     </section>
   );
 }
-
 CardDetails.defaultProps = {
   strCategory: '',
   ingredients: '',
@@ -229,7 +223,6 @@ CardDetails.defaultProps = {
   idDrink: '',
   strArea: '',
 };
-
 CardDetails.propTypes = {
   idMeal: PropTypes.string,
   idDrink: PropTypes.string,
@@ -246,5 +239,4 @@ CardDetails.propTypes = {
   strAlcoholic: PropTypes.string,
   ingredientsAndRecipes: PropTypes.shape().isRequired,
 };
-
 export default CardDetails;
