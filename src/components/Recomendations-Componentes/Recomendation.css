@@ -1,4 +1,9 @@
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+}
+
+.title-recommendation {
+  margin: 15px 0 0 15px;
 }

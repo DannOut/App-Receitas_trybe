@@ -60,9 +60,19 @@ function Recomendation() {
   };
   return (
 
-    <div className="container">
-      {creatRecomendations()}
-    </div>
+    <Card
+      style={ { padding: '5px' } }
+      className="border-0"
+    >
+      <Card.Title
+        className="text-muted title-recommendation"
+      >
+        You may also like:
+      </Card.Title>
+      <div className="container">
+        {creatRecomendations()}
+      </div>
+    </Card>
   );
 }
 
