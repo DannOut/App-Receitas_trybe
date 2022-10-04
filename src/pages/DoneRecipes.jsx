@@ -7,15 +7,15 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Header from '../components/Header/Header';
 import { getFromLocalStorage } from '../helpers/localStorage';
-import shareIcon from '../images/shareIcon.svg';
+// import shareIcon from '../images/shareIcon.svg';
 import '../styles/DoneRecipes.css';
 
-const copy = require('clipboard-copy');
+// const copy = require('clipboard-copy');
 
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [filter, setFilter] = useState('all');
-  const [isCopied, setIsCopied] = useState(false);
+  // const [isCopied, setIsCopied] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -38,10 +38,10 @@ function DoneRecipes() {
     .filter(({ type }) => filter === 'all' || type === filter);
   console.log(filterdoneRecipes);
 
-  const copyToClipBoard = ({ target: { dataset: { url } } }) => {
-    copy(`http://localhost:3000/${url}`);
-    setIsCopied(true);
-  };
+  // const copyToClipBoard = ({ target: { dataset: { url } } }) => {
+  //   copy(`http://localhost:3000/${url}`);
+  //   setIsCopied(true);
+  // };
 
   return (
     <div>

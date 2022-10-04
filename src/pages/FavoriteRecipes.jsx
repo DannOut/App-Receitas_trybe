@@ -1,6 +1,11 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { useState, useEffect } from 'react';
 // import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Header from '../components/Header/Header';
 import { saveLocalStorage, getFromLocalStorage } from '../helpers/localStorage';
 import shareIcon from '../images/shareIcon.svg';
@@ -57,31 +62,33 @@ function FavoriteRecipes() {
   return (
     <div>
       <Header />
-      <div>
-        <button
-          type="button"
-          value="all"
-          onClick={ (e) => onClickHandler(e) }
-          data-testid="filter-by-all-btn"
-        >
-          All
-        </button>
-        <button
-          type="button"
-          value="meal"
-          onClick={ (e) => onClickHandler(e) }
-          data-testid="filter-by-meal-btn"
-        >
-          Meals
-        </button>
-        <button
-          type="button"
-          value="drink"
-          onClick={ (e) => onClickHandler(e) }
-          data-testid="filter-by-drink-btn"
-        >
-          Drinks
-        </button>
+      <div className="done-filter-container mb-5 mt-3">
+        <ButtonGroup>
+          <Button
+            variant="outline-info"
+            value="all"
+            onClick={ handleFavorite }
+            data-testid="filter-by-all-btn"
+          >
+            All
+          </Button>
+          <Button
+            variant="outline-info"
+            value="meal"
+            onClick={ handleFavorite }
+            data-testid="filter-by-meal-btn"
+          >
+            Meals
+          </Button>
+          <Button
+            variant="outline-info"
+            value="drink"
+            onClick={ handleFavorite }
+            data-testid="filter-by-drink-btn"
+          >
+            Drinks
+          </Button>
+        </ButtonGroup>
       </div>
       {favoriteRecipes.map((
         {
@@ -96,51 +103,48 @@ function FavoriteRecipes() {
         index,
       ) => (
         <div key={ `${index}` } className="done-recipe-card">
-          <Link to={ `/${type}s/${id}` }>
-            <h1
-              data-testid={ `${index}-horizontal-name` }
-            >
-              {name}
-            </h1>
-          </Link>
-          <Link to={ `/${type}s/${id}` }>
-            <img
-              src={ image }
-              alt={ name }
-              className="done-recipe-image"
-              // onClick={ () => console.log('teste') }
-              data-testid={ `${index}-horizontal-image` }
-            />
-          </Link>
-          <div
-            data-testid={ `${index}-horizontal-top-text` }
-          >
-            {type === 'meal' ? `${nationality} - ${category}` : alcoholicOrNot}
-          </div>
-          <input
-            type="image"
-            alt="favorite"
-            name={ type }
-            id={ id }
-            data-testid={ `${index}-horizontal-favorite-btn` }
-            onClick={ ({ target }) => handleFavorite(target) }
-            src={ blackHeartIcon }
-          />
-          <input
-            type="image"
-            src={ shareIcon }
-            name={ type }
-            id={ id }
-            alt="share"
-            onClick={ ({ target }) => copyToClipBoard(target) }
-            data-testid={ `${index}-horizontal-share-btn` }
-          />
-          {isCopied === id ? <p> Link copied! </p> : null}
+          <Card>
+            <div className="done-card">
+              <Link to={ `/${type}s/${id}` }>
+                <Card.Img
+                  variant="top"
+                  src={ image }
+                />
+              </Link>
+              <Card.Body>
+                <Card.Title className="mt-4 text-muted">{ name }</Card.Title>
+                <div className="done-card-body">
+                  <Badge bg="secondary">
+                    {type === 'meal' ? `${nationality} - ${category}` : alcoholicOrNot}
+                  </Badge>
+                </div>
+                <div>
+                  <input
+                    type="image"
+                    alt="favorite"
+                    name={ type }
+                    id={ id }
+                    data-testid={ `${index}-horizontal-favorite-btn` }
+                    onClick={ ({ target }) => handleFavorite(target) }
+                    src={ blackHeartIcon }
+                  />
+                  <input
+                    type="image"
+                    src={ shareIcon }
+                    name={ type }
+                    id={ id }
+                    alt="share"
+                    onClick={ ({ target }) => copyToClipBoard(target) }
+                    data-testid={ `${index}-horizontal-share-btn` }
+                  />
+                </div>
+              </Card.Body>
+            </div>
+          </Card>
         </div>
       ))}
 
     </div>
   );
 }
-
 export default FavoriteRecipes;
