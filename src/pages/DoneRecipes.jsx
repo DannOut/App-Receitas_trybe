@@ -1,8 +1,14 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Header from '../components/Header/Header';
 import { getFromLocalStorage } from '../helpers/localStorage';
 import shareIcon from '../images/shareIcon.svg';
+import '../styles/DoneRecipes.css';
 
 const copy = require('clipboard-copy');
 
@@ -40,31 +46,33 @@ function DoneRecipes() {
   return (
     <div>
       <Header />
-      <div>
-        <button
-          type="button"
-          value="all"
-          onClick={ ({ target }) => setFilter(target.value) }
-          data-testid="filter-by-all-btn"
-        >
-          All
-        </button>
-        <button
-          type="button"
-          value="meal"
-          onClick={ ({ target }) => setFilter(target.value) }
-          data-testid="filter-by-meal-btn"
-        >
-          Meals
-        </button>
-        <button
-          type="button"
-          value="drink"
-          onClick={ ({ target }) => setFilter(target.value) }
-          data-testid="filter-by-drink-btn"
-        >
-          Drinks
-        </button>
+      <div className="done-filter-container mb-5 mt-3">
+        <ButtonGroup>
+          <Button
+            variant="outline-info"
+            value="all"
+            onClick={ ({ target }) => setFilter(target.value) }
+            data-testid="filter-by-all-btn"
+          >
+            All
+          </Button>
+          <Button
+            variant="outline-info"
+            value="meal"
+            onClick={ ({ target }) => setFilter(target.value) }
+            data-testid="filter-by-meal-btn"
+          >
+            Meals
+          </Button>
+          <Button
+            variant="outline-info"
+            value="drink"
+            onClick={ ({ target }) => setFilter(target.value) }
+            data-testid="filter-by-drink-btn"
+          >
+            Drinks
+          </Button>
+        </ButtonGroup>
       </div>
       {filterdoneRecipes.map((
         {
@@ -80,29 +88,39 @@ function DoneRecipes() {
         },
         index,
       ) => (
-        <div key={ `${index}` } className="done__card">
-          <section
-            role="presentation"
-            data-testid={ `${index}-horizontal-name` }
-            onClick={ () => history.push(`/${type}s/${id}`) }
-          >
-            { name }
-            {/* {console.log('link', `/${type}s/${id}`)} */}
-          </section>
-          <input
-            type="image"
-            src={ image }
-            alt={ name }
-            className="done__image"
-            onClick={ () => history.push(`/${type}s/${id}`) }
-            data-testid={ `${index}-horizontal-image` }
-          />
-          <div
-            data-testid={ `${index}-horizontal-top-text` }
-          >
-            { type === 'meal' ? `${nationality} - ${category}` : alcoholicOrNot }
-          </div>
-          <div data-testid={ `${index}-horizontal-done-date` }>{ doneDate }</div>
+        <div key={ `${index}` }>
+          <Card>
+            <div className="done-card">
+              <Card.Img
+                variant="top"
+                src={ image }
+                onClick={ () => history.push(`/${type}s/${id}`) }
+              />
+              <Card.Body>
+                <Card.Title className="mt-4 text-muted">{ name }</Card.Title>
+                <div className="done-card-body">
+
+                  <Badge bg="secondary">
+                    { type === 'meal' ? `${nationality} - ${category}` : alcoholicOrNot }
+                  </Badge>
+                  <Badge bg="secondary">
+                    { doneDate }
+                  </Badge>
+                  { tags?.filter((_, ind) => ind < 2).map((val, ind) => (
+                    <Badge
+                      bg="secondary"
+                      key={ ind }
+                      data-testid={ `${index}-${val}-horizontal-tag` }
+                    >
+                      { val }
+                    </Badge>
+                  ))}
+
+                </div>
+              </Card.Body>
+            </div>
+          </Card>
+          {/*
           <input
             type="image"
             src={ shareIcon }
@@ -111,12 +129,7 @@ function DoneRecipes() {
             onClick={ copyToClipBoard }
             data-testid={ `${index}-horizontal-share-btn` }
           />
-          { isCopied ? <p> Link copied! </p> : null }
-          { tags?.filter((_, ind) => ind < 2).map((val, ind) => (
-            <h2 key={ ind } data-testid={ `${index}-${val}-horizontal-tag` }>
-              { val }
-            </h2>
-          ))}
+          { isCopied ? <p> Link copied! </p> : null } */}
         </div>
       ))}
 

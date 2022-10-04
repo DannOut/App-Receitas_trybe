@@ -1,0 +1,17 @@
+.done-filter-container {
+  display: flex;
+  justify-content: center;
+}
+
+.done-card {
+  display: flex;
+}
+
+.done-card img {
+  width: 150px;
+}
+
+.done-card-body {
+  display: flex;
+  gap: 5px;
+}
