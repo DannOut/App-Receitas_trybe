@@ -1,0 +1,24 @@
+.favorite-cards-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.done-recipe-card {
+  width: 24rem;
+}
+
+.social-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 32px;
+}
+
+.card-main-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+}
