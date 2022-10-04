@@ -1,4 +1,7 @@
 .recipe_details__startbtn {
   bottom: 0%;
+  left: 1%;
+  margin: 20px;
   position: fixed;
+  width: 90%;
 }

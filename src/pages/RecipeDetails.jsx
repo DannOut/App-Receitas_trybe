@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import FetchContext from '../context/FetchContext';
 import CardDetails from '../components/recipe-details-components/Card-Details.component';
-import Recomendation from '../components/Recomendations-Componentes/Recomendation';
+// import Recomendation from '../components/Recomendations-Componentes/Recomendation';
 import { MEALS_URL_BASE,
   MEALS_URL_DETAILS_ENDPOINT,
   DRINKS_URL_BASE,
@@ -88,7 +88,7 @@ function RecipeDetails() {
         strDrinkThumb={ strDrinkThumb }
         strAlcoholic={ strAlcoholic }
       />
-      <Recomendation />
+      {/* <Recomendation /> */}
     </section>
   );
 }

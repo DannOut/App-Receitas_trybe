@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import './Recomendation.css';
+import Card from 'react-bootstrap/Card';
 import FetchContext from '../../context/FetchContext';
 
 function Recomendation() {
@@ -19,42 +20,40 @@ function Recomendation() {
     if (pathname.includes('drinks')) {
       const mealsRecomendation = recomendations.map(
         ({ strMeal, strMealThumb, idMeal }, index) => (
-          <button
-            className="container-item"
+          <Card
             key={ index }
-            data-testid={ `${index}-recommendation-card` }
             id={ idMeal }
-            type="button"
+            data-testid={ `${index}-recommendation-card` }
           >
-            <p data-testid={ `${index}-recommendation-title` }>
-              {strMeal}
-            </p>
-            <img
-              src={ strMealThumb }
-              alt={ strMeal }
-            />
-          </button>
+            <Card.Img variant="top" src={ strMealThumb } />
+            <Card.ImgOverlay className="image-overlay">
+              <Card.Title
+                data-testid={ `${index}-recommendation-title` }
+              >
+                {strMeal}
+              </Card.Title>
+            </Card.ImgOverlay>
+          </Card>
         ),
       );
       return mealsRecomendation;
     }
     const drinksRecomendation = recomendations.map(
       ({ strDrink, strDrinkThumb, idDrink }, index) => (
-        <button
-          className="container-item"
+        <Card
           key={ index }
-          data-testid={ `${index}-recommendation-card` }
           id={ idDrink }
-          type="button"
+          data-testid={ `${index}-recommendation-card` }
         >
-          <p data-testid={ `${index}-recommendation-title` }>
-            {strDrink}
-          </p>
-          <img
-            src={ strDrinkThumb }
-            alt={ strDrink }
-          />
-        </button>
+          <Card.Img variant="top" src={ strDrinkThumb } />
+          <Card.ImgOverlay className="image-overlay">
+            <Card.Title
+              data-testid={ `${index}-recommendation-title` }
+            >
+              {strDrink}
+            </Card.Title>
+          </Card.ImgOverlay>
+        </Card>
       ),
     );
     return drinksRecomendation;

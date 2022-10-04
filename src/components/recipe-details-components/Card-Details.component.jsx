@@ -8,6 +8,7 @@ import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import { useHistory, useParams } from 'react-router-dom';
 import { getFromLocalStorage, saveLocalStorage } from '../../helpers/localStorage';
+import Recomendation from '../Recomendations-Componentes/Recomendation';
 import ButtonDetails from './Button-Details.components';
 import { recipeIsDone } from '../../helpers';
 import './recipe-details.css';
@@ -201,6 +202,7 @@ function CardDetails({
             </Card.Body>
           </Card>
         ) : <p> Drink Placeholder </p>}
+      <Recomendation />
       {!isDone && <ButtonDetails
         inProgress={ inProgress }
         redirectPage={ redirectPage }

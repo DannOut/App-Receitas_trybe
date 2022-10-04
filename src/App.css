@@ -67,13 +67,6 @@
   }
 }
 
-.container {
-  display: flex;
-  overflow-x: scroll;
-  white-space: nowrap;
-  width: 340px;
-}
-
 .container-item {
   margin-left: 40px;
   width: 160px;
