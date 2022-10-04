@@ -5,6 +5,8 @@ import Drinks from './Drinks';
 import FetchContext from '../context/FetchContext';
 import SearchContext from '../context/SearchContext';
 import Header from '../components/Header/Header';
+import Filter from '../components/Filter-compoments/Filter.component';
+
 import '../styles/Recipes.css';
 import {
   MEALS_URL_BASE,
@@ -55,9 +57,9 @@ function Recipes() {
           ? (
             <section>
               <Header />
-              {/* <div className="filter-container">
+              <div className="filter-container">
                 <Filter />
-              </div> */}
+              </div>
               <div className="cards-container">
                 { searchResults.map(({ strMeal, strMealThumb, idMeal }, index) => (
                   <section key={ index }>
@@ -78,9 +80,9 @@ function Recipes() {
           : (
             <section>
               <Header />
-              {/* <div>
+              <div className="filter-container">
                 <Filter />
-              </div> */}
+              </div>
               <div className="cards-container">
                 { searchResults.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
                   <section key={ index }>
@@ -107,9 +109,9 @@ function Recipes() {
         ? (
           <section>
             <Header />
-            {/* <div>
+            <div className="filter-container">
               <Filter />
-            </div> */}
+            </div>
             <div className="cards-container">
               { recipes.map(({ strMeal, strMealThumb, idMeal }, index) => (
                 <section key={ index }>
@@ -131,9 +133,9 @@ function Recipes() {
         : (
           <section>
             <Header />
-            {/* <div>
+            <div className="filter-container">
               <Filter />
-            </div> */}
+            </div>
             <div className="cards-container">
               { recipes.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
                 <section key={ index }>

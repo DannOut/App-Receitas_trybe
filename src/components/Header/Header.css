@@ -38,12 +38,3 @@
     sepia(100%) saturate(29%) hue-rotate(126deg) brightness(107%) contrast(111%);
   width: 35px;
 }
-
-.filter-container {
-  background-color: #fcd599;
-  border-radius: 0 0 10px 10px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-
-}

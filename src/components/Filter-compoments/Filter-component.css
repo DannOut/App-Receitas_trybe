@@ -1,11 +1,12 @@
 .filter {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 15px 0;
 }
 
 .filter button {
-  border: none;
+  background-color: #fcd599;
   color: rgb(83, 78, 78);
   font-weight: 800;
 

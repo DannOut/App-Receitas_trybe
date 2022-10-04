@@ -33,6 +33,7 @@ function Header() {
             className="header-logo"
           />
         </div>
+
         { pageName === 'Profile'
           || pageName === 'Favorite Recipes'
           || pageName === 'Done Recipes' ? (
@@ -68,9 +69,6 @@ function Header() {
 
       </div>
       <div className="header-bottom" data-testid="header-bottom">
-        <div className="filter-container">
-          <Filter />
-        </div>
         { showSearch
             && <SearchBar />}
         <div className="title-container">

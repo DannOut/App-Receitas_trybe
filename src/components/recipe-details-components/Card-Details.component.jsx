@@ -40,6 +40,7 @@ function CardDetails({
   const isMeal = pathname.includes('meals');
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [showToast, setShowToast] = useState(false);
+  const [likeToast, setShowLikeToast] = useState(false);
   useEffect(() => {
     const startLSFavorites = getFromLocalStorage('favoriteRecipes') || [];
     setFavoriteRecipes(startLSFavorites);
@@ -93,6 +94,7 @@ function CardDetails({
   const handleFavorite = () => {
     if (isFavorited) return removeIconFavorite();
     saveAndFavoriteRecipe();
+    setShowLikeToast(true);
   };
   const redirectPageFunc = () => {
     if (isMeal) return `/meals/${idUrl}/in-progress`;
@@ -155,15 +157,22 @@ function CardDetails({
           autohide
         >
           <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
             <strong className="me-auto">Bootstrap</strong>
             <small>Just now</small>
           </Toast.Header>
           <Toast.Body>Link copied to your clipboard!</Toast.Body>
+        </Toast>
+        <Toast
+          onClose={ () => setShowLikeToast(false) }
+          show={ likeToast }
+          delay={ 3000 }
+          autohide
+        >
+          <Toast.Header>
+            <strong className="me-auto"> </strong>
+            <small>Just now</small>
+          </Toast.Header>
+          <Toast.Body>Recipe added to the favorites!</Toast.Body>
         </Toast>
       </ToastContainer>
 

@@ -19,7 +19,7 @@ const copy = require('clipboard-copy');
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [filter, setFilter] = useState([]);
-  const [isCopied, setIsCopied] = useState(false);
+  // const [isCopied, setIsCopied] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [LikeToast, setShowLikeToast] = useState(false);
   // const { location: { pathname } } = useHistory();
@@ -121,11 +121,6 @@ function FavoriteRecipes() {
           autohide
         >
           <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
             <strong className="me-auto"> </strong>
             <small>Just now</small>
           </Toast.Header>

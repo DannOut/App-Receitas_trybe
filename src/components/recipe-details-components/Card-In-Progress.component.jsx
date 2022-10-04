@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
@@ -29,6 +30,7 @@ function CardInProgress({
   });
   const [finish, setFinish] = useState(true);
   const [showToast, setShowToast] = useState(false);
+  const [likeToast, setShowLikeToast] = useState(false);
 
   useEffect(() => {
     const startLSFavorites = getFromLocalStorage('favoriteRecipes') || [];
@@ -117,6 +119,7 @@ function CardInProgress({
   const handleFavorite = () => {
     if (isFavorited) return removeIconFavorite();
     saveAndFavoriteRecipe();
+    setShowLikeToast(true);
   };
   const copyToClipBoard = () => {
     copy(`http://localhost:3000${pathname}`);
@@ -177,6 +180,7 @@ function CardInProgress({
           alt="SHARE"
         />
       </div>
+
       <ToastContainer className="p-3" position="top-end">
         <Toast
           onClose={ () => setShowToast(false) }
@@ -185,25 +189,25 @@ function CardInProgress({
           autohide
         >
           <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
             <strong className="me-auto">Bootstrap</strong>
             <small>Just now</small>
           </Toast.Header>
           <Toast.Body>Link copied to your clipboard!</Toast.Body>
         </Toast>
+        <Toast
+          onClose={ () => setShowLikeToast(false) }
+          show={ likeToast }
+          delay={ 3000 }
+          autohide
+        >
+          <Toast.Header>
+            <strong className="me-auto"> </strong>
+            <small>Just now</small>
+          </Toast.Header>
+          <Toast.Body>Recipe added to the favorites!</Toast.Body>
+        </Toast>
       </ToastContainer>
-      <Card>
-        <Card.Body>
-          <Card.Title className="mb-2 text-muted">Instructions</Card.Title>
-          <Card.Text data-testid="instructions" className="mb-2 text-muted">
-            { strInstructions }
-          </Card.Text>
-        </Card.Body>
-      </Card>
+
       <Card>
         <Card.Body>
           <Card.Title className="mb-3 text-muted">Ingredients</Card.Title>
@@ -211,6 +215,14 @@ function CardInProgress({
             <ul className="list-unstyled">
               { renderMeasures() }
             </ul>
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      <Card>
+        <Card.Body>
+          <Card.Title className="mb-2 text-muted">Instructions</Card.Title>
+          <Card.Text data-testid="instructions" className="mb-2 text-muted">
+            { strInstructions }
           </Card.Text>
         </Card.Body>
       </Card>
