@@ -201,7 +201,7 @@ function CardDetails({
               </div>
             </Card.Body>
           </Card>
-        ) : <p> Drink Placeholder </p>}
+        ) : null}
       <Recomendation />
       {!isDone && <ButtonDetails
         inProgress={ inProgress }
