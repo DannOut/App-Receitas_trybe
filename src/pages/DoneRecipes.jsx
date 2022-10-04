@@ -49,7 +49,7 @@ function DoneRecipes() {
       <div className="done-filter-container mb-5 mt-3">
         <ButtonGroup>
           <Button
-            variant="outline-info"
+            variant="secondary"
             value="all"
             onClick={ ({ target }) => setFilter(target.value) }
             data-testid="filter-by-all-btn"
@@ -57,7 +57,7 @@ function DoneRecipes() {
             All
           </Button>
           <Button
-            variant="outline-info"
+            variant="secondary"
             value="meal"
             onClick={ ({ target }) => setFilter(target.value) }
             data-testid="filter-by-meal-btn"
@@ -65,7 +65,7 @@ function DoneRecipes() {
             Meals
           </Button>
           <Button
-            variant="outline-info"
+            variant="secondary"
             value="drink"
             onClick={ ({ target }) => setFilter(target.value) }
             data-testid="filter-by-drink-btn"
@@ -74,64 +74,58 @@ function DoneRecipes() {
           </Button>
         </ButtonGroup>
       </div>
-      {filterdoneRecipes.map((
-        {
-          image,
-          category,
-          name,
-          doneDate,
-          nationality,
-          alcoholicOrNot,
-          tags,
-          type,
-          id,
-        },
-        index,
-      ) => (
-        <div key={ `${index}` }>
-          <Card>
-            <div className="done-card">
-              <Card.Img
-                variant="top"
-                src={ image }
-                onClick={ () => history.push(`/${type}s/${id}`) }
-              />
-              <Card.Body>
-                <Card.Title className="mt-4 text-muted">{ name }</Card.Title>
-                <div className="done-card-body">
+      <div className="done-card-container">
+        {filterdoneRecipes.map((
+          {
+            image,
+            category,
+            name,
+            doneDate,
+            nationality,
+            alcoholicOrNot,
+            tags,
+            type,
+            id,
+          },
+          index,
+        ) => (
+          <div key={ `${index}` }>
+            <Card style={ { width: '26rem' } }>
+              <div className="done-card">
+                <Card.Img
+                  variant="top"
+                  src={ image }
+                  onClick={ () => history.push(`/${type}s/${id}`) }
+                />
+                <Card.Body>
+                  <Card.Title className="mt-4 text-muted">{ name }</Card.Title>
+                  <div className="done-card-body">
 
-                  <Badge bg="secondary">
-                    { type === 'meal' ? `${nationality} - ${category}` : alcoholicOrNot }
-                  </Badge>
-                  <Badge bg="secondary">
-                    { doneDate }
-                  </Badge>
-                  { tags?.filter((_, ind) => ind < 2).map((val, ind) => (
-                    <Badge
-                      bg="secondary"
-                      key={ ind }
-                      data-testid={ `${index}-${val}-horizontal-tag` }
-                    >
-                      { val }
+                    <Badge bg="secondary">
+                      { type === 'meal'
+                        ? `${nationality} - ${category}`
+                        : alcoholicOrNot }
                     </Badge>
-                  ))}
+                    <Badge bg="secondary">
+                      { doneDate }
+                    </Badge>
+                    { tags?.filter((_, ind) => ind < 2).map((val, ind) => (
+                      <Badge
+                        bg="secondary"
+                        key={ ind }
+                        data-testid={ `${index}-${val}-horizontal-tag` }
+                      >
+                        { val }
+                      </Badge>
+                    ))}
 
-                </div>
-              </Card.Body>
-            </div>
-          </Card>
-          {/*
-          <input
-            type="image"
-            src={ shareIcon }
-            alt="share"
-            data-url={ `${type}s/${id}` }
-            onClick={ copyToClipBoard }
-            data-testid={ `${index}-horizontal-share-btn` }
-          />
-          { isCopied ? <p> Link copied! </p> : null } */}
-        </div>
-      ))}
+                  </div>
+                </Card.Body>
+              </div>
+            </Card>
+          </div>
+        ))}
+      </div>
 
     </div>
   );

@@ -3,6 +3,13 @@
   justify-content: center;
 }
 
+.done-card-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .done-card {
   display: flex;
 }
