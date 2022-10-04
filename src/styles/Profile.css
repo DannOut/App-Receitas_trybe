@@ -1,0 +1,26 @@
+.profile-top {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.profile-top img {
+  margin-bottom: 5px;
+  padding: 5px;
+  width: 150px;
+}
+
+.buttons-container {
+  width: 23rem;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-container > button {
+  width: 100%;
+}
