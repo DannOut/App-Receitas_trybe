@@ -67,7 +67,7 @@ function FavoriteRecipes() {
           <Button
             variant="outline-info"
             value="all"
-            onClick={ handleFavorite }
+            onClick={ (e) => onClickHandler(e) }
             data-testid="filter-by-all-btn"
           >
             All
@@ -75,7 +75,7 @@ function FavoriteRecipes() {
           <Button
             variant="outline-info"
             value="meal"
-            onClick={ handleFavorite }
+            onClick={ (e) => onClickHandler(e) }
             data-testid="filter-by-meal-btn"
           >
             Meals
@@ -83,7 +83,7 @@ function FavoriteRecipes() {
           <Button
             variant="outline-info"
             value="drink"
-            onClick={ handleFavorite }
+            onClick={ (e) => onClickHandler(e) }
             data-testid="filter-by-drink-btn"
           >
             Drinks
