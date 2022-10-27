@@ -25,21 +25,13 @@ No desenvolvimento deste projeto foram utilizadas as seguintes ferramentas:
 
 Faça o clone deste repositório com o comando abaixo.
 
-      git clone git@github.com:larissaperinoto/project-trybewallet.git
+      git clone 
+      git@github.com:DannOut/App-Receitas_trybe.git
 
 Instale as dependências do projeto.
 
       npm install
 
-Para executar os testes rode o seguinte comando.
-
-      npm test
-      
-Para executar testes individualmente, faça uma adaptação do comando a seguir.
-
-      npm test <nome-do-arquivo>
-      
-      
  Inicie a aplicação com o comando abaixo.
  
       npm start
