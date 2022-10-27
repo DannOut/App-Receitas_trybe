@@ -1,4 +1,3 @@
-/* eslint-disable react-func/max-lines-per-function */
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -44,6 +43,7 @@ function SearchBar() {
       }
     };
     redirectHandler();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchResults]);
 
   const searchHandler = () => {

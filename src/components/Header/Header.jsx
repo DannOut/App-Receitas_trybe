@@ -7,7 +7,6 @@ import profileIcon from '../../images/profileIcon.png';
 import capitalizeWords from '../../helpers/capitalizeWords';
 import SearchBar from '../SearchBar/SearchBar';
 import headerLogo from '../../images/header-logo.png';
-import Filter from '../Filter-compoments/Filter.component';
 
 function Header() {
   const [pageName, setPageName] = useState('');
