@@ -1,5 +1,5 @@
 // * * NUMBERS INFORMATION
-export const MIN_PASSWORD = 6;
+export const MIN_PASSWORD = 7;
 export const MAX_LIMIT_INFORMATION = 12;
 
 // * * URL CONSTANTS

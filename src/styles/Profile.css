@@ -24,3 +24,33 @@
 .buttons-container > button {
   width: 100%;
 }
+
+.developers {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.developers a {
+  align-items: center;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.2em;
+  font-weight: 500;
+  line-height: 40px;
+  text-decoration: none;
+}
+
+.developers p {
+  align-items: center;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.2em;
+  font-weight: 500;
+  line-height: 40px;
+  text-decoration: none;
+}

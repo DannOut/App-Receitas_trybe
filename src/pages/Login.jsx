@@ -58,7 +58,7 @@ function Login() {
             name={ EMAIL }
             type="text"
             dataTestId={ TEST_ID_EMAIL_INPUT }
-            placeholder="Email"
+            placeholder="Email: teste@teste.com"
             value={ email }
             onHandleChange={ onHandleChange }
           />
@@ -67,7 +67,7 @@ function Login() {
             name={ PASSWORD }
             type={ PASSWORD }
             dataTestId={ TEST_ID_PASSWORD_INPUT }
-            placeholder="Password"
+            placeholder="Password: 12345678"
             value={ password }
             onHandleChange={ onHandleChange }
           />

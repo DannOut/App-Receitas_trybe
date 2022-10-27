@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import Footer from './Footer';
 import Header from '../components/Header/Header';
 import profileIcon from '../images/profile.png';
@@ -57,6 +59,30 @@ function Profile() {
             Logout
           </Button>
         </div>
+      </div>
+      <div className="developers">
+        <p>Desenvolvedores:</p>
+        <a href="https://www.linkedin.com/in/daniel-outeiro/">
+          <FontAwesomeIcon className="icon" icon={ faLinkedin } />
+          Daniel Outeiro
+        </a>
+        <a href="https://www.linkedin.com/in/rodrigo-nunes-da-silva/">
+          <FontAwesomeIcon className="icon" icon={ faLinkedin } />
+          Rodrigo Nunes da Silva
+        </a>
+        <a href="https://www.linkedin.com/in/bruno-paredes-veiga/">
+          <FontAwesomeIcon className="icon" icon={ faLinkedin } />
+          Bruno Veiga
+        </a>
+        <a href="https://www.linkedin.com">
+          <FontAwesomeIcon className="icon" icon={ faLinkedin } />
+          Juan Pablo
+        </a>
+        <a href="https://www.linkedin.com">
+          <FontAwesomeIcon className="icon" icon={ faLinkedin } />
+          Pedro Cbs
+        </a>
+
       </div>
       <Footer />
     </div>
