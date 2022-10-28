@@ -38,11 +38,11 @@ Instale as dependências do projeto.
 
   ![Captura de tela de 2022-10-17 09-22-57](https://user-images.githubusercontent.com/39223055/198342483-c600948d-9731-4782-a857-f1d5092bfe2f.png)
 
-  Desenvolvido por: 
-  [Daniel Outeiro](https://www.linkedin.com/in/daniel-outeiro/)
-  [Rodrigo Nunes](https://www.linkedin.com/in/rodrigo-nunes-da-silva/)
-  [Bruno Veiga](https://www.linkedin.com/in/bruno-paredes-veiga/)
-  Juan Pablo
+  Desenvolvido por:\
+  [Daniel Outeiro](https://www.linkedin.com/in/daniel-outeiro/)\
+  [Rodrigo Nunes](https://www.linkedin.com/in/rodrigo-nunes-da-silva/)\
+  [Bruno Veiga](https://www.linkedin.com/in/bruno-paredes-veiga/)\
+  Juan Pablo\
   Pedro Cbs
   
   © 2022.
